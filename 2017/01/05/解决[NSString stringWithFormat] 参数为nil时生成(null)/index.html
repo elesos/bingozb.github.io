@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>解决NSString stringWithFormat:参数nil时返回(null) | Bingo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言NSString 这个类，在 OC 中很常见，[NSString stringWithFormat:] 这个方法我们都很熟悉了。但是也有很常见的一个问题，那就是参数为空的时候会返回@”(null)”。
+举个例子1label.text = [NSString stringWithFormat:@&amp;quot;所在医院 : %@&amp;quot;, self.doctor.hospital];
+当 doc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决NSString stringWithFormat:参数nil时返回(null)">
+<meta property="og:url" content="http://blog.bingo.ren/2017/01/05/解决[NSString stringWithFormat] 参数为nil时生成(null)/index.html">
+<meta property="og:site_name" content="Bingo's Blog">
+<meta property="og:description" content="前言NSString 这个类，在 OC 中很常见，[NSString stringWithFormat:] 这个方法我们都很熟悉了。但是也有很常见的一个问题，那就是参数为空的时候会返回@”(null)”。
+举个例子1label.text = [NSString stringWithFormat:@&amp;quot;所在医院 : %@&amp;quot;, self.doctor.hospital];
+当 doc">
+<meta property="og:updated_time" content="2017-01-04T19:24:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决NSString stringWithFormat:参数nil时返回(null)">
+<meta name="twitter:description" content="前言NSString 这个类，在 OC 中很常见，[NSString stringWithFormat:] 这个方法我们都很熟悉了。但是也有很常见的一个问题，那就是参数为空的时候会返回@”(null)”。
+举个例子1label.text = [NSString stringWithFormat:@&amp;quot;所在医院 : %@&amp;quot;, self.doctor.hospital];
+当 doc">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bingo&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Keep hungry and keep foolish.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.bingo.ren"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-解决[NSString stringWithFormat] 参数为nil时生成(null)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/解决[NSString stringWithFormat] 参数为nil时生成(null)/" class="article-date">
+  <time datetime="2017-01-04T16:15:19.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解决方案/">解决方案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      解决NSString stringWithFormat:参数nil时返回(null)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>NSString 这个类，在 OC 中很常见，[NSString stringWithFormat:] 这个方法我们都很熟悉了。但是也有很常见的一个问题，那就是参数为空的时候会返回@”(null)”。</p>
+<p><b>举个例子</b><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">label.text = [NSString stringWithFormat:@&quot;所在医院 : %@&quot;, self.doctor.hospital];</div></pre></td></tr></table></figure></p>
+<p>当 doctor.hospital 为 nil 时，显示“所在医院 : (null)”，理所当然 (null) 这样的字眼不应该出现在界面上被用户看见。</p>
+<a id="more"></a>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><ul>
+<li><p>使用宏，将传入的可变参数中的nil替换为空字符串@””</p>
+<p>  1.定义一个宏，写到PCH文件中</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#define DKNonnullString(str) ((str &amp;&amp; [str isKindOfClass:[NSString class]] &amp;&amp; str.length) ? str : @&quot;&quot;)</div></pre></td></tr></table></figure>
+<p>  2.可变参数每一个都包上这个宏</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">label.text = [NSString stringWithFormat:@&quot;所在医院 : %@&quot;, DKNonnullString(self.doctor.hospital)];</div></pre></td></tr></table></figure>
+<p>  原理 : 其实很简单，就是先判断参数是否为nil，如果是，就把它替换为空字符串，再进行format。</p>
+<p>  虽然可以实现，但这样子每次调用stringWithFormat:的时候都要包一个宏，感觉很麻烦！程序猿是无法忍受这种重复累赘的，至少我是这样子的，那有没有更酷的办法呢？</p>
+</li>
+<li><p>使用分类，重写stringWithFormat方法</p>
+<p>  跳到头文件 NSString.h 中，可以看到有与它相似的方法。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ (instancetype)stringWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);</div><div class="line">- (instancetype)initWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);</div><div class="line">- (instancetype)initWithFormat:(NSString *)format arguments:(va_list)argList NS_FORMAT_FUNCTION(1,0);</div></pre></td></tr></table></figure>
+<p>  首先需要了解 initWithFormat: 和 stringWithFormat: 的区别</p>
+<ul>
+<li>initWithFormat是实例方法，在MRC下需要手动release</li>
+<li>stringWithFormat是类方法，在MRC下返回的结果是autoRelease，推荐使用。</li>
+</ul>
+<p>而现在的项目绝大部分都是ARC了，所以两者可以说是没有区别，从调用方式的角度来讲，我个人还是比较喜欢类方法。重点是两者之间可以互换！</p>
+<p>再来看看 arguments，可以看到参数类型是 va_list，这货一看就不像是OC的东西，应该是C语言的。网上一搜，果然跟猜想的一样。它的意思是参数列表，除了va_list，还有 va_start、va_arg、va_end、NS_FORMAT_FUNCTION，都是C语言提供的处理变长参数的方法。</p>
+<p>给NSString添加一个分类，重写系统的stringWithFormat:方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// NSString+DKExtension.m</div><div class="line"></div><div class="line">/**</div><div class="line"> * 重写系统方法，替换返回的字符串中的 (null) 为空字符串</div><div class="line"> *  @&quot;(null)&quot; -&gt; @&quot;&quot;</div><div class="line"> */</div><div class="line"> + (instancetype)stringWithFormat:(NSString *)format, ...</div><div class="line"> &#123;</div><div class="line">     va_list arglist; </div><div class="line">     va_start(arglist, format); </div><div class="line">     NSString *outStr = [[NSString alloc] initWithFormat:format arguments:arglist];</div><div class="line">     va_end(arglist); </div><div class="line"> </div><div class="line">     return [outStr stringByReplacingOccurrencesOfString:@&quot;(null)&quot; withString:@&quot;&quot;];</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>NS_FORMAT_FUNCTION(1, 2) : 告诉编译器，索引1处的参数是一个格式化字符串，而实际参数从索引2处开始</li>
+<li>va_list : 定义一个指向个数可变的参数列表的指针，这个参数列表指针就是arglist</li>
+<li>va_start : 使参数列表指针指向format，从format的下一个元素开始</li>
+<li>va_end : 结束</li>
+</ul>
+<p>原理 : 重写系统的 stringWithFormat 方法，使用C语言提供的处理变长参数的方法获取参数列表，调用 initWithFormat:arguments: 方法，把返回的字符串在return前做过滤处理，把@”(null)”全部替换成@””。</p>
+<p>因为分类是load完毕就生效的，所以不需要#import导入分类文件，写好放着就行了。</p>
+</li>
+</ul>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>如果是MRC下，考虑到内存管理，有个想法就是用runtime+分类来解决。不重写系统的方法，而是load时交换系统的方法和我们自己写的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//  NSString+DKExtension.m</div><div class="line"></div><div class="line">#import &lt;objc/runtime.h&gt;</div><div class="line"></div><div class="line">+ (void)load</div><div class="line">&#123;</div><div class="line">    Method formatMethod = class_getClassMethod(self, @selector(stringWithFormat:));</div><div class="line">    Method myFormatMethod = class_getClassMethod(self, @selector(dk_stringWithFormat:));</div><div class="line">    </div><div class="line">    method_exchangeImplementations(formatMethod, myFormatMethod);</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (instancetype)dk_stringWithFormat:(NSString *)format, ...</div><div class="line">&#123;</div><div class="line">    va_list arglist;</div><div class="line">    va_start(arglist, format);</div><div class="line">    NSString *outStr = [self dk_stringWithFormat:format, arglist];</div><div class="line">    va_end(arglist);</div><div class="line">    </div><div class="line">    return [outStr stringByReplacingOccurrencesOfString:@&quot;(null)&quot; withString:@&quot;&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>理论上可以，但会报坏内存访问错误，还没空去分析原因，先mark一下。</p>
+<h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>也许有人会说，重写了系统的方法，会不会带来其它地方的未知问题。我觉得还好吧，虽然重写了 stringWithFormat: 这个方法，把返回的字符串中的 @”(null)” 过滤掉了而已，但实际上还是调用系统的另一个方法 initWithFormat:arguments:，只不过在ARC下恰好没什么影响。</p>
+<p>我们整理了开发中常用的分类 <a href="https://github.com/bingozb/DKExtension" target="_blank" rel="external">DKExtension</a>，里面已经包含了上面所说的内容，欢迎导入我们的分类库进行开发。</p>
+<ul>
+<li><p>支持Cocoapods</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;DKExtension.h&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Download or Usage 请移步 GitHub</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.bingo.ren/2017/01/05/解决[NSString stringWithFormat] 参数为nil时生成(null)/" data-id="cixjbzyxn00015yryjvc0mjfq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/30/MySQL支持emoji字符的插入/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MySQL支持emoji字符的插入</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/解决方案/">解决方案</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/01/05/解决[NSString stringWithFormat] 参数为nil时生成(null)/">解决NSString stringWithFormat:参数nil时返回(null)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/30/MySQL支持emoji字符的插入/">MySQL支持emoji字符的插入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyright &copy; 2017, Bingo All Rights Reserved. <br>
+      Powered by <a href="http://bingo.ren/" target="_blank">bingo zb</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
