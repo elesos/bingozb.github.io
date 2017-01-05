@@ -15,7 +15,7 @@
 <meta property="og:description" content="前言NSString 这个类，在 OC 中很常见，[NSString stringWithFormat:] 这个方法我们都很熟悉了。但是也有很常见的一个问题，那就是参数为空的时候会返回@”(null)”。
 举个例子1label.text = [NSString stringWithFormat:@&amp;quot;所在医院 : %@&amp;quot;, self.doctor.hospital];
 当 doc">
-<meta property="og:updated_time" content="2017-01-04T19:24:32.000Z">
+<meta property="og:updated_time" content="2017-01-05T00:52:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决NSString stringWithFormat:参数nil时返回(null)">
 <meta name="twitter:description" content="前言NSString 这个类，在 OC 中很常见，[NSString stringWithFormat:] 这个方法我们都很熟悉了。但是也有很常见的一个问题，那就是参数为空的时候会返回@”(null)”。
@@ -130,8 +130,7 @@
 <p>因为分类是load完毕就生效的，所以不需要#import导入分类文件，写好放着就行了。</p>
 </li>
 </ul>
-<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>如果是MRC下，考虑到内存管理，有个想法就是用runtime+分类来解决。不重写系统的方法，而是load时交换系统的方法和我们自己写的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//  NSString+DKExtension.m</div><div class="line"></div><div class="line">#import &lt;objc/runtime.h&gt;</div><div class="line"></div><div class="line">+ (void)load</div><div class="line">&#123;</div><div class="line">    Method formatMethod = class_getClassMethod(self, @selector(stringWithFormat:));</div><div class="line">    Method myFormatMethod = class_getClassMethod(self, @selector(dk_stringWithFormat:));</div><div class="line">    </div><div class="line">    method_exchangeImplementations(formatMethod, myFormatMethod);</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (instancetype)dk_stringWithFormat:(NSString *)format, ...</div><div class="line">&#123;</div><div class="line">    va_list arglist;</div><div class="line">    va_start(arglist, format);</div><div class="line">    NSString *outStr = [self dk_stringWithFormat:format, arglist];</div><div class="line">    va_end(arglist);</div><div class="line">    </div><div class="line">    return [outStr stringByReplacingOccurrencesOfString:@&quot;(null)&quot; withString:@&quot;&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>理论上可以，但会报坏内存访问错误，还没空去分析原因，先mark一下。</p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>如果是MRC下，再调用 autorelease 方法即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *outStr = [[[NSString alloc] initWithFormat:formatStr arguments:arglist] autorelease];</div></pre></td></tr></table></figure></p>
 <h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>也许有人会说，重写了系统的方法，会不会带来其它地方的未知问题。我觉得还好吧，虽然重写了 stringWithFormat: 这个方法，把返回的字符串中的 @”(null)” 过滤掉了而已，但实际上还是调用系统的另一个方法 initWithFormat:arguments:，只不过在ARC下恰好没什么影响。</p>
 <p>我们整理了开发中常用的分类 <a href="https://github.com/bingozb/DKExtension" target="_blank" rel="external">DKExtension</a>，里面已经包含了上面所说的内容，欢迎导入我们的分类库进行开发。</p>
 <ul>
@@ -145,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.bingo.ren/2017/01/05/解决[NSString stringWithFormat] 参数为nil时生成(null)/" data-id="cixjbzyxn00015yryjvc0mjfq" class="article-share-link">Share</a>
+      <a data-url="http://blog.bingo.ren/2017/01/05/解决[NSString stringWithFormat] 参数为nil时生成(null)/" data-id="cixjnruar0001jkry6qqfw62y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
