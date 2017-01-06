@@ -4,7 +4,7 @@
 
 # Site
 title: Bingo's Blog
-subtitle: Keep hungry and keep foolish.
+subtitle: Stay Hungry, Stay Foolish.
 description: Mark the dev-notes.
 author: Bingo
 language: zh-CN
@@ -35,7 +35,7 @@ external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
-relative_link: false
+relative_link: true
 future: true
 highlight:
   enable: true
