@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://bingo.ren/2017/01/24/6/</loc>
-    <lastmod>2017-01-24T06:41:15.000Z</lastmod>
+    <lastmod>2017-01-24T07:20:44.000Z</lastmod>
     <data>
         <display>
         <title>常用的分类和宏封装库 DKExtension</title>
@@ -24,19 +24,19 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/01/23/5/</loc>
-    <lastmod>2017-01-24T05:09:02.000Z</lastmod>
+    <loc>http://bingo.ren/2017/01/24/7/</loc>
+    <lastmod>2017-01-24T07:19:27.000Z</lastmod>
     <data>
         <display>
-        <title>Git 分支管理</title>
-        <pubTime>2017-01-23T09:53:58.000Z</pubTime>
+        <title>扫一扫框架 DKScanner</title>
+        <pubTime>2017-01-24T07:12:51.000Z</pubTime>
         
-        <tag>Git</tag>
+        <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+              <breadCrumb title="DKKIT" url="http://bingo.ren/categories/DKKIT/"/>
           
         </display>
     </data>
@@ -45,7 +45,7 @@
     
   <url>
     <loc>http://bingo.ren/2016/12/30/1/</loc>
-    <lastmod>2017-01-22T00:22:59.000Z</lastmod>
+    <lastmod>2017-01-24T06:44:23.000Z</lastmod>
     <data>
         <display>
         <title>MySQL支持emoji字符的插入</title>
@@ -67,7 +67,7 @@
     
   <url>
     <loc>http://bingo.ren/2017/01/05/2/</loc>
-    <lastmod>2017-01-22T00:22:59.000Z</lastmod>
+    <lastmod>2017-01-24T06:44:23.000Z</lastmod>
     <data>
         <display>
         <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
@@ -86,8 +86,28 @@
 
     
   <url>
+    <loc>http://bingo.ren/2017/01/22/4/</loc>
+    <lastmod>2017-01-24T06:44:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>年度工作总结</title>
+        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作总结" url="http://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://bingo.ren/2016/08/10/3/</loc>
-    <lastmod>2017-01-22T00:22:59.000Z</lastmod>
+    <lastmod>2017-01-24T06:44:23.000Z</lastmod>
     <data>
         <display>
         <title>iOS战斗总结笔记一期</title>
@@ -106,19 +126,19 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/01/22/4/</loc>
-    <lastmod>2017-01-22T00:22:59.000Z</lastmod>
+    <loc>http://bingo.ren/2017/01/23/5/</loc>
+    <lastmod>2017-01-24T06:44:23.000Z</lastmod>
     <data>
         <display>
-        <title>年度工作总结</title>
-        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
+        <title>Git 分支管理</title>
+        <pubTime>2017-01-23T09:53:58.000Z</pubTime>
         
-        <tag>iOS</tag>
+        <tag>Git</tag>
          
          
            
              
-              <breadCrumb title="工作总结" url="http://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
           
         </display>
     </data>

@@ -3,21 +3,39 @@
 <head>
   <meta charset="utf-8">
   
-  <title>常用的分类和宏封装库 DKExtension | Bingo&#39;s Blog</title>
+  <title>扫一扫框架 DKScanner | Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Dankal extension category for iOS.
-Cocoapods 安装1pod &apos;DKExtension.h&apos;">
+  <meta name="description" content="A QRCode Scanner for iOS.一个“扫一扫”扫描器，支持二维码和条码。
+
+安装
+通过cocoapods安装
+
+1pod &apos;DKScanner&apos;
+
+或者直接clone，将DKScanner文件夹整个拖到你的项目中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用的分类和宏封装库 DKExtension">
-<meta property="og:url" content="http://bingo.ren/2017/01/24/6/index.html">
+<meta property="og:title" content="扫一扫框架 DKScanner">
+<meta property="og:url" content="http://bingo.ren/2017/01/24/7/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="Dankal extension category for iOS.
-Cocoapods 安装1pod &apos;DKExtension.h&apos;">
-<meta property="og:updated_time" content="2017-01-24T07:20:44.000Z">
+<meta property="og:description" content="A QRCode Scanner for iOS.一个“扫一扫”扫描器，支持二维码和条码。
+
+安装
+通过cocoapods安装
+
+1pod &apos;DKScanner&apos;
+
+或者直接clone，将DKScanner文件夹整个拖到你的项目中">
+<meta property="og:updated_time" content="2017-01-24T07:19:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用的分类和宏封装库 DKExtension">
-<meta name="twitter:description" content="Dankal extension category for iOS.
-Cocoapods 安装1pod &apos;DKExtension.h&apos;">
+<meta name="twitter:title" content="扫一扫框架 DKScanner">
+<meta name="twitter:description" content="A QRCode Scanner for iOS.一个“扫一扫”扫描器，支持二维码和条码。
+
+安装
+通过cocoapods安装
+
+1pod &apos;DKScanner&apos;
+
+或者直接clone，将DKScanner文件夹整个拖到你的项目中">
   
   
     <link rel="icon" href="/favicon.png">
@@ -66,10 +84,10 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-6" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-7" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="" class="article-date">
-  <time datetime="2017-01-24T06:37:35.000Z" itemprop="datePublished">2017-01-24</time>
+  <time datetime="2017-01-24T07:12:51.000Z" itemprop="datePublished">2017-01-24</time>
 </a>
     
   <div class="article-category">
@@ -84,7 +102,7 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
         
   
     <h1 class="article-title" itemprop="name">
-      常用的分类和宏封装库 DKExtension
+      扫一扫框架 DKScanner
     </h1>
   
 
@@ -92,24 +110,27 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Dankal extension category for iOS.</p>
-<h4 id="Cocoapods-安装"><a href="#Cocoapods-安装" class="headerlink" title="Cocoapods 安装"></a>Cocoapods 安装</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKExtension.h'</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
-<li><p>引入</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DKExtension.h"</span></span></div></pre></td></tr></table></figure>
-</li>
-<li><p>以<code>dk_</code>为前缀调用分类方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// dk_xxxx</span></div><div class="line">label.textColor = [<span class="built_in">UIColor</span> dk_randomColor];</div><div class="line">label.text = [<span class="built_in">NSDate</span> dk_currentDateStrWithFormat:<span class="string">@"当前时间: yyyy-MM-dd HH:mm:ss"</span>];</div></pre></td></tr></table></figure>
-</li>
-<li><p>提供 <a href="http://bingo.ren/DKExtension">API文档</a>，具体分类方法和属性请Review代码</p>
-</li>
-</ul>
+        <p><br>A QRCode Scanner for iOS.<br><br>一个“扫一扫”扫描器，支持二维码和条码。<br></p>
 
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li>通过cocoapods安装</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKScanner'</div></pre></td></tr></table></figure>
+<ul>
+<li>或者直接clone，将<code>DKScanner</code>文件夹整个拖到你的项目中</li>
+</ul>
+<a id="more"></a>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><strong>引用头文件</strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DKScannerController.h"</span></span></div></pre></td></tr></table></figure>
+<p><strong>调用</strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DKScannerController *scannerVc = [DKScannerController scannerWithCompletion:^(<span class="built_in">NSString</span> *stringValue) &#123;</div><div class="line">        <span class="comment">// 扫描结果回调</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"扫描结果: %@"</span>, stringValue);</div><div class="line">&#125;];</div><div class="line"><span class="comment">// 设置导航栏标题、标题颜色和主题色</span></div><div class="line">[scannerVc setTitle:<span class="string">@"扫描二维码"</span> titleColor:[<span class="built_in">UIColor</span> whiteColor] tintColor:[<span class="built_in">UIColor</span> redColor]];</div><div class="line"><span class="comment">// modal</span></div><div class="line">[<span class="keyword">self</span> presentViewController:scannerVc animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>在iOS10上，使用摄像头和访问相册都需要添加请求访问权限描述，否则会Crash。</p>
+<p>请在info.plist文件中添加以下键值对。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;</div><div class="line">&lt;string&gt;是否允许访问摄像头&lt;/string&gt;</div><div class="line">&lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;</div><div class="line">&lt;string&gt;是否允许访问相册&lt;/string&gt;</div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/24/6/" data-id="ciyb70lzf00053mrywl5exvfb" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/24/7/" data-id="ciyb70lzm000b3mry2kuak6u0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/iOS/">iOS</a></li></ul>
@@ -120,19 +141,10 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
     
 <nav id="article-nav">
   
-    <a href="../7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          扫一扫框架 DKScanner
-        
-      </div>
-    </a>
   
-  
-    <a href="../../23/5/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../6/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Git 分支管理</div>
+      <div class="article-nav-title">常用的分类和宏封装库 DKExtension</div>
     </a>
   
 </nav>
@@ -190,11 +202,11 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
       <ul>
         
           <li>
-            <a href="../7/">扫一扫框架 DKScanner</a>
+            <a href="">扫一扫框架 DKScanner</a>
           </li>
         
           <li>
-            <a href="">常用的分类和宏封装库 DKExtension</a>
+            <a href="../6/">常用的分类和宏封装库 DKExtension</a>
           </li>
         
           <li>
