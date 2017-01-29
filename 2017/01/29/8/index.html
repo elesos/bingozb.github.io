@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Git 合并Commit | Bingo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章《Git 分支管理》，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 合并Commit">
+<meta property="og:url" content="http://bingo.ren/2017/01/29/8/index.html">
+<meta property="og:site_name" content="Bingo's Blog">
+<meta property="og:description" content="前言团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章《Git 分支管理》，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。">
+<meta property="og:updated_time" content="2017-01-29T02:27:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 合并Commit">
+<meta name="twitter:description" content="前言团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章《Git 分支管理》，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../../../../css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../../../index.html" id="logo">Bingo&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../../../index.html" id="subtitle">Stay Hungry, Stay Foolish.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bingo.ren"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="" class="article-date">
+  <time datetime="2017-01-29T01:38:18.000Z" itemprop="datePublished">2017-01-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../../../categories/解决方案/">解决方案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git 合并Commit
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章<a href="http://bingo.ren/2017/01/23/5/">《Git 分支管理》</a>，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。</p>
+<a id="more"></a>
+<h2 id="合并-Commit"><a href="#合并-Commit" class="headerlink" title="合并 Commit"></a>合并 Commit</h2><h4 id="为什么需要合并Commit"><a href="#为什么需要合并Commit" class="headerlink" title="为什么需要合并Commit"></a>为什么需要合并Commit</h4><p>其实这种需求很常见，假设你刚刚添加了一个新功能，Commit了，还没Push。此时，你发现了一个小Bug，然后修复了它，又Commit了。过了一会，你又发现另外一个Bug，于是你又修复了它，然后又Commit了。此时，在你Push之前，已经有3个Commit了。</p>
+<p>如果你想要让远程仓库的项目网络“好看”，即简洁明了，每个Commit都有它的意义。那么就应该把这3个Commit合并后，再Push。否则如果这种随便Commit然后就Push的现象越来越多，会导致项目网络上面的提交信息可读性很差，还会让项目经理Get不到点。像我们团队的项目网络经常会看到像这样的提交信息：“小修复”、“改了一点小东西” …</p>
+<h4 id="方式一、rebase"><a href="#方式一、rebase" class="headerlink" title="方式一、rebase"></a>方式一、rebase</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rebase -i origin/master</div></pre></td></tr></table></figure>
+<p>git rebase命令的 i 参数表示互动（interactive），这时git会打开一个互动界面，进行下一步操作。</p>
+<p>下面采用 <a href="https://robots.thoughtbot.com/git-interactive-rebase-squash-amend-rewriting-history" target="_blank" rel="external">Tute Costa</a> 的例子，来解释怎么合并Commit。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">pick 07c5abd Introduce OpenPGP and teach basic usage</div><div class="line">pick de9b1eb Fix PostChecker::Post#urls</div><div class="line">pick 3e7ee36 Hey kids, stop all the highlighting</div><div class="line">pick fa20af3 git interactive rebase, squash, amend</div><div class="line"></div><div class="line"># Rebase 8db7e8b..fa20af3 onto 8db7e8b</div><div class="line">#</div><div class="line"># Commands:</div><div class="line">#  p, pick = use commit</div><div class="line">#  r, reword = use commit, but edit the commit message</div><div class="line">#  e, edit = use commit, but stop for amending</div><div class="line">#  s, squash = use commit, but meld into previous commit</div><div class="line">#  f, fixup = like &quot;squash&quot;, but discard this commit&apos;s log message</div><div class="line">#  x, exec = run command (the rest of the line) using shell</div><div class="line">#</div><div class="line"># These lines can be re-ordered; they are executed from top to bottom.</div><div class="line">#</div><div class="line"># If you remove a line here THAT COMMIT WILL BE LOST.</div><div class="line">#</div><div class="line"># However, if you remove everything, the rebase will be aborted.</div><div class="line">#</div><div class="line"># Note that empty commits are commented out</div></pre></td></tr></table></figure>
+<p>上面的互动界面，先列出当前分支最新的4个commit（越下面越新）。每个commit前面有一个操作命令，默认是pick，表示该行Commit被选中，要进行rebase操作。</p>
+<p>4个Commit的下面是一大堆注释，列出可以使用的命令。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pick</td>
+<td>正常选中</td>
+</tr>
+<tr>
+<td>reword</td>
+<td>选中，并且修改提交信</td>
+</tr>
+<tr>
+<td>edit</td>
+<td>选中，rebase时会暂停，允许你修改这个commit（参考<a href="https://git-scm.com/book/en/v2" target="_blank" rel="external">这里</a>）</td>
+</tr>
+<tr>
+<td>squash</td>
+<td>选中，会将当前commit与上一个commit合并</td>
+</tr>
+<tr>
+<td>fixup</td>
+<td>与squash相同，但不会保存当前commit的提交信息</td>
+</tr>
+<tr>
+<td>exec</td>
+<td>执行其他shell命令</td>
+</tr>
+</tbody>
+</table>
+<p>上面这6个命令当中，squash 和 fixup 可以用来合并commit。先把需要合并的commit前面的动词，改成 squash（或者s）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pick 07c5abd Introduce OpenPGP and teach basic usage</div><div class="line">s de9b1eb Fix PostChecker::Post#urls</div><div class="line">s 3e7ee36 Hey kids, stop all the highlighting</div><div class="line">pick fa20af3 git interactive rebase, squash, amend</div></pre></td></tr></table></figure>
+<p>这样一改，执行后，当前分支只会剩下两个commit。第二行和第三行的commit，都会合并到第一行的commit。提交信息会同时包含，这三个commit的提交信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># This is a combination of 3 commits.</div><div class="line"># The first commit&apos;s message is:</div><div class="line">Introduce OpenPGP and teach basic usage</div><div class="line"></div><div class="line"># This is the 2nd commit message:</div><div class="line">Fix PostChecker::Post#urls</div><div class="line"></div><div class="line"># This is the 3rd commit message:</div><div class="line">Hey kids, stop all the highlighting</div></pre></td></tr></table></figure>
+<p>如果将第三行的 squash 命令改成 fixup 命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pick 07c5abd Introduce OpenPGP and teach basic usage</div><div class="line">s de9b1eb Fix PostChecker::Post#urls</div><div class="line">f 3e7ee36 Hey kids, stop all the highlighting</div><div class="line">pick fa20af3 git interactive rebase, squash, amend</div></pre></td></tr></table></figure>
+<p>运行结果相同，还是会生成两个commit，第二行和第三行的commit，都合并到第一行的commit。但是，新的提交信息里面，第三行commit的提交信息，会被注释掉。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># This is a combination of 3 commits.</div><div class="line"># The first commit&apos;s message is:</div><div class="line">Introduce OpenPGP and teach basic usage</div><div class="line"></div><div class="line"># This is the 2nd commit message:</div><div class="line">Fix PostChecker::Post#urls</div><div class="line"></div><div class="line"># This is the 3rd commit message:</div><div class="line"># Hey kids, stop all the highlighting</div></pre></td></tr></table></figure>
+<p>这也是就是fio所提出的问题：如果我不想让别人看到我合并的commit的提交信息怎么办？</p>
+<p>回答：用 fixup (f)</p>
+<h4 id="方式二、“Undo”-reset"><a href="#方式二、“Undo”-reset" class="headerlink" title="方式二、“Undo” - reset"></a>方式二、“Undo” - reset</h4><p>在GitHub Desktop这个客户端上，有个明显的Undo按钮，作用是撤销该Commit。平时在上述情景的时候，我都会使用Undo，然后再重新Commit。那么原理是什么？</p>
+<p>另外一种合并commit的简便方法，就是先撤销之前的Commit，然后再建一个新Commit的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset HEAD~n</div></pre></td></tr></table></figure>
+<p>n 是撤销的Commit的个数，假如上述情景要撤销5个Commit，eg.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git reset HEAD~5 </div><div class="line">$ git add .</div><div class="line">$ git commit -am &quot;Here&apos;s the bug fix that closes #28&quot;</div><div class="line">$ git push --force</div></pre></td></tr></table></figure>
+<p>而GitHub Desktop的Undo，其实就是每点一下执行一个reset，仅此而已。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset HEAD~1</div></pre></td></tr></table></figure>
+<p>squash 和 fixup 命令，还可以当作命令行参数使用，自动合并commit。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git commit --fixup  </div><div class="line">$ git rebase -i --autosquash</div></pre></td></tr></table></figure>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://fle.github.io/git-tip-keep-your-branch-clean-with-fixup-and-autosquash.html" target="_blank" rel="external"><br>GIT tip : Keep your branch clean with fixup and autosquash</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingo.ren/2017/01/29/8/" data-id="ciyi1q1o4000fecgpgt3yhi3e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Git/">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../24/7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">扫一扫框架 DKScanner</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/DKKIT/">DKKIT</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/工作总结/">工作总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/战斗笔记/">战斗笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/解决方案/">解决方案</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/iOS/">iOS</a><span class="tag-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="../../../../tags/Git/" style="font-size: 15px;">Git</a> <a href="../../../../tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="../../../../tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="../../../../tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2017/01/">一月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Git 合并Commit</a>
+          </li>
+        
+          <li>
+            <a href="../../24/7/">扫一扫框架 DKScanner</a>
+          </li>
+        
+          <li>
+            <a href="../../24/6/">常用的分类和宏封装库 DKExtension</a>
+          </li>
+        
+          <li>
+            <a href="../../23/5/">Git 分支管理</a>
+          </li>
+        
+          <li>
+            <a href="../../22/4/">年度工作总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyright &copy; 2017, Bingo All Rights Reserved. <br>
+      Powered by <a href="http://bingo.ren/resume/" target="_blank">bingo zb</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+  <script src="../../../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../../../../js/script.js"></script>
+
+  </div>
+</body>
+</html>
