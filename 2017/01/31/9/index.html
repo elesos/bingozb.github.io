@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>常用的分类和宏封装库 DKExtension | Bingo&#39;s Blog</title>
+  <title>解决讨厌的.DS_store文件 | Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Dankal extension category for iOS.
-Cocoapods 安装1pod &apos;DKExtension.h&apos;">
+  <meta name="description" content="前言使用 macOS 的操作系统的人都知道，在每个目录里都会有 .DS_Store 这样一个隐藏文件，是用来存储这个文件夹的显示属性的，比如文件图标的摆放位置等。删掉后会自动重新生成，如何优雅地解决它？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用的分类和宏封装库 DKExtension">
-<meta property="og:url" content="http://bingo.ren/2017/01/24/6/index.html">
+<meta property="og:title" content="解决讨厌的.DS_store文件">
+<meta property="og:url" content="http://bingo.ren/2017/01/31/9/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="Dankal extension category for iOS.
-Cocoapods 安装1pod &apos;DKExtension.h&apos;">
-<meta property="og:updated_time" content="2017-01-24T07:24:53.000Z">
+<meta property="og:description" content="前言使用 macOS 的操作系统的人都知道，在每个目录里都会有 .DS_Store 这样一个隐藏文件，是用来存储这个文件夹的显示属性的，比如文件图标的摆放位置等。删掉后会自动重新生成，如何优雅地解决它？">
+<meta property="og:updated_time" content="2017-01-31T04:45:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用的分类和宏封装库 DKExtension">
-<meta name="twitter:description" content="Dankal extension category for iOS.
-Cocoapods 安装1pod &apos;DKExtension.h&apos;">
+<meta name="twitter:title" content="解决讨厌的.DS_store文件">
+<meta name="twitter:description" content="前言使用 macOS 的操作系统的人都知道，在每个目录里都会有 .DS_Store 这样一个隐藏文件，是用来存储这个文件夹的显示属性的，比如文件图标的摆放位置等。删掉后会自动重新生成，如何优雅地解决它？">
   
   
     <link rel="icon" href="/favicon.png">
@@ -66,14 +63,14 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-6" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-9" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="" class="article-date">
-  <time datetime="2017-01-24T06:37:35.000Z" itemprop="datePublished">2017-01-24</time>
+  <time datetime="2017-01-31T04:20:21.000Z" itemprop="datePublished">2017-01-31</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../../../categories/DKKIT/">DKKIT</a>
+    <a class="article-category-link" href="../../../../categories/解决方案/">解决方案</a>
   </div>
 
   </div>
@@ -84,7 +81,7 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
         
   
     <h1 class="article-title" itemprop="name">
-      常用的分类和宏封装库 DKExtension
+      解决讨厌的.DS_store文件
     </h1>
   
 
@@ -92,27 +89,35 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Dankal extension category for iOS.</p>
-<h4 id="Cocoapods-安装"><a href="#Cocoapods-安装" class="headerlink" title="Cocoapods 安装"></a>Cocoapods 安装</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKExtension.h'</div></pre></td></tr></table></figure>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>使用 macOS 的操作系统的人都知道，在每个目录里都会有 .DS_Store 这样一个隐藏文件，是用来存储这个文件夹的显示属性的，比如文件图标的摆放位置等。删掉后会自动重新生成，如何优雅地解决它？</p>
 <a id="more"></a>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
-<li><p>引入</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DKExtension.h"</span></span></div></pre></td></tr></table></figure>
-</li>
-<li><p>以<code>dk_</code>为前缀调用分类方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// dk_xxxx</span></div><div class="line">label.textColor = [<span class="built_in">UIColor</span> dk_randomColor];</div><div class="line">label.text = [<span class="built_in">NSDate</span> dk_currentDateStrWithFormat:<span class="string">@"当前时间: yyyy-MM-dd HH:mm:ss"</span>];</div></pre></td></tr></table></figure>
-</li>
-<li><p>提供 <a href="http://bingo.ren/DKExtension">API文档</a>，具体分类方法和属性请Review代码</p>
-</li>
+<h4 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h4><ul>
+<li>删除当前目录的 .DS_store</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -name &apos;*.DS_Store&apos; -type f -delete</div></pre></td></tr></table></figure>
+<ul>
+<li>删除所有目录的 .DS_store</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo find / -name “.DS_Store” -depth -exec rm &#123;&#125; \;</div></pre></td></tr></table></figure>
+<ul>
+<li>禁止 .DS_store 生成</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE</div></pre></td></tr></table></figure>
+<ul>
+<li>恢复 .DS_store 生成</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">defaults delete com.apple.desktopservices DSDontWriteNetworkStores</div></pre></td></tr></table></figure>
+<h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>删除所有目录的 .DS_store，并禁止它自动生成，应该就一劳永逸了。当然，如果你觉得没有必要，可以完全无视该篇文章。</p>
+<p>另外，在 macOS Sierra 10.12 上，已经隐藏这个 .DS_store 文件了，但其实还是存在的，我开了虚拟机在 Windows 上就可以看到这个文件。可能是苹果也发现它的恶心之处了吧，从用户体验的角度出发做了优化。</p>
+<p>但其实也就是障眼法，治标不治本，在 Git、SVN 甚至最基本的U盘拷贝文件夹的时候还是会把这个文件提交上去，然而这个文件一点卵用都没有，跟项目一点关系也没有，与其每个项目都在 .gitignore 添加它，还不如用两句命令解决它，你说呢？</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/24/6/" data-id="ciyl1jq4100094ggpk6nve4uc" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/31/9/" data-id="ciyl1jq4b000i4ggplyf55vzi" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/iOS/">iOS</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Mac/">Mac</a></li></ul>
 
     </footer>
   </div>
@@ -120,19 +125,10 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
     
 <nav id="article-nav">
   
-    <a href="../7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          扫一扫框架 DKScanner
-        
-      </div>
-    </a>
   
-  
-    <a href="../../23/5/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../29/8/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Git 分支管理</div>
+      <div class="article-nav-title">Git 合并Commit</div>
     </a>
   
 </nav>
@@ -190,7 +186,7 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
       <ul>
         
           <li>
-            <a href="../../31/9/">解决讨厌的.DS_store文件</a>
+            <a href="">解决讨厌的.DS_store文件</a>
           </li>
         
           <li>
@@ -198,11 +194,11 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
           </li>
         
           <li>
-            <a href="../7/">扫一扫框架 DKScanner</a>
+            <a href="../../24/7/">扫一扫框架 DKScanner</a>
           </li>
         
           <li>
-            <a href="">常用的分类和宏封装库 DKExtension</a>
+            <a href="../../24/6/">常用的分类和宏封装库 DKExtension</a>
           </li>
         
           <li>
