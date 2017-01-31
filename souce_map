@@ -7,3 +7,4 @@ source_id	----	title
 6			----	常用的分类和宏封装库 DKExtension
 7			----	扫一扫框架 DKScanner
 8			----	Git 合并Commit
+9			----	解决讨厌的.DS_store文件
