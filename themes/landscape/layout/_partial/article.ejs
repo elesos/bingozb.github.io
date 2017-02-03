@@ -35,9 +35,10 @@
   <% } %>
 </article>
 
+<% if (!index && post.comments){ %>
 <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div id="ds-thread" class="ds-thread" data-thread-key="bingozb" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="<%= post.path %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -53,3 +54,4 @@
     </script>
     <!-- 多说公共JS代码 end -->
 </div>
+<% } %>
