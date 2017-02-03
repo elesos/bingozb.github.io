@@ -5,9 +5,9 @@ description: "About me."
 type: "about"
 ---
 
-#### 基本信息
+<img src="http://bingo.ren/images/me.jpg" width=120 style="float:right;margin-right:20px">
 
-<img src="http://bingo.ren/images/me.jpg" width=125 style="float:right;margin-right:30px">
+#### 基本信息
 
 * 姓名 : 庄槟豪 
 * 英名 : Bingo
