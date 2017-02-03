@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://bingo.ren/2017/01/31/9/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言使用 macOS 的操作系统的人都知道，系统经常会自动在每个目录生成一个隐藏的 .DS_Store 文件。.DS_Store (Desktop Services Store) 是一种由苹果公司的 Mac OS X 操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。删掉后会自动重新生成，如何优雅地">
-<meta property="og:updated_time" content="2017-02-03T05:42:33.000Z">
+<meta property="og:updated_time" content="2017-02-03T06:14:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决讨厌的.DS_store文件">
 <meta name="twitter:description" content="前言使用 macOS 的操作系统的人都知道，系统经常会自动在每个目录生成一个隐藏的 .DS_Store 文件。.DS_Store (Desktop Services Store) 是一种由苹果公司的 Mac OS X 操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。删掉后会自动重新生成，如何优雅地">
@@ -92,7 +92,7 @@
         <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>使用 macOS 的操作系统的人都知道，系统经常会自动在每个目录生成一个隐藏的 .DS_Store 文件。.DS_Store (Desktop Services Store) 是一种由苹果公司的 Mac OS X 操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。删掉后会自动重新生成，如何优雅地解决它？</p>
 <a id="more"></a>
 <h4 id="为什么要搞它"><a href="#为什么要搞它" class="headerlink" title="为什么要搞它"></a>为什么要搞它</h4><p>留着不是挺好的吗？一些自以为没有强迫症的人可能会以这种心态去保留它。其实不然，在 Git、SVN 甚至最基本的U盘拷贝文件夹的时候还是会把这个文件提交上去，然而这个文件一点卵用都没有，跟项目一点关系也没有。</p>
-<p>如果不处理，每次拷贝给你同事的文件里都会包含有这个文件，或者上传网页的时候，应该把这个文件删除比较妥当，因为里面包含了一些你不一定希望别人看见的信息。（尤其是网站，通过 .DS_Store 可以知道这个目录里面所有文件的清单，很多时候这是一个不希望出现的问题。）<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="comment">//例子</span></div><div class="line">　　$filepath = <span class="string">"images"</span>;</div><div class="line">　　$handle = opendir($filepath);</div><div class="line">　　<span class="keyword">while</span> (<span class="keyword">false</span> != ($file = readdir($handle))) &#123;</div><div class="line">　　    <span class="keyword">if</span> ($file != <span class="string">"."</span> &amp;&amp; $file != <span class="string">".."</span> &amp;&amp; $file != <span class="string">".DS_Store"</span> &amp;&amp; $file != <span class="string">"index.html"</span> &amp;&amp; $file != <span class="string">"index.htm"</span> &amp;&amp; $file != <span class="string">"index.php"</span>) &#123;</div><div class="line">　　    <span class="keyword">if</span> ($output) $output .= <span class="string">"|"</span>;</div><div class="line">　　    $output .= <span class="string">"$file"</span>;</div><div class="line">　　    &#125;</div><div class="line">　　&#125;</div><div class="line">　　closedir($handle);</div><div class="line">　　<span class="keyword">echo</span> <span class="string">"&amp;files=$output&amp;"</span>; <span class="comment">//输出遍历此文件夹所有的内容</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>如果不处理，每次拷贝给你同事的文件里都会包含有这个文件，或者上传网页的时候，应该把这个文件删除比较妥当，因为里面包含了一些你不一定希望别人看见的信息。（尤其是网站，通过 .DS_Store 可以知道这个目录里面所有文件的清单，很多时候这是一个不希望出现的问题。）<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="comment">//例子</span></div><div class="line">　　$filepath = <span class="string">"images"</span>;</div><div class="line">　　$handle = opendir($filepath);</div><div class="line">　　<span class="keyword">while</span> (<span class="keyword">false</span> != ($file = readdir($handle))) &#123;</div><div class="line">　　    <span class="keyword">if</span> ($file != <span class="string">"."</span> &amp;&amp; $file != <span class="string">".."</span> &amp;&amp; $file != <span class="string">".DS_Store"</span> &amp;&amp; $file != <span class="string">"index.html"</span> &amp;&amp; $file != <span class="string">"index.htm"</span> &amp;&amp; $file != <span class="string">"index.php"</span>) &#123;</div><div class="line">　　        <span class="keyword">if</span> ($output) $output .= <span class="string">"|"</span>;</div><div class="line">　　        $output .= <span class="string">"$file"</span>;</div><div class="line">　　    &#125;</div><div class="line">　　&#125;</div><div class="line">　　closedir($handle);</div><div class="line">　　<span class="keyword">echo</span> <span class="string">"&amp;files=$output&amp;"</span>; <span class="comment">//输出遍历此文件夹所有的内容</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
 <h4 id="删除、禁止生成"><a href="#删除、禁止生成" class="headerlink" title="删除、禁止生成"></a>删除、禁止生成</h4><ul>
 <li>删除当前目录的 .DS_store</li>
 </ul>
@@ -124,10 +124,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/31/9/" data-id="ciypdwlxd000ie8t8gbe2xoau" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/31/9/" data-id="ciypf233j000ev5t8id42mpdp" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Mac-Git/">Mac, Git</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Mac/">Mac</a></li></ul>
 
     </footer>
   </div>
@@ -164,7 +164,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Mac-Git/">Mac, Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/iOS/">iOS</a><span class="tag-list-count">5</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/iOS/">iOS</a><span class="tag-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -174,7 +174,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="../../../../tags/Git/" style="font-size: 15px;">Git</a> <a href="../../../../tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="../../../../tags/Mac-Git/" style="font-size: 10px;">Mac, Git</a> <a href="../../../../tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="../../../../tags/iOS/" style="font-size: 20px;">iOS</a>
+      <a href="../../../../tags/Git/" style="font-size: 15px;">Git</a> <a href="../../../../tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="../../../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../../../tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="../../../../tags/iOS/" style="font-size: 20px;">iOS</a>
     </div>
   </div>
 
