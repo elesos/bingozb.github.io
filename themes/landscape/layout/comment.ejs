@@ -1,0 +1,26 @@
+<!-- 如果不是首页且没使用 `comments: false` 关闭评论，则尝试加载评论 -->
+<% if (!index && post.comments){ %>
+    <!-- 配置中启用多说时，导入相应代码 -->
+    <% if (theme.duoshuo.on) { %>
+      <!-- 导入duoshuo.ejs时，同时指定其中几个变量的内容。 -->
+      <%- partial('comments/duoshuo', {
+          key: post.path,
+          title: post.title,
+          url: config.url+url_for(post.path),
+          }) %>
+    <!-- 配置中仅启用友言时，导入相应代码 -->
+    <% } else if (theme.youyan.on) { %>
+        <%- partial('comments/youyan') %>
+    <!-- 配置中仅启用 Disqus 时，导入相应代码 -->
+    <% } else if (theme.disqus.on) { %>
+        <%- partial('comments/disqus', {
+            shortname: theme.disqus.shortname
+          }) %>
+    <!-- 以上皆关闭且 Hexo 配置中设置了 disqus_shortname 时，导入相应代码 -->
+    <% } else if (config.disqus_shortname) { %>
+        <!-- 文件分离和变量的使用，使代码能较好的兼容 Hexo 主配置 -->
+        <%- partial('comments/disqus', {
+            shortname: config.disqus_shortname
+          }) %>
+    <% } %>
+<% } %>
