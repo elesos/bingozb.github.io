@@ -7,7 +7,7 @@ type: "about"
 
 #### 基本信息
 
-<img src="http://bingo.ren/images/me.jpg" width=150 style="float:right;margin-right:50px">
+<img src="http://bingo.ren/images/me.jpg" width=125 style="float:right;margin-right:30px">
 
 * 姓名 : 庄槟豪 
 * 英名 : Bingo
