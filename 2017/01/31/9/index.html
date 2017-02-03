@@ -5,16 +5,16 @@
   
   <title>解决讨厌的.DS_store文件 | Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言使用 macOS 的操作系统的人都知道，在每个目录里都会有 .DS_Store 这样一个隐藏文件，是用来存储这个文件夹的显示属性的，比如文件图标的摆放位置等。删掉后会自动重新生成，如何优雅地解决它？">
+  <meta name="description" content="前言使用 macOS 的操作系统的人都知道，系统经常会自动在每个目录生成一个隐藏的 .DS_Store 文件。.DS_Store (Desktop Services Store) 是一种由苹果公司的 Mac OS X 操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。删掉后会自动重新生成，如何优雅地">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决讨厌的.DS_store文件">
 <meta property="og:url" content="http://bingo.ren/2017/01/31/9/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="前言使用 macOS 的操作系统的人都知道，在每个目录里都会有 .DS_Store 这样一个隐藏文件，是用来存储这个文件夹的显示属性的，比如文件图标的摆放位置等。删掉后会自动重新生成，如何优雅地解决它？">
-<meta property="og:updated_time" content="2017-01-31T04:45:28.000Z">
+<meta property="og:description" content="前言使用 macOS 的操作系统的人都知道，系统经常会自动在每个目录生成一个隐藏的 .DS_Store 文件。.DS_Store (Desktop Services Store) 是一种由苹果公司的 Mac OS X 操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。删掉后会自动重新生成，如何优雅地">
+<meta property="og:updated_time" content="2017-02-03T05:42:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决讨厌的.DS_store文件">
-<meta name="twitter:description" content="前言使用 macOS 的操作系统的人都知道，在每个目录里都会有 .DS_Store 这样一个隐藏文件，是用来存储这个文件夹的显示属性的，比如文件图标的摆放位置等。删掉后会自动重新生成，如何优雅地解决它？">
+<meta name="twitter:description" content="前言使用 macOS 的操作系统的人都知道，系统经常会自动在每个目录生成一个隐藏的 .DS_Store 文件。.DS_Store (Desktop Services Store) 是一种由苹果公司的 Mac OS X 操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。删掉后会自动重新生成，如何优雅地">
   
   
     <link rel="icon" href="/favicon.png">
@@ -89,16 +89,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>使用 macOS 的操作系统的人都知道，在每个目录里都会有 .DS_Store 这样一个隐藏文件，是用来存储这个文件夹的显示属性的，比如文件图标的摆放位置等。删掉后会自动重新生成，如何优雅地解决它？</p>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>使用 macOS 的操作系统的人都知道，系统经常会自动在每个目录生成一个隐藏的 .DS_Store 文件。.DS_Store (Desktop Services Store) 是一种由苹果公司的 Mac OS X 操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。删掉后会自动重新生成，如何优雅地解决它？</p>
 <a id="more"></a>
-<h4 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h4><ul>
+<h4 id="为什么要搞它"><a href="#为什么要搞它" class="headerlink" title="为什么要搞它"></a>为什么要搞它</h4><p>留着不是挺好的吗？一些自以为没有强迫症的人可能会以这种心态去保留它。其实不然，在 Git、SVN 甚至最基本的U盘拷贝文件夹的时候还是会把这个文件提交上去，然而这个文件一点卵用都没有，跟项目一点关系也没有。</p>
+<p>如果不处理，每次拷贝给你同事的文件里都会包含有这个文件，或者上传网页的时候，应该把这个文件删除比较妥当，因为里面包含了一些你不一定希望别人看见的信息。（尤其是网站，通过 .DS_Store 可以知道这个目录里面所有文件的清单，很多时候这是一个不希望出现的问题。）<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="comment">//例子</span></div><div class="line">　　$filepath = <span class="string">"images"</span>;</div><div class="line">　　$handle = opendir($filepath);</div><div class="line">　　<span class="keyword">while</span> (<span class="keyword">false</span> != ($file = readdir($handle))) &#123;</div><div class="line">　　    <span class="keyword">if</span> ($file != <span class="string">"."</span> &amp;&amp; $file != <span class="string">".."</span> &amp;&amp; $file != <span class="string">".DS_Store"</span> &amp;&amp; $file != <span class="string">"index.html"</span> &amp;&amp; $file != <span class="string">"index.htm"</span> &amp;&amp; $file != <span class="string">"index.php"</span>) &#123;</div><div class="line">　　    <span class="keyword">if</span> ($output) $output .= <span class="string">"|"</span>;</div><div class="line">　　    $output .= <span class="string">"$file"</span>;</div><div class="line">　　    &#125;</div><div class="line">　　&#125;</div><div class="line">　　closedir($handle);</div><div class="line">　　<span class="keyword">echo</span> <span class="string">"&amp;files=$output&amp;"</span>; <span class="comment">//输出遍历此文件夹所有的内容</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="删除、禁止生成"><a href="#删除、禁止生成" class="headerlink" title="删除、禁止生成"></a>删除、禁止生成</h4><ul>
 <li>删除当前目录的 .DS_store</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -name &apos;*.DS_Store&apos; -type f -delete</div></pre></td></tr></table></figure>
 <ul>
 <li>删除所有目录的 .DS_store</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo find / -name “.DS_Store” -depth -exec rm &#123;&#125; \;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo find / -name &quot;.DS_Store&quot; -depth -exec rm &#123;&#125; \;</div></pre></td></tr></table></figure>
 <ul>
 <li>禁止 .DS_store 生成</li>
 </ul>
@@ -107,17 +109,25 @@
 <li>恢复 .DS_store 生成</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">defaults delete com.apple.desktopservices DSDontWriteNetworkStores</div></pre></td></tr></table></figure>
-<h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>删除所有目录的 .DS_store，并禁止它自动生成，应该就一劳永逸了。当然，如果你觉得没有必要，可以完全无视该篇文章。</p>
-<p>另外，在 macOS Sierra 10.12 上，已经隐藏这个 .DS_store 文件了，但其实还是存在的，我开了虚拟机在 Windows 上就可以看到这个文件。可能是苹果也发现它的恶心之处了吧，从用户体验的角度出发做了优化。</p>
-<p>但其实也就是障眼法，治标不治本，在 Git、SVN 甚至最基本的U盘拷贝文件夹的时候还是会把这个文件提交上去，然而这个文件一点卵用都没有，跟项目一点关系也没有，与其每个项目都在 .gitignore 添加它，还不如用两句命令解决它，你说呢？</p>
+<p>遗憾的是，这里的禁止生成的命令只有在网络共享的时候有效，也就是在本地无效。比如拖动一下图标的位置或者标记一下就会自动生成了，不是我们所理想的禁止生成，所以还是需要针对本地进行处理。</p>
+<h4 id="Git-Ignore"><a href="#Git-Ignore" class="headerlink" title="Git Ignore"></a>Git Ignore</h4><p>需要在 .gitignore 文件中添加 .DS_Store，当然这里的 .gitignore 不是指每个项目中的 .gitignore，而是本地 git 目录下的 .gitignore，默认是在用户文件目录下，如 <code>/Users/bingo/.gitignore</code></p>
+<p><strong>简单粗暴的做法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo .DS_Store &gt;&gt; ~/.gitignore</div></pre></td></tr></table></figure>
+<p><strong>更优雅的做法</strong></p>
+<p>1.创建 ~/.gitignore_global 文件，把需要全局忽略的文件类型塞到这个文件里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"># .gitignore_global</div><div class="line">####################################</div><div class="line">######## OS generated files ########</div><div class="line">####################################</div><div class="line">.DS_Store</div><div class="line">.DS_Store?</div><div class="line">*.swp</div><div class="line">._*</div><div class="line">.Spotlight-V100</div><div class="line">.Trashes</div><div class="line">Icon?</div><div class="line">ehthumbs.db</div><div class="line">Thumbs.db</div><div class="line">####################################</div><div class="line">############# packages #############</div><div class="line">####################################</div><div class="line">*.7z</div><div class="line">*.dmg</div><div class="line">*.gz</div><div class="line">*.iso</div><div class="line">*.jar</div><div class="line">*.rar</div><div class="line">*.tar</div><div class="line">*.zip</div></pre></td></tr></table></figure>
+<p>2.在 ~/.gitconfig 中引入 .gitignore_global</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[filter &quot;lfs&quot;]</div><div class="line">	required = true</div><div class="line">	clean = git-lfs clean %f</div><div class="line">	smudge = git-lfs smudge %f</div><div class="line">[user]</div><div class="line">	name = bingozb</div><div class="line">	email = 454113692@qq.com</div><div class="line">[core]</div><div class="line">    excludesfile = /Users/bingo/.gitignore_global</div></pre></td></tr></table></figure>
+<p>这样，以后就不用每次都在项目中的 .gitignore 文件中添加 .DS_Store了，类似“继承”。而每个项目中的 .gitignore 只需要根据情况引入一些针对项目要过滤的文件名就可以了。</p>
+<h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>另外，在 macOS Sierra 10.12 上，已经隐藏这个 .DS_store 文件了，可能是苹果也发现它的恶心之处了吧，从用户体验的角度出发做了优化。但其实还是存在的，我开了虚拟机在 Windows 上就可以看到这个文件。所以即便在最新的系统下，仍然有必要对这个恶心的 .DS_store 做处理。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/31/9/" data-id="ciyl1jq4b000i4ggplyf55vzi" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/31/9/" data-id="ciypdwlxd000ie8t8gbe2xoau" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Mac/">Mac</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Mac-Git/">Mac, Git</a></li></ul>
 
     </footer>
   </div>
@@ -154,7 +164,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/iOS/">iOS</a><span class="tag-list-count">5</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Mac-Git/">Mac, Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/iOS/">iOS</a><span class="tag-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -164,7 +174,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="../../../../tags/Git/" style="font-size: 15px;">Git</a> <a href="../../../../tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="../../../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../../../tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="../../../../tags/iOS/" style="font-size: 20px;">iOS</a>
+      <a href="../../../../tags/Git/" style="font-size: 15px;">Git</a> <a href="../../../../tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="../../../../tags/Mac-Git/" style="font-size: 10px;">Mac, Git</a> <a href="../../../../tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="../../../../tags/iOS/" style="font-size: 20px;">iOS</a>
     </div>
   </div>
 
