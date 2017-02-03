@@ -48,7 +48,7 @@ disqus:
 
 duoshuo: 
   on: true
-  domain: http://bingozb.duoshuo.com
+  domain: bingozb
   # 是否开启多说评论，http://duoshuo.com/create-site/
   # 使用上面网址登陆你的多说，然后创建站点，在 domain 中填入你设定的域名
   # http://你的多说域名.duoshuo.com

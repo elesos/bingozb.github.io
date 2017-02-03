@@ -3,7 +3,6 @@
 
 
     
-    
   <url>
     <loc>http://bingo.ren/2017/01/31/10/</loc>
     <lastmod>2017-02-03T14:44:37.000Z</lastmod>
@@ -25,6 +24,7 @@
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://bingo.ren/2017/01/31/9/</loc>
@@ -111,19 +111,19 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/01/24/6/</loc>
+    <loc>http://bingo.ren/2017/01/23/5/</loc>
     <lastmod>2017-02-03T14:44:36.000Z</lastmod>
     <data>
         <display>
-        <title>常用的分类和宏封装库 DKExtension</title>
-        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
+        <title>Git 分支管理</title>
+        <pubTime>2017-01-23T09:53:58.000Z</pubTime>
         
-        <tag>iOS</tag>
+        <tag>Git</tag>
          
          
            
              
-              <breadCrumb title="DKKIT" url="http://bingo.ren/categories/DKKIT/"/>
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
           
         </display>
     </data>
@@ -191,19 +191,19 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/01/23/5/</loc>
+    <loc>http://bingo.ren/2017/01/24/6/</loc>
     <lastmod>2017-02-03T14:44:36.000Z</lastmod>
     <data>
         <display>
-        <title>Git 分支管理</title>
-        <pubTime>2017-01-23T09:53:58.000Z</pubTime>
+        <title>常用的分类和宏封装库 DKExtension</title>
+        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
         
-        <tag>Git</tag>
+        <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+              <breadCrumb title="DKKIT" url="http://bingo.ren/categories/DKKIT/"/>
           
         </display>
     </data>
