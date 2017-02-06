@@ -2,9 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <!-- 为了解决https与http嵌套的问题，但会引起友言跨域访问有问题，暂时用多说 -->
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   
   <title>Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -69,84 +67,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-11" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="2017/02/06/11/" class="article-date">
-  <time datetime="2017-02-05T17:48:56.000Z" itemprop="datePublished">2017-02-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="categories/战斗笔记/">战斗笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2017/02/06/11/">让网站支持HTTPS</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在 WWDC 2016 开发者大会上，苹果宣布了一个最后期限：到2017年1月1日 App Store 中的所有应用都必须启用 App Transport Security 安全功能。App Transport Security（ATS）是苹果在 iOS 9 中引入的一项隐私保护功能，屏蔽明文 HTTP 资源加载，连接必须经过更安全的 HTTPS。作为一个 iOS 开发者，要理解一下苹果的用意，那就要知道些 HTTPS 的知识，而我也会写接口，那就干脆自己搭建一个 HTTPS 环境好了。</p>
-<h4 id="HTTPS-是什么"><a href="#HTTPS-是什么" class="headerlink" title="HTTPS 是什么"></a>HTTPS 是什么</h4><p>根据维基百科的解释：</p>
-<ul>
-<li>超文本传输安全协议（缩写：HTTPS，英语：Hypertext Transfer Protocol Secure）是超文本传输协议和 SSL/TLS 的组合，用以提供加密通讯及对网络服务器身份的鉴定。</li>
-<li>HTTPS 连接经常被用于万维网上的交易支付和企业信息系统中敏感信息的传输。</li>
-<li>HTTPS 不应与在 RFC 2660 中定义的安全超文本传输协议（S-HTTP）相混。</li>
-</ul>
-<p>HTTPS 是在我们通常说的 TCP/IP 协议中的传输层和应用层之间加入的一层，在这层的客户端浏览器和服务器端进行了加密。</p>
-<table>
-<thead>
-<tr>
-<th>HTTP</th>
-<th>HTTPS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HTTP</td>
-<td>HTTP</td>
-</tr>
-<tr>
-<td>TCP</td>
-<td>SSL</td>
-</tr>
-<tr>
-<td>IP</td>
-<td>TCP</td>
-</tr>
-<tr>
-<td></td>
-<td>IP</td>
-</tr>
-</tbody>
-</table>
-<p>HTTPS 相关的知识，非对称加密什么的，还是去百度谷歌吧，这里直接上操作。</p>
-<h4 id="获得证书"><a href="#获得证书" class="headerlink" title="获得证书"></a>获得证书</h4><p>未完待续</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/02/06/11/" data-id="ciytk3p100000kggopt1dvnzd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/nginx/">nginx</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="2017/01/31/10/" class="article-date">
@@ -173,7 +93,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在前一篇<a href="https://bingo.ren/2017/01/31/9/">《解决讨厌的.DS_Store文件（上）》</a>中，介绍了删除 .DS_Store 的相关命令和 Git 添加忽略的相关方法，但是我发现，原来还有更完美的解决方法，那就是用专门的工具软件来解决。</p>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在前一篇<a href="http://bingo.ren/2017/01/31/9/">《解决讨厌的.DS_Store文件（上）》</a>中，介绍了删除 .DS_Store 的相关命令和 Git 添加忽略的相关方法，但是我发现，原来还有更完美的解决方法，那就是用专门的工具软件来解决。</p>
         
           <p class="article-more-link">
             <a href="2017/01/31/10/#more">Read More</a>
@@ -182,7 +102,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/31/10/" data-id="ciytk3p1a0004kggoblo4iz46" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/31/10/" data-id="ciytkers00000utgo8ya1hk1o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Mac/">Mac</a></li></ul>
@@ -229,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/31/9/" data-id="ciytk3p2p0013kggo7iodne9c" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/31/9/" data-id="ciytkerte000yutgoz2usuiwi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Mac/">Mac</a></li></ul>
@@ -267,7 +187,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章<a href="https://bingo.ren/2017/01/23/5/">《Git 分支管理》</a>，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章<a href="http://bingo.ren/2017/01/23/5/">《Git 分支管理》</a>，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。</p>
         
           <p class="article-more-link">
             <a href="2017/01/29/8/#more">Read More</a>
@@ -276,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/29/8/" data-id="ciytk3p2f0011kggocp91e2nr" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/29/8/" data-id="ciytkersy000lutgo4ntstljf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Git/">Git</a></li></ul>
@@ -331,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/24/7/" data-id="ciytk3p2d000zkggoueoi5voe" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/24/7/" data-id="ciytkerta000tutgom2tmi0jn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/iOS/">iOS</a></li></ul>
@@ -379,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/24/6/" data-id="ciytk3p2a000ukggox0924ffw" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/24/6/" data-id="ciytkertc000wutgogmqovm7o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/iOS/">iOS</a></li></ul>
@@ -427,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/23/5/" data-id="ciytk3p21000nkggo406n017v" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/23/5/" data-id="ciytkersb0004utgo9t58t49l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Git/">Git</a></li></ul>
@@ -474,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/22/4/" data-id="ciytk3p28000skggo52ln81w2" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/22/4/" data-id="ciytkert8000qutgoscaqhnzf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/iOS/">iOS</a></li></ul>
@@ -523,7 +443,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/05/2/" data-id="ciytk3p1w000lkggopphi5hbs" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/05/2/" data-id="ciytkersu000jutgo9gfa3jm0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/iOS/">iOS</a></li></ul>
@@ -574,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2016/12/30/1/" data-id="ciytk3p150001kggoj5rnabul" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2016/12/30/1/" data-id="ciytkers50001utgo1sl1dylz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/MySQL/">MySQL</a></li></ul>
@@ -586,11 +506,58 @@
 
 
   
+    <article id="post-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="2016/08/10/3/" class="article-date">
+  <time datetime="2016-08-10T02:15:19.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="categories/战斗笔记/">战斗笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2016/08/10/3/">iOS战斗总结笔记一期</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h5 id="1-分类中定义的属性名最好添加一个前缀"><a href="#1-分类中定义的属性名最好添加一个前缀" class="headerlink" title="1. 分类中定义的属性名最好添加一个前缀"></a>1. 分类中定义的属性名最好添加一个前缀</h5><p>　　Masonry : mas_xxx</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[label mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.edges.equalTo(<span class="keyword">self</span>.view).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>));</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>　　SDWebImage : sd_xxx</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.headImgView sd_setImageWithURL:[<span class="built_in">NSURL</span> URLWithString:DKImgUrl(joinRecord.uphoto)]];</div></pre></td></tr></table></figure>
+<p>　　比如我们通常写的view的扩展分类，会定义一些<code>x</code>、<code>y</code>、<code>width</code>、<code>height</code>等属性，如果不写上前缀，有可能跟苹果原有的一些属性同名导致冲突，还可能跟其他框架定义的属性同名冲突，比如<code>Masonry</code>里就有<code>width</code>、<code>height</code>等属性名;</p>
+        
+          <p class="article-more-link">
+            <a href="2016/08/10/3/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingo.ren/2016/08/10/3/" data-id="ciytkert6000nutgow5lunrno" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
 
 
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="extend next" rel="next" href="page/2/">__('next') &raquo;</a>
-  </nav>
+  
+
 </section>
         
           <aside id="sidebar">
@@ -599,7 +566,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/DKKIT/">DKKIT</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="categories/工作总结/">工作总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/战斗笔记/">战斗笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="categories/解决方案/">解决方案</a><span class="category-list-count">6</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/DKKIT/">DKKIT</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="categories/工作总结/">工作总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/战斗笔记/">战斗笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="categories/解决方案/">解决方案</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -609,7 +576,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/https/">https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/iOS/">iOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/nginx/">nginx</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="tags/iOS/">iOS</a><span class="tag-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -619,7 +586,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="tags/Git/" style="font-size: 16.67px;">Git</a> <a href="tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="tags/https/" style="font-size: 10px;">https</a> <a href="tags/iOS/" style="font-size: 20px;">iOS</a> <a href="tags/nginx/" style="font-size: 10px;">nginx</a>
+      <a href="tags/Git/" style="font-size: 16.67px;">Git</a> <a href="tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="tags/iOS/" style="font-size: 20px;">iOS</a>
     </div>
   </div>
 
@@ -628,7 +595,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2017/01/">一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2017/01/">一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -639,10 +606,6 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="2017/02/06/11/">让网站支持HTTPS</a>
-          </li>
         
           <li>
             <a href="2017/01/31/10/">解决讨厌的.DS_Store文件（下）</a>
@@ -658,6 +621,10 @@
         
           <li>
             <a href="2017/01/24/7/">扫一扫框架 DKScanner</a>
+          </li>
+        
+          <li>
+            <a href="2017/01/24/6/">常用的分类和宏封装库 DKExtension</a>
           </li>
         
       </ul>
