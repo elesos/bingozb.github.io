@@ -6,39 +6,18 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   
-  <title>扫一扫框架 DKScanner | Bingo&#39;s Blog</title>
+  <title>让网站支持HTTPS | Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A QRCode Scanner for iOS.一个“扫一扫”扫描器，支持二维码和条码。
-
-安装
-通过cocoapods安装
-
-1pod &apos;DKScanner&apos;
-
-或者直接clone，将DKScanner文件夹整个拖到你的项目中">
+  <meta name="description" content="前言在 WWDC 2016 开发者大会上，苹果宣布了一个最后期限：到2017年1月1日 App Store 中的所有应用都必须启用 App Transport Security 安全功能。App Transport Security（ATS）是苹果在 iOS 9 中引入的一项隐私保护功能，屏蔽明文 HTTP 资源加载，连接必须经过更安全的 HTTPS。作为一个 iOS 开发者，要理解一下苹果的用意">
 <meta property="og:type" content="article">
-<meta property="og:title" content="扫一扫框架 DKScanner">
-<meta property="og:url" content="http://bingo.ren/2017/01/24/7/index.html">
+<meta property="og:title" content="让网站支持HTTPS">
+<meta property="og:url" content="http://bingo.ren/2017/02/06/11/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="A QRCode Scanner for iOS.一个“扫一扫”扫描器，支持二维码和条码。
-
-安装
-通过cocoapods安装
-
-1pod &apos;DKScanner&apos;
-
-或者直接clone，将DKScanner文件夹整个拖到你的项目中">
-<meta property="og:updated_time" content="2017-02-05T17:26:09.000Z">
+<meta property="og:description" content="前言在 WWDC 2016 开发者大会上，苹果宣布了一个最后期限：到2017年1月1日 App Store 中的所有应用都必须启用 App Transport Security 安全功能。App Transport Security（ATS）是苹果在 iOS 9 中引入的一项隐私保护功能，屏蔽明文 HTTP 资源加载，连接必须经过更安全的 HTTPS。作为一个 iOS 开发者，要理解一下苹果的用意">
+<meta property="og:updated_time" content="2017-02-06T01:58:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="扫一扫框架 DKScanner">
-<meta name="twitter:description" content="A QRCode Scanner for iOS.一个“扫一扫”扫描器，支持二维码和条码。
-
-安装
-通过cocoapods安装
-
-1pod &apos;DKScanner&apos;
-
-或者直接clone，将DKScanner文件夹整个拖到你的项目中">
+<meta name="twitter:title" content="让网站支持HTTPS">
+<meta name="twitter:description" content="前言在 WWDC 2016 开发者大会上，苹果宣布了一个最后期限：到2017年1月1日 App Store 中的所有应用都必须启用 App Transport Security 安全功能。App Transport Security（ATS）是苹果在 iOS 9 中引入的一项隐私保护功能，屏蔽明文 HTTP 资源加载，连接必须经过更安全的 HTTPS。作为一个 iOS 开发者，要理解一下苹果的用意">
   
   
     <link rel="icon" href="/favicon.png">
@@ -89,14 +68,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-7" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-11" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="" class="article-date">
-  <time datetime="2017-01-24T07:12:51.000Z" itemprop="datePublished">2017-01-24</time>
+  <time datetime="2017-02-05T17:48:56.000Z" itemprop="datePublished">2017-02-06</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../../../categories/DKKIT/">DKKIT</a>
+    <a class="article-category-link" href="../../../../categories/战斗笔记/">战斗笔记</a>
   </div>
 
   </div>
@@ -107,7 +86,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      扫一扫框架 DKScanner
+      让网站支持HTTPS
     </h1>
   
 
@@ -115,30 +94,50 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><br>A QRCode Scanner for iOS.<br><br>一个“扫一扫”扫描器，支持二维码和条码。<br></p>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li>通过cocoapods安装</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKScanner'</div></pre></td></tr></table></figure>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在 WWDC 2016 开发者大会上，苹果宣布了一个最后期限：到2017年1月1日 App Store 中的所有应用都必须启用 App Transport Security 安全功能。App Transport Security（ATS）是苹果在 iOS 9 中引入的一项隐私保护功能，屏蔽明文 HTTP 资源加载，连接必须经过更安全的 HTTPS。作为一个 iOS 开发者，要理解一下苹果的用意，那就要知道些 HTTPS 的知识，而我也会写接口，那就干脆自己搭建一个 HTTPS 环境好了。</p>
+<h4 id="HTTPS-是什么"><a href="#HTTPS-是什么" class="headerlink" title="HTTPS 是什么"></a>HTTPS 是什么</h4><p>根据维基百科的解释：</p>
 <ul>
-<li>或者直接clone，将<code>DKScanner</code>文件夹整个拖到你的项目中</li>
+<li>超文本传输安全协议（缩写：HTTPS，英语：Hypertext Transfer Protocol Secure）是超文本传输协议和 SSL/TLS 的组合，用以提供加密通讯及对网络服务器身份的鉴定。</li>
+<li>HTTPS 连接经常被用于万维网上的交易支付和企业信息系统中敏感信息的传输。</li>
+<li>HTTPS 不应与在 RFC 2660 中定义的安全超文本传输协议（S-HTTP）相混。</li>
 </ul>
-<a id="more"></a>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><strong>引用头文件</strong></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DKScannerController.h"</span></span></div></pre></td></tr></table></figure>
-<p><strong>调用</strong></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DKScannerController *scannerVc = [DKScannerController scannerWithCompletion:^(<span class="built_in">NSString</span> *stringValue) &#123;</div><div class="line">        <span class="comment">// 扫描结果回调</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"扫描结果: %@"</span>, stringValue);</div><div class="line">&#125;];</div><div class="line"><span class="comment">// 设置导航栏标题、标题颜色和主题色</span></div><div class="line">[scannerVc setTitle:<span class="string">@"扫描二维码"</span> titleColor:[<span class="built_in">UIColor</span> whiteColor] tintColor:[<span class="built_in">UIColor</span> redColor]];</div><div class="line"><span class="comment">// modal</span></div><div class="line">[<span class="keyword">self</span> presentViewController:scannerVc animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>在iOS10上，使用摄像头和访问相册都需要添加请求访问权限描述，否则会Crash。</p>
-<p>请在info.plist文件中添加以下键值对。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;</div><div class="line">&lt;string&gt;是否允许访问摄像头&lt;/string&gt;</div><div class="line">&lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;</div><div class="line">&lt;string&gt;是否允许访问相册&lt;/string&gt;</div></pre></td></tr></table></figure>
+<p>HTTPS 是在我们通常说的 TCP/IP 协议中的传输层和应用层之间加入的一层，在这层的客户端浏览器和服务器端进行了加密。</p>
+<table>
+<thead>
+<tr>
+<th>HTTP</th>
+<th>HTTPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP</td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>SSL</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td></td>
+<td>IP</td>
+</tr>
+</tbody>
+</table>
+<p>HTTPS 相关的知识，非对称加密什么的，还是去百度谷歌吧，这里直接上操作。</p>
+<h4 id="获得证书"><a href="#获得证书" class="headerlink" title="获得证书"></a>获得证书</h4><p>未完待续</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/24/7/" data-id="ciytk3p2d000zkggoueoi5voe" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/02/06/11/" data-id="ciytk3p100000kggopt1dvnzd" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/iOS/">iOS</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/nginx/">nginx</a></li></ul>
 
     </footer>
   </div>
@@ -146,19 +145,10 @@
     
 <nav id="article-nav">
   
-    <a href="../../29/8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Git 合并Commit
-        
-      </div>
-    </a>
   
-  
-    <a href="../6/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../../01/31/10/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">常用的分类和宏封装库 DKExtension</div>
+      <div class="article-nav-title">解决讨厌的.DS_Store文件（下）</div>
     </a>
   
 </nav>
@@ -169,7 +159,7 @@
 
 <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div id="ds-thread" class="ds-thread" data-thread-key="2017/01/24/7/" data-title="扫一扫框架 DKScanner" data-url="http://bingo.ren/2017/01/24/7/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/02/06/11/" data-title="让网站支持HTTPS" data-url="http://bingo.ren/2017/02/06/11/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -236,23 +226,23 @@
       <ul>
         
           <li>
-            <a href="../../../02/06/11/">让网站支持HTTPS</a>
+            <a href="">让网站支持HTTPS</a>
           </li>
         
           <li>
-            <a href="../../31/10/">解决讨厌的.DS_Store文件（下）</a>
+            <a href="../../../01/31/10/">解决讨厌的.DS_Store文件（下）</a>
           </li>
         
           <li>
-            <a href="../../31/9/">解决讨厌的.DS_Store文件（上）</a>
+            <a href="../../../01/31/9/">解决讨厌的.DS_Store文件（上）</a>
           </li>
         
           <li>
-            <a href="../../29/8/">Git 合并Commit</a>
+            <a href="../../../01/29/8/">Git 合并Commit</a>
           </li>
         
           <li>
-            <a href="">扫一扫框架 DKScanner</a>
+            <a href="../../../01/24/7/">扫一扫框架 DKScanner</a>
           </li>
         
       </ul>

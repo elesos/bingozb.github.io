@@ -6,12 +6,12 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   
-  <title>Category: DKKIT | Bingo&#39;s Blog</title>
+  <title>Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Mark the dev-notes.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bingo's Blog">
-<meta property="og:url" content="http://bingo.ren/categories/DKKIT/index.html">
+<meta property="og:url" content="http://bingo.ren/page/2/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="Mark the dev-notes.">
 <meta name="twitter:card" content="summary">
@@ -69,57 +69,62 @@
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="../../archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2017/01/24/7/" class="archive-article-date">
-  <time datetime="2017-01-24T07:12:51.000Z" itemprop="datePublished">1月 24</time>
+    <article id="post-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2016/08/10/3/" class="article-date">
+  <time datetime="2016-08-10T02:15:19.000Z" itemprop="datePublished">2016-08-10</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/战斗笔记/">战斗笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2017/01/24/7/">扫一扫框架 DKScanner</a>
+      <a class="article-title" href="../../2016/08/10/3/">iOS战斗总结笔记一期</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2017/01/24/6/" class="archive-article-date">
-  <time datetime="2017-01-24T06:37:35.000Z" itemprop="datePublished">1月 24</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2017/01/24/6/">常用的分类和宏封装库 DKExtension</a>
-    </h1>
-  
+        <h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h5 id="1-分类中定义的属性名最好添加一个前缀"><a href="#1-分类中定义的属性名最好添加一个前缀" class="headerlink" title="1. 分类中定义的属性名最好添加一个前缀"></a>1. 分类中定义的属性名最好添加一个前缀</h5><p>　　Masonry : mas_xxx</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[label mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.edges.equalTo(<span class="keyword">self</span>.view).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>));</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>　　SDWebImage : sd_xxx</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.headImgView sd_setImageWithURL:[<span class="built_in">NSURL</span> URLWithString:DKImgUrl(joinRecord.uphoto)]];</div></pre></td></tr></table></figure>
+<p>　　比如我们通常写的view的扩展分类，会定义一些<code>x</code>、<code>y</code>、<code>width</code>、<code>height</code>等属性，如果不写上前缀，有可能跟苹果原有的一些属性同名导致冲突，还可能跟其他框架定义的属性同名冲突，比如<code>Masonry</code>里就有<code>width</code>、<code>height</code>等属性名;</p>
+        
+          <p class="article-more-link">
+            <a href="../../2016/08/10/3/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingo.ren/2016/08/10/3/" data-id="ciytk3p24000pkggoyrxx8776" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/iOS/">iOS</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
 </article>
-  
-  
-    </div></section>
+
+
   
 
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="../../index.html">&laquo; __('prev')</a><a class="page-number" href="../../index.html">1</a><span class="page-number current">2</span>
+  </nav>
 </section>
         
           <aside id="sidebar">
@@ -128,7 +133,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="">DKKIT</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../工作总结/">工作总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="../战斗笔记/">战斗笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../解决方案/">解决方案</a><span class="category-list-count">6</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/DKKIT/">DKKIT</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../../categories/工作总结/">工作总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="../../categories/战斗笔记/">战斗笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../../categories/解决方案/">解决方案</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
