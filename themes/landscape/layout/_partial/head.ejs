@@ -2,6 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <!-- 为了解决https与http嵌套的问题，但会引起友言跨域访问有问题，暂时用多说 -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <%
   var title = page.title;
 

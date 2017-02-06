@@ -2,6 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <!-- 为了解决https与http嵌套的问题，但会引起友言跨域访问有问题，暂时用多说 -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   
   <title>Git 合并Commit | Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,7 +14,7 @@
 <meta property="og:url" content="http://bingo.ren/2017/01/29/8/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章《Git 分支管理》，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。">
-<meta property="og:updated_time" content="2017-02-03T16:37:14.000Z">
+<meta property="og:updated_time" content="2017-02-05T17:26:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 合并Commit">
 <meta name="twitter:description" content="前言团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章《Git 分支管理》，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。">
@@ -91,7 +94,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章<a href="http://bingo.ren/2017/01/23/5/">《Git 分支管理》</a>，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章<a href="https://bingo.ren/2017/01/23/5/">《Git 分支管理》</a>，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。</p>
 <a id="more"></a>
 <h2 id="合并-Commit"><a href="#合并-Commit" class="headerlink" title="合并 Commit"></a>合并 Commit</h2><h4 id="为什么需要合并Commit"><a href="#为什么需要合并Commit" class="headerlink" title="为什么需要合并Commit"></a>为什么需要合并Commit</h4><p>其实这种需求很常见，假设你刚刚添加了一个新功能，Commit了，还没Push。此时，你发现了一个小Bug，然后修复了它，又Commit了。过了一会，你又发现另外一个Bug，于是你又修复了它，然后又Commit了。此时，在你Push之前，已经有3个Commit了。</p>
 <p>如果你想要让远程仓库的项目网络“好看”，即简洁明了，每个Commit都有它的意义。那么就应该把这3个Commit合并后，再Push。否则如果这种随便Commit然后就Push的现象越来越多，会导致项目网络上面的提交信息可读性很差，还会让项目经理Get不到点。像我们团队的项目网络经常会看到像这样的提交信息：“小修复”、“改了一点小东西” …</p>
@@ -159,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/29/8/" data-id="ciysh1b8v0010wbgparrwihvm" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/01/29/8/" data-id="ciytk3p2f0011kggocp91e2nr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Git/">Git</a></li></ul>
@@ -209,6 +212,7 @@
     </script>
     <!-- 多说公共JS代码 end -->
 </div>
+</div>
 </section>
         
           <aside id="sidebar">
@@ -217,7 +221,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/DKKIT/">DKKIT</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/工作总结/">工作总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/战斗笔记/">战斗笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/解决方案/">解决方案</a><span class="category-list-count">6</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/DKKIT/">DKKIT</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/工作总结/">工作总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/战斗笔记/">战斗笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/解决方案/">解决方案</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -227,7 +231,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/iOS/">iOS</a><span class="tag-list-count">5</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/J2EE/">J2EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/https/">https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/iOS/">iOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/nginx/">nginx</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -237,7 +241,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="../../../../tags/Git/" style="font-size: 16.67px;">Git</a> <a href="../../../../tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="../../../../tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="../../../../tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="../../../../tags/iOS/" style="font-size: 20px;">iOS</a>
+      <a href="../../../../tags/Git/" style="font-size: 16.67px;">Git</a> <a href="../../../../tags/J2EE/" style="font-size: 10px;">J2EE</a> <a href="../../../../tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="../../../../tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="../../../../tags/https/" style="font-size: 10px;">https</a> <a href="../../../../tags/iOS/" style="font-size: 20px;">iOS</a> <a href="../../../../tags/nginx/" style="font-size: 10px;">nginx</a>
     </div>
   </div>
 
@@ -246,7 +250,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2017/01/">一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2017/01/">一月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -257,6 +261,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../../02/06/11/">让网站支持HTTPS</a>
+          </li>
         
           <li>
             <a href="../../31/10/">解决讨厌的.DS_Store文件（下）</a>
@@ -272,10 +280,6 @@
         
           <li>
             <a href="../../24/7/">扫一扫框架 DKScanner</a>
-          </li>
-        
-          <li>
-            <a href="../../24/6/">常用的分类和宏封装库 DKExtension</a>
           </li>
         
       </ul>

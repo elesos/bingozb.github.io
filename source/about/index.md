@@ -5,7 +5,7 @@ description: "About me."
 type: "about"
 ---
 
-<img src="http://bingo.ren/images/me.jpg" width=120 style="float:right;margin-right:20px">
+<img src="https://bingo.ren/images/me.jpg" width=120 style="float:right;margin-right:20px">
 
 #### 基本信息
 
