@@ -4,8 +4,52 @@
 
     
   <url>
+    <loc>http://bingo.ren/2017/02/09/11/</loc>
+    <lastmod>2017-02-08T20:07:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决iOS项目文件合并.xcodeproj冲突</title>
+        <pubTime>2017-02-08T17:00:42.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>Xcode</tag>
+         
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://bingo.ren/2017/01/29/8/</loc>
+    <lastmod>2017-02-07T13:28:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git 合并Commit</title>
+        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://bingo.ren/2017/01/31/10/</loc>
-    <lastmod>2017-02-06T03:52:31.000Z</lastmod>
+    <lastmod>2017-02-06T03:56:53.000Z</lastmod>
     <data>
         <display>
         <title>解决讨厌的.DS_Store文件（下）</title>
@@ -28,7 +72,7 @@
     
   <url>
     <loc>http://bingo.ren/2017/01/23/5/</loc>
-    <lastmod>2017-02-06T03:52:31.000Z</lastmod>
+    <lastmod>2017-02-06T03:56:53.000Z</lastmod>
     <data>
         <display>
         <title>Git 分支管理</title>
@@ -47,39 +91,19 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/01/29/8/</loc>
-    <lastmod>2017-02-06T03:52:31.000Z</lastmod>
+    <loc>http://bingo.ren/2016/08/10/3/</loc>
+    <lastmod>2017-02-06T03:56:52.000Z</lastmod>
     <data>
         <display>
-        <title>Git 合并Commit</title>
-        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://bingo.ren/2017/01/05/2/</loc>
-    <lastmod>2017-02-06T03:48:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
-        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
+        <title>iOS战斗总结笔记一期</title>
+        <pubTime>2016-08-10T02:15:19.000Z</pubTime>
         
         <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+              <breadCrumb title="战斗笔记" url="http://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
@@ -88,7 +112,7 @@
     
   <url>
     <loc>http://bingo.ren/2016/12/30/1/</loc>
-    <lastmod>2017-02-06T03:48:09.000Z</lastmod>
+    <lastmod>2017-02-06T03:56:52.000Z</lastmod>
     <data>
         <display>
         <title>MySQL支持emoji字符的插入</title>
@@ -109,48 +133,8 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/01/22/4/</loc>
-    <lastmod>2017-02-06T03:48:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>年度工作总结</title>
-        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="工作总结" url="http://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://bingo.ren/2017/01/24/7/</loc>
-    <lastmod>2017-02-06T03:48:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>扫一扫框架 DKScanner</title>
-        <pubTime>2017-01-24T07:12:51.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="DKKIT" url="http://bingo.ren/categories/DKKIT/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://bingo.ren/2017/01/24/6/</loc>
-    <lastmod>2017-02-06T03:48:09.000Z</lastmod>
+    <lastmod>2017-02-06T03:56:52.000Z</lastmod>
     <data>
         <display>
         <title>常用的分类和宏封装库 DKExtension</title>
@@ -170,7 +154,7 @@
     
   <url>
     <loc>http://bingo.ren/2017/01/31/9/</loc>
-    <lastmod>2017-02-06T03:48:09.000Z</lastmod>
+    <lastmod>2017-02-06T03:56:52.000Z</lastmod>
     <data>
         <display>
         <title>解决讨厌的.DS_Store文件（上）</title>
@@ -191,19 +175,59 @@
 
     
   <url>
-    <loc>http://bingo.ren/2016/08/10/3/</loc>
-    <lastmod>2017-02-06T03:48:09.000Z</lastmod>
+    <loc>http://bingo.ren/2017/01/24/7/</loc>
+    <lastmod>2017-02-06T03:56:52.000Z</lastmod>
     <data>
         <display>
-        <title>iOS战斗总结笔记一期</title>
-        <pubTime>2016-08-10T02:15:19.000Z</pubTime>
+        <title>扫一扫框架 DKScanner</title>
+        <pubTime>2017-01-24T07:12:51.000Z</pubTime>
         
         <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="战斗笔记" url="http://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+              <breadCrumb title="DKKIT" url="http://bingo.ren/categories/DKKIT/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://bingo.ren/2017/01/05/2/</loc>
+    <lastmod>2017-02-06T03:56:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
+        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://bingo.ren/2017/01/22/4/</loc>
+    <lastmod>2017-02-06T03:56:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>年度工作总结</title>
+        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作总结" url="http://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
