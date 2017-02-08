@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言用 Xcode 做 iOS 开发的同学都知道，在项目根目录里有一个  project.xcodeproj 文件。如果多人协作，项目合并的时候这个文件非常容易有冲突。一旦这个文件冲突了项目就打不开了，然后就非常不情愿地用文本编辑器打开这个文件，人肉搜索 &amp;gt;&amp;gt;&amp;gt; &amp;lt;&amp;lt;&amp;lt; 或者 === 来进行人肉替换解决冲突问题。
 这简直就是浪费青春，如果合并的是一个距离上次 c">
-<meta property="og:updated_time" content="2017-02-08T20:13:46.000Z">
+<meta property="og:updated_time" content="2017-02-08T20:16:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决iOS项目文件合并.xcodeproj冲突">
 <meta name="twitter:description" content="前言用 Xcode 做 iOS 开发的同学都知道，在项目根目录里有一个  project.xcodeproj 文件。如果多人协作，项目合并的时候这个文件非常容易有冲突。一旦这个文件冲突了项目就打不开了，然后就非常不情愿地用文本编辑器打开这个文件，人肉搜索 &amp;gt;&amp;gt;&amp;gt; &amp;lt;&amp;lt;&amp;lt; 或者 === 来进行人肉替换解决冲突问题。
@@ -118,8 +118,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">D7921FD21E4B9ED1001C43E9 /* DKViewController.m in Sources */ = &#123;isa = PBXBuildFile; fileRef = D7921FD11E4B9ED1001C43E9 /* DKViewController.m */; &#125;;</div></pre></td></tr></table></figure>
 <p>而 开发者B 创建了一个 xib文件，可能会产生这样一条记录 B：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">D7921FD41E4B9F3F001C43E9 /* View.xib in Resources */ = &#123;isa = PBXBuildFile; fileRef = D7921FD31E4B9F3F001C43E9 /* View.xib */; &#125;;</div></pre></td></tr></table></figure>
-<p>观察者两条信息，就可以发现，相同的文件引用，指向了不同的文件。两个用户修改了同一个文件的同一块区域，git 会报内容冲突。坑爹的问题出现了，这是两个不同的文件，但是引用是同一个，无法像前言说的直接手动&gt;&gt;&gt;找到冲突的位置，然后把两个都保留下来。因为一个引用不可能引用两个不同文件。这个冲突怎么办？只能先删掉一条引用记录，解决冲突后，再手动把被删掉引用的文件重新拉进项目。</p>
-<h4 id="优雅地解决"><a href="#优雅地解决" class="headerlink" title="优雅地解决"></a>优雅地解决</h4><p>有没有办法解决这个冲突问题，答案是肯定的。在知乎上面搜了一圈，普遍有两种做法。一个是约定型的，另一个是解决型的。</p>
+<p>观察两条记录，就可以发现，相同的文件引用，指向了不同的文件。两个用户修改了同一个文件的同一块区域，git 会报内容冲突。坑爹的问题出现了，这是两个不同的文件，但是引用是同一个，无法像前言说的直接手动&gt;&gt;&gt;找到冲突的位置，然后把两个都保留下来。因为一个引用不可能引用两个不同文件。这个冲突怎么办？只能先删掉一条引用记录，解决冲突后，再手动把被删掉引用的文件重新拉进项目。</p>
+<h4 id="优雅地解决"><a href="#优雅地解决" class="headerlink" title="优雅地解决"></a>优雅地解决</h4><p>有没有办法解决这个冲突问题？答案是肯定的。在知乎上面搜了一圈，普遍有两种做法。一个是约定型的，另一个是解决型的。</p>
 <p><strong>约定型</strong></p>
 <p><em>需要增加文件时先增加完空文件后立刻 checkin 一次，让别人每次改动 pbxproj 的时候改动之前 checkout 一次，保证有交叉时间是可能性最小</em></p>
 <p>就是你先创建一个空文件，生成了一个引用后，就push一遍代码。然后让别人pull，让他在创建新文件之前就已经有了你创建的空文件和生成的引用，这样相当于在你之后创建新文件，而不是同时创建了。</p>
@@ -195,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/02/09/11/" data-id="ciyxe8km80004iiryt4skz2we" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/02/09/11/" data-id="ciyxecbkw0004lkry471tek1p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Xcode/">Xcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/iOS/">iOS</a></li></ul>
