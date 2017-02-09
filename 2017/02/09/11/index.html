@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言用 Xcode 做 iOS 开发的同学都知道，在项目根目录里有一个  project.xcodeproj 文件。如果多人协作，项目合并的时候这个文件非常容易有冲突。一旦这个文件冲突了项目就打不开了，然后就非常不情愿地用文本编辑器打开这个文件，人肉搜索 &amp;gt;&amp;gt;&amp;gt; &amp;lt;&amp;lt;&amp;lt; 或者 === 来进行人肉替换解决冲突问题。
 这简直就是浪费青春，如果合并的是一个距离上次 c">
-<meta property="og:updated_time" content="2017-02-08T20:16:45.000Z">
+<meta property="og:updated_time" content="2017-02-09T01:19:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决iOS项目文件合并.xcodeproj冲突">
 <meta name="twitter:description" content="前言用 Xcode 做 iOS 开发的同学都知道，在项目根目录里有一个  project.xcodeproj 文件。如果多人协作，项目合并的时候这个文件非常容易有冲突。一旦这个文件冲突了项目就打不开了，然后就非常不情愿地用文本编辑器打开这个文件，人肉搜索 &amp;gt;&amp;gt;&amp;gt; &amp;lt;&amp;lt;&amp;lt; 或者 === 来进行人肉替换解决冲突问题。
@@ -112,7 +112,7 @@
 <p>如果项目里面根本就没有 workspace 的概念，或者只有一个 workspace + 一个 project 时，这个 workspace 并不会有什么变动，那么这个文件夹可以忽略，更不会出现冲突问题。如果 project 很依赖 workspace，没有 workspace 就运行不了，虽然不能忽略这个文件夹，但也不容易出现冲突。出现冲突最多的是下面的 project.pbxproj 文件。</p>
 <p><strong>project.pbxproj</strong></p>
 <p>而 project.pbxproj 这个文件被称之为“梦魇”，是一个老式的 plist，记录整个项目的层次结构，包含了所有此项目 build 需要的元数据，setting、file reference、configuration、targets 等等。也就是说，这个文件代表的就是这个 project。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/* Begin PBXBuildFile section */</div><div class="line">		351B785F1E2B34E100ED9945 /* DKOrderDetailViewController.m in Sources */ = &#123;isa = PBXBuildFile; fileRef = 351B785D1E2B34E100ED9945 /* DKOrderDetailViewController.m */; &#125;;</div><div class="line">		351B78601E2B34E100ED9945 /* DKOrderDetailViewController.xib in Resources */ = &#123;isa = PBXBuildFile; fileRef = 351B785E1E2B34E100ED9945 /* DKOrderDetailViewController.xib */; &#125;;</div><div class="line">		3543B7751E2C765600F8F65C /* DKOrderSuccessViewController.m in Sources */ = &#123;isa = PBXBuildFile; fileRef = 3543B7731E2C765600F8F65C /* DKOrderSuccessViewController.m */; &#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/* Begin PBXBuildFile section */</div><div class="line">	351B785F1E2B34E100ED9945 /* DKOrderDetailViewController.m in Sources */ = &#123;isa = PBXBuildFile; fileRef = 351B785D1E2B34E100ED9945 /* DKOrderDetailViewController.m */; &#125;;</div><div class="line">	351B78601E2B34E100ED9945 /* DKOrderDetailViewController.xib in Resources */ = &#123;isa = PBXBuildFile; fileRef = 351B785E1E2B34E100ED9945 /* DKOrderDetailViewController.xib */; &#125;;</div><div class="line">	3543B7751E2C765600F8F65C /* DKOrderSuccessViewController.m in Sources */ = &#123;isa = PBXBuildFile; fileRef = 3543B7731E2C765600F8F65C /* DKOrderSuccessViewController.m */; &#125;;</div></pre></td></tr></table></figure>
 <p>项目越大，文件越多，这里记录的信息就越多。我们现在的这个文件已经有三千多行了，我只选取了前面三行。 可以看到每一行的开头大概都是一个24位的16进制数字，然后就是一个文件名 ，在最后有一个 isa 和一个 fileRef（文件引用）。当然这里面的数据还包括很多东西，比如 Target、Group、FileRef 等就不再一一列举出来了。</p>
 <h4 id="为什么会冲突"><a href="#为什么会冲突" class="headerlink" title="为什么会冲突"></a>为什么会冲突</h4><p>上面简单说了冲突的罪魁祸首是 project.pbxproj，并简单说了每行的内容。很明显每一个文件都会有一个文件引用 （fileRef）。当多人协作的时候，在同一份项目中，不同开发者同时创建不同的文件，会出现创建出来的引用 fileRef 是相同的，但却指向了不同的文件。比如开发者A 创建了一个 ViewController，可能会产生这样一条记录 A：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">D7921FD21E4B9ED1001C43E9 /* DKViewController.m in Sources */ = &#123;isa = PBXBuildFile; fileRef = D7921FD11E4B9ED1001C43E9 /* DKViewController.m */; &#125;;</div></pre></td></tr></table></figure>
@@ -190,12 +190,12 @@
 <li>合并 commit</li>
 </ul>
 <p>如果有改动了任意一个 project.pbxproj 文件，就需要 commit 两次。最好合并一下 commit，参考<a href="https://bingo.ren/2017/01/29/8/">《Git 合并Commit》</a>，比如用 rebase 来合并。</p>
-<h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>以后 project.pbxproj 的冲突问题就解决了。但要注意，多人协作的时候，团队中的其中一个人使用了，否则就会全乱掉。</p>
+<h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>以后 project.pbxproj 的冲突问题就解决了。但要注意，多人协作的时候，如果团队中的其中一个人使用了 xUnique，所有人就都要用 xUnique，否则 project.pbxproj 就会全乱掉。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/02/09/11/" data-id="ciyxecbkw0004lkry471tek1p" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/02/09/11/" data-id="ciyxp5hp70000sgzt98mjm73x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Xcode/">Xcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/iOS/">iOS</a></li></ul>
