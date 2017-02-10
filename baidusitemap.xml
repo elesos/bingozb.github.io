@@ -43,15 +43,20 @@
     </url>
 
     
+    
   <url>
-    <loc>http://bingo.ren/2017/01/29/8/</loc>
+    <loc>http://bingo.ren/2017/02/09/11/</loc>
     <lastmod>2017-02-09T01:25:53.000Z</lastmod>
     <data>
         <display>
-        <title>Git 合并Commit</title>
-        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
+        <title>解决iOS项目文件合并.xcodeproj冲突</title>
+        <pubTime>2017-02-08T17:00:42.000Z</pubTime>
         
         <tag>Git</tag>
+         
+        <tag>Xcode</tag>
+         
+        <tag>iOS</tag>
          
          
            
@@ -86,30 +91,6 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/02/09/11/</loc>
-    <lastmod>2017-02-09T01:25:53.000Z</lastmod>
-    <data>
-        <display>
-        <title>解决iOS项目文件合并.xcodeproj冲突</title>
-        <pubTime>2017-02-08T17:00:42.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-        <tag>Xcode</tag>
-         
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://bingo.ren/2017/01/23/5/</loc>
     <lastmod>2017-02-09T01:25:53.000Z</lastmod>
     <data>
@@ -129,21 +110,42 @@
     </url>
 
     
-    
   <url>
-    <loc>http://bingo.ren/2016/08/10/3/</loc>
-    <lastmod>2017-02-09T01:25:52.000Z</lastmod>
+    <loc>http://bingo.ren/2017/01/29/8/</loc>
+    <lastmod>2017-02-09T01:25:53.000Z</lastmod>
     <data>
         <display>
-        <title>iOS战斗总结笔记一期</title>
-        <pubTime>2016-08-10T02:15:19.000Z</pubTime>
+        <title>Git 合并Commit</title>
+        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
         
-        <tag>iOS</tag>
+        <tag>Git</tag>
          
          
            
              
-              <breadCrumb title="战斗笔记" url="http://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://bingo.ren/2016/12/30/1/</loc>
+    <lastmod>2017-02-09T01:25:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL支持emoji字符的插入</title>
+        <pubTime>2016-12-29T18:30:37.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>J2EE</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
           
         </display>
     </data>
@@ -211,21 +213,19 @@
 
     
   <url>
-    <loc>http://bingo.ren/2016/12/30/1/</loc>
+    <loc>http://bingo.ren/2016/08/10/3/</loc>
     <lastmod>2017-02-09T01:25:52.000Z</lastmod>
     <data>
         <display>
-        <title>MySQL支持emoji字符的插入</title>
-        <pubTime>2016-12-29T18:30:37.000Z</pubTime>
+        <title>iOS战斗总结笔记一期</title>
+        <pubTime>2016-08-10T02:15:19.000Z</pubTime>
         
-        <tag>MySQL</tag>
-         
-        <tag>J2EE</tag>
+        <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+              <breadCrumb title="战斗笔记" url="http://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
