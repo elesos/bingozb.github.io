@@ -4,21 +4,18 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   
-  <title>常用的分类和宏封装库 DKExtension | Bingo&#39;s Blog</title>
+  <title>MySQL5.7 默认密码重设 | Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Dankal extension category for iOS.
-Cocoapods 安装1pod &apos;DKExtension.h&apos;">
+  <meta name="description" content="前言现在最新版本的MySQL的安装有点坑，安装过程不需要用户输入 MySQL 密码，而是生成了默认的密码。并且这个密码是无法使用的，必须通过终端用命令行将其改掉，不支持桌面客户端更改。在此记录，以便以后需要时快速安装 MySQL。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用的分类和宏封装库 DKExtension">
-<meta property="og:url" content="http://bingo.ren/2017/01/24/6/index.html">
+<meta property="og:title" content="MySQL5.7 默认密码重设">
+<meta property="og:url" content="http://bingo.ren/2017/02/10/13/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="Dankal extension category for iOS.
-Cocoapods 安装1pod &apos;DKExtension.h&apos;">
-<meta property="og:updated_time" content="2017-02-09T01:25:52.000Z">
+<meta property="og:description" content="前言现在最新版本的MySQL的安装有点坑，安装过程不需要用户输入 MySQL 密码，而是生成了默认的密码。并且这个密码是无法使用的，必须通过终端用命令行将其改掉，不支持桌面客户端更改。在此记录，以便以后需要时快速安装 MySQL。">
+<meta property="og:updated_time" content="2017-02-10T13:38:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用的分类和宏封装库 DKExtension">
-<meta name="twitter:description" content="Dankal extension category for iOS.
-Cocoapods 安装1pod &apos;DKExtension.h&apos;">
+<meta name="twitter:title" content="MySQL5.7 默认密码重设">
+<meta name="twitter:description" content="前言现在最新版本的MySQL的安装有点坑，安装过程不需要用户输入 MySQL 密码，而是生成了默认的密码。并且这个密码是无法使用的，必须通过终端用命令行将其改掉，不支持桌面客户端更改。在此记录，以便以后需要时快速安装 MySQL。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -69,14 +66,14 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-6" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-13" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="" class="article-date">
-  <time datetime="2017-01-24T06:37:35.000Z" itemprop="datePublished">2017-01-24</time>
+  <time datetime="2017-02-10T13:14:19.000Z" itemprop="datePublished">2017-02-10</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../../../categories/DKKIT/">DKKIT</a>
+    <a class="article-category-link" href="../../../../categories/战斗笔记/">战斗笔记</a>
   </div>
 
   </div>
@@ -87,7 +84,7 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
         
   
     <h1 class="article-title" itemprop="name">
-      常用的分类和宏封装库 DKExtension
+      MySQL5.7 默认密码重设
     </h1>
   
 
@@ -95,27 +92,23 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Dankal extension category for iOS.</p>
-<h4 id="Cocoapods-安装"><a href="#Cocoapods-安装" class="headerlink" title="Cocoapods 安装"></a>Cocoapods 安装</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKExtension.h'</div></pre></td></tr></table></figure>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>现在最新版本的MySQL的安装有点坑，安装过程不需要用户输入 MySQL 密码，而是生成了默认的密码。并且这个密码是无法使用的，必须通过终端用命令行将其改掉，不支持桌面客户端更改。在此记录，以便以后需要时快速安装 MySQL。</p>
 <a id="more"></a>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
-<li><p>引入</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DKExtension.h"</span></span></div></pre></td></tr></table></figure>
-</li>
-<li><p>以<code>dk_</code>为前缀调用分类方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// dk_xxxx</span></div><div class="line">label.textColor = [<span class="built_in">UIColor</span> dk_randomColor];</div><div class="line">label.text = [<span class="built_in">NSDate</span> dk_currentDateStrWithFormat:<span class="string">@"当前时间: yyyy-MM-dd HH:mm:ss"</span>];</div></pre></td></tr></table></figure>
-</li>
-<li><p>提供 <a href="http://bingo.ren/DKExtension">API文档</a>，具体分类方法和属性请Review代码</p>
-</li>
-</ul>
+<h4 id="默认密码"><a href="#默认密码" class="headerlink" title="默认密码"></a>默认密码</h4><p>第一次启动时会默认生成一个随机密码，在安装的最后一部有弹出对话框提示。如果还没复制就点了确定关掉了对话框，不知道默认密码，可以在<code>/var/log/mysqld.log</code>文件里找到，也可以使用以下命令来查询。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ grep &apos;temporary password&apos; /var/log/mysqld.log</div></pre></td></tr></table></figure>
+<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><p>找到默认密码后，用默认密码登录，不管执行任何命令，总会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.</div></pre></td></tr></table></figure>
+<p>这个时候，在终端执行以下三行命令即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SET PASSWORD = PASSWORD(&apos;新密码&apos;);</div><div class="line">Query OK, 0 rows affected, 1 warning (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; flush privileges;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div></pre></td></tr></table></figure>
+<p>最后用新密码重新登录即可。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/01/24/6/" data-id="ciyzv0yli000pgnry4snu3hvx" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/02/10/13/" data-id="ciyzv0yl30007gnryxy7lczaf" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/iOS/">iOS</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/MySQL/">MySQL</a></li></ul>
 
     </footer>
   </div>
@@ -123,19 +116,10 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
     
 <nav id="article-nav">
   
-    <a href="../7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          扫一扫框架 DKScanner
-        
-      </div>
-    </a>
   
-  
-    <a href="../../23/5/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../12/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Git 分支管理</div>
+      <div class="article-nav-title">彻底删除MySQL相关文件</div>
     </a>
   
 </nav>
@@ -146,7 +130,7 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
 
 <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div id="ds-thread" class="ds-thread" data-thread-key="2017/01/24/6/" data-title="常用的分类和宏封装库 DKExtension" data-url="http://bingo.ren/2017/01/24/6/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/02/10/13/" data-title="MySQL5.7 默认密码重设" data-url="http://bingo.ren/2017/02/10/13/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -212,23 +196,23 @@ Cocoapods 安装1pod &apos;DKExtension.h&apos;">
       <ul>
         
           <li>
-            <a href="../../../02/10/13/">MySQL5.7 默认密码重设</a>
+            <a href="">MySQL5.7 默认密码重设</a>
           </li>
         
           <li>
-            <a href="../../../02/10/12/">彻底删除MySQL相关文件</a>
+            <a href="../12/">彻底删除MySQL相关文件</a>
           </li>
         
           <li>
-            <a href="../../../02/09/11/">解决iOS项目文件合并.xcodeproj冲突</a>
+            <a href="../../09/11/">解决iOS项目文件合并.xcodeproj冲突</a>
           </li>
         
           <li>
-            <a href="../../31/10/">解决讨厌的.DS_Store文件（下）</a>
+            <a href="../../../01/31/10/">解决讨厌的.DS_Store文件（下）</a>
           </li>
         
           <li>
-            <a href="../../31/9/">解决讨厌的.DS_Store文件（上）</a>
+            <a href="../../../01/31/9/">解决讨厌的.DS_Store文件（上）</a>
           </li>
         
       </ul>
