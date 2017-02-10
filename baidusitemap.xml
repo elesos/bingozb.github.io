@@ -4,8 +4,71 @@
 
     
   <url>
+    <loc>http://bingo.ren/2017/02/10/13/</loc>
+    <lastmod>2017-02-10T14:38:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL5.7 默认密码重设</title>
+        <pubTime>2017-02-10T13:14:19.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="战斗笔记" url="http://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://bingo.ren/2017/01/31/10/</loc>
+    <lastmod>2017-02-10T14:25:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决讨厌的.DS_Store文件（下）</title>
+        <pubTime>2017-01-31T09:20:21.000Z</pubTime>
+        
+        <tag>Mac</tag>
+         
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://bingo.ren/2017/02/10/12/</loc>
+    <lastmod>2017-02-10T14:25:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>彻底删除MySQL相关文件</title>
+        <pubTime>2017-02-10T13:09:16.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="战斗笔记" url="http://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>http://bingo.ren/2017/02/10/14/</loc>
-    <lastmod>2017-02-10T14:23:33.000Z</lastmod>
+    <lastmod>2017-02-10T14:25:46.000Z</lastmod>
     <data>
         <display>
         <title>MacOS配置MySQL的my.cnf</title>
@@ -27,7 +90,7 @@
     
   <url>
     <loc>http://bingo.ren/2017/02/09/11/</loc>
-    <lastmod>2017-02-10T13:40:56.000Z</lastmod>
+    <lastmod>2017-02-10T14:25:46.000Z</lastmod>
     <data>
         <display>
         <title>解决iOS项目文件合并.xcodeproj冲突</title>
@@ -50,113 +113,8 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/02/10/13/</loc>
-    <lastmod>2017-02-10T13:40:56.000Z</lastmod>
-    <data>
-        <display>
-        <title>MySQL5.7 默认密码重设</title>
-        <pubTime>2017-02-10T13:14:19.000Z</pubTime>
-        
-        <tag>MySQL</tag>
-         
-         
-           
-             
-              <breadCrumb title="战斗笔记" url="http://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://bingo.ren/2017/01/31/9/</loc>
-    <lastmod>2017-02-10T13:40:56.000Z</lastmod>
-    <data>
-        <display>
-        <title>解决讨厌的.DS_Store文件（上）</title>
-        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-        <tag>Mac</tag>
-         
-         
-           
-             
-              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://bingo.ren/2017/01/31/10/</loc>
-    <lastmod>2017-02-10T13:40:56.000Z</lastmod>
-    <data>
-        <display>
-        <title>解决讨厌的.DS_Store文件（下）</title>
-        <pubTime>2017-01-31T09:20:21.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-        <tag>Mac</tag>
-         
-         
-           
-             
-              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://bingo.ren/2017/01/29/8/</loc>
-    <lastmod>2017-02-10T13:40:56.000Z</lastmod>
-    <data>
-        <display>
-        <title>Git 合并Commit</title>
-        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://bingo.ren/2017/02/10/12/</loc>
-    <lastmod>2017-02-10T13:40:56.000Z</lastmod>
-    <data>
-        <display>
-        <title>彻底删除MySQL相关文件</title>
-        <pubTime>2017-02-10T13:09:16.000Z</pubTime>
-        
-        <tag>MySQL</tag>
-         
-         
-           
-             
-              <breadCrumb title="战斗笔记" url="http://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://bingo.ren/2017/01/23/5/</loc>
-    <lastmod>2017-02-10T13:40:56.000Z</lastmod>
+    <lastmod>2017-02-10T14:25:46.000Z</lastmod>
     <data>
         <display>
         <title>Git 分支管理</title>
@@ -175,8 +133,90 @@
 
     
   <url>
+    <loc>http://bingo.ren/2017/01/29/8/</loc>
+    <lastmod>2017-02-10T14:25:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git 合并Commit</title>
+        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://bingo.ren/2017/01/24/7/</loc>
+    <lastmod>2017-02-10T14:25:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>扫一扫框架 DKScanner</title>
+        <pubTime>2017-01-24T07:12:51.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="DKKIT" url="http://bingo.ren/categories/DKKIT/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://bingo.ren/2017/01/24/6/</loc>
+    <lastmod>2017-02-10T14:25:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>常用的分类和宏封装库 DKExtension</title>
+        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="DKKIT" url="http://bingo.ren/categories/DKKIT/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://bingo.ren/2017/01/31/9/</loc>
+    <lastmod>2017-02-10T14:25:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决讨厌的.DS_Store文件（上）</title>
+        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
+        
+        <tag>Mac</tag>
+         
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="http://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://bingo.ren/2017/01/22/4/</loc>
-    <lastmod>2017-02-10T13:40:55.000Z</lastmod>
+    <lastmod>2017-02-10T14:25:44.000Z</lastmod>
     <data>
         <display>
         <title>年度工作总结</title>
@@ -196,7 +236,7 @@
     
   <url>
     <loc>http://bingo.ren/2017/01/05/2/</loc>
-    <lastmod>2017-02-10T13:40:55.000Z</lastmod>
+    <lastmod>2017-02-10T14:25:44.000Z</lastmod>
     <data>
         <display>
         <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
@@ -216,7 +256,7 @@
     
   <url>
     <loc>http://bingo.ren/2016/12/30/1/</loc>
-    <lastmod>2017-02-10T13:40:55.000Z</lastmod>
+    <lastmod>2017-02-10T14:25:44.000Z</lastmod>
     <data>
         <display>
         <title>MySQL支持emoji字符的插入</title>
@@ -237,48 +277,8 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/01/24/6/</loc>
-    <lastmod>2017-02-10T13:40:55.000Z</lastmod>
-    <data>
-        <display>
-        <title>常用的分类和宏封装库 DKExtension</title>
-        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="DKKIT" url="http://bingo.ren/categories/DKKIT/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://bingo.ren/2017/01/24/7/</loc>
-    <lastmod>2017-02-10T13:40:55.000Z</lastmod>
-    <data>
-        <display>
-        <title>扫一扫框架 DKScanner</title>
-        <pubTime>2017-01-24T07:12:51.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="DKKIT" url="http://bingo.ren/categories/DKKIT/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://bingo.ren/2016/08/10/3/</loc>
-    <lastmod>2017-02-10T13:40:55.000Z</lastmod>
+    <lastmod>2017-02-10T14:25:44.000Z</lastmod>
     <data>
         <display>
         <title>iOS战斗总结笔记一期</title>
