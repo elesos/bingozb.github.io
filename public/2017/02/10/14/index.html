@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   
-  <title>彻底删除MySQL相关文件 | Bingo&#39;s Blog</title>
+  <title>MacOS配置MySQL的my.cnf | Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="终端12345678sudo rm -rf /usr/local/mysql  sudo rm -rf /usr/local/mysql*  sudo rm -rf /Library/StartupItems/MySQLCOM  sudo rm -rf /Library/PreferencePanes/My*  sudo rm -rf ~/Library/PreferencePanes/My*">
+  <meta name="description" content="前言在《MySQL支持emoji字符的插入》中，要解决问题就要修改数据库配置文件my.cnf，文中是以 Linux 为例，Windows 上也很好找，但 MacOS 上没有 my.cnf 文件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="彻底删除MySQL相关文件">
-<meta property="og:url" content="http://bingo.ren/2017/02/10/12/index.html">
+<meta property="og:title" content="MacOS配置MySQL的my.cnf">
+<meta property="og:url" content="http://bingo.ren/2017/02/10/14/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="终端12345678sudo rm -rf /usr/local/mysql  sudo rm -rf /usr/local/mysql*  sudo rm -rf /Library/StartupItems/MySQLCOM  sudo rm -rf /Library/PreferencePanes/My*  sudo rm -rf ~/Library/PreferencePanes/My*">
-<meta property="og:updated_time" content="2017-02-10T13:40:56.000Z">
+<meta property="og:description" content="前言在《MySQL支持emoji字符的插入》中，要解决问题就要修改数据库配置文件my.cnf，文中是以 Linux 为例，Windows 上也很好找，但 MacOS 上没有 my.cnf 文件。">
+<meta property="og:updated_time" content="2017-02-10T14:23:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="彻底删除MySQL相关文件">
-<meta name="twitter:description" content="终端12345678sudo rm -rf /usr/local/mysql  sudo rm -rf /usr/local/mysql*  sudo rm -rf /Library/StartupItems/MySQLCOM  sudo rm -rf /Library/PreferencePanes/My*  sudo rm -rf ~/Library/PreferencePanes/My*">
+<meta name="twitter:title" content="MacOS配置MySQL的my.cnf">
+<meta name="twitter:description" content="前言在《MySQL支持emoji字符的插入》中，要解决问题就要修改数据库配置文件my.cnf，文中是以 Linux 为例，Windows 上也很好找，但 MacOS 上没有 my.cnf 文件。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -66,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-12" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-14" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="" class="article-date">
-  <time datetime="2017-02-10T13:09:16.000Z" itemprop="datePublished">2017-02-10</time>
+  <time datetime="2017-02-10T14:15:19.000Z" itemprop="datePublished">2017-02-10</time>
 </a>
     
   <div class="article-category">
@@ -84,7 +84,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      彻底删除MySQL相关文件
+      MacOS配置MySQL的my.cnf
     </h1>
   
 
@@ -92,14 +92,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sudo rm -rf /usr/local/mysql  </div><div class="line">sudo rm -rf /usr/local/mysql*  </div><div class="line">sudo rm -rf /Library/StartupItems/MySQLCOM  </div><div class="line">sudo rm -rf /Library/PreferencePanes/My*  </div><div class="line">sudo rm -rf ~/Library/PreferencePanes/My*  </div><div class="line">sudo rm -rf /Library/Receipts/mysql*  </div><div class="line">sudo rm -rf /Library/Receipts/MySQL*  </div><div class="line">sudo rm -rf /var/db/receipts/com.mysql.*</div></pre></td></tr></table></figure>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在<a href="https://bingo.ren/2016/12/30/1/">《MySQL支持emoji字符的插入》</a>中，要解决问题就要修改数据库配置文件<code>my.cnf</code>，文中是以 Linux 为例，Windows 上也很好找，但 MacOS 上没有 my.cnf 文件。</p>
+<a id="more"></a>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>在 MacOS 上默认是没有 my.cnf 文件，如果需要对 MySQL 进行定制，需要拷贝安装生成的默认文件，路径为 <code>/usr/local/mysql-5.7.17-macos10.12-x86_64/support-files/my-default.cnf</code>，将其拷贝到<code>/etc</code>下面，并重命名为<code>my.cnf</code>，然后就可以修改 <code>my.cnf</code> 来定制 MySQL了。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/02/10/12/" data-id="ciyzwmeo20002pdry6tgrueuw" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/02/10/14/" data-id="ciyzwmeoa0006pdry5jv4h1dw" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/MySQL/">MySQL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/MySQL/">MySQL</a></li></ul>
 
     </footer>
   </div>
@@ -107,19 +110,10 @@
     
 <nav id="article-nav">
   
-    <a href="../13/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          MySQL5.7 默认密码重设
-        
-      </div>
-    </a>
   
-  
-    <a href="../../09/11/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../13/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">解决iOS项目文件合并.xcodeproj冲突</div>
+      <div class="article-nav-title">MySQL5.7 默认密码重设</div>
     </a>
   
 </nav>
@@ -130,7 +124,7 @@
 
 <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div id="ds-thread" class="ds-thread" data-thread-key="2017/02/10/12/" data-title="彻底删除MySQL相关文件" data-url="http://bingo.ren/2017/02/10/12/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/02/10/14/" data-title="MacOS配置MySQL的my.cnf" data-url="http://bingo.ren/2017/02/10/14/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -196,7 +190,7 @@
       <ul>
         
           <li>
-            <a href="../14/">MacOS配置MySQL的my.cnf</a>
+            <a href="">MacOS配置MySQL的my.cnf</a>
           </li>
         
           <li>
@@ -204,7 +198,7 @@
           </li>
         
           <li>
-            <a href="">彻底删除MySQL相关文件</a>
+            <a href="../12/">彻底删除MySQL相关文件</a>
           </li>
         
           <li>

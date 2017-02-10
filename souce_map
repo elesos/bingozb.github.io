@@ -12,3 +12,4 @@ source_id	----	title
 11			----	解决iOS项目文件合并.xcodeproj冲突
 12			----	彻底删除MySQL相关文件
 13			----	MySQL5.7 默认密码重设
+14			----	MacOS配置MySQL的my.cnf
