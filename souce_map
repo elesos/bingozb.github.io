@@ -13,3 +13,4 @@ source_id	----	title
 12			----	彻底删除MySQL相关文件
 13			----	MySQL5.7 默认密码重设
 14			----	MacOS配置MySQL的my.cnf
+15			----	DKIpaBuilder shell实现自动打包ipa并上传到fir.im
