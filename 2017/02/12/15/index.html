@@ -6,22 +6,16 @@
   
   <title>DKIpaBuilder shell实现自动打包ipa并上传到fir.im | Bingo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。
-为什么不采用 Jenkins首先搞清楚 Jenkins 是什么。
-Jenkins 是一个开源项目，提">
+  <meta name="description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DKIpaBuilder shell实现自动打包ipa并上传到fir.im">
 <meta property="og:url" content="http://bingo.ren/2017/02/12/15/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。
-为什么不采用 Jenkins首先搞清楚 Jenkins 是什么。
-Jenkins 是一个开源项目，提">
-<meta property="og:updated_time" content="2017-02-12T15:39:46.000Z">
+<meta property="og:description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。">
+<meta property="og:updated_time" content="2017-02-12T15:45:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DKIpaBuilder shell实现自动打包ipa并上传到fir.im">
-<meta name="twitter:description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。
-为什么不采用 Jenkins首先搞清楚 Jenkins 是什么。
-Jenkins 是一个开源项目，提">
+<meta name="twitter:description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -99,6 +93,7 @@ Jenkins 是一个开源项目，提">
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。</p>
+<a id="more"></a>
 <h4 id="为什么不采用-Jenkins"><a href="#为什么不采用-Jenkins" class="headerlink" title="为什么不采用 Jenkins"></a>为什么不采用 Jenkins</h4><p>首先搞清楚 Jenkins 是什么。</p>
 <p><a href="https://jenkins.io/index.html" target="_blank" rel="external">Jenkins</a> 是一个开源项目，提供了一种易于使用的持续集成系统，使开发者从繁杂的集成中解脱出来，专注于更为重要的业务逻辑实现上。同时 Jenkins 能实施监控集成中存在的错误，提供详细的日志文件和提醒功能，还能用图表的形式形象地展示项目构建的趋势和稳定性。</p>
 <p>根据官方定义，Jenkins 有以下的用途：</p>
@@ -149,7 +144,7 @@ Jenkins 是一个开源项目，提">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingo.ren/2017/02/12/15/" data-id="ciz2u7kvg000dtiry40ifgfm4" class="article-share-link">Share</a>
+      <a data-url="http://bingo.ren/2017/02/12/15/" data-id="ciz2ufotf000ewkryyzpj45pz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Shell/">Shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/iOS/">iOS</a></li></ul>

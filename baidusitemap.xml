@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://bingo.ren/2017/02/12/15/</loc>
-    <lastmod>2017-02-12T15:39:46.000Z</lastmod>
+    <lastmod>2017-02-12T15:45:57.000Z</lastmod>
     <data>
         <display>
         <title>DKIpaBuilder shell实现自动打包ipa并上传到fir.im</title>
@@ -157,13 +157,15 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/01/29/8/</loc>
+    <loc>http://bingo.ren/2017/01/31/9/</loc>
     <lastmod>2017-02-12T15:30:15.000Z</lastmod>
     <data>
         <display>
-        <title>Git 合并Commit</title>
-        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
+        <title>解决讨厌的.DS_Store文件（上）</title>
+        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
         
+        <tag>Mac</tag>
+         
         <tag>Git</tag>
          
          
@@ -177,15 +179,13 @@
 
     
   <url>
-    <loc>http://bingo.ren/2017/01/31/9/</loc>
+    <loc>http://bingo.ren/2017/01/29/8/</loc>
     <lastmod>2017-02-12T15:30:15.000Z</lastmod>
     <data>
         <display>
-        <title>解决讨厌的.DS_Store文件（上）</title>
-        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
+        <title>Git 合并Commit</title>
+        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
         
-        <tag>Mac</tag>
-         
         <tag>Git</tag>
          
          
