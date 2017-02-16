@@ -5,16 +5,14 @@
 # Site
 title: Bingo's Blog
 subtitle: Stay Hungry, Stay Foolish.
-#subtitle: Bingo's Blog
-#description: Mark the dev-notes.
-description: Stay Hungry, Stay Foolish.
+description: He who hesitates is lost.
 author: Bingo
 language: zh-Hans
-timezone:
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://bingo.ren
+url: https://bingo.ren
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -37,7 +35,7 @@ external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
-relative_link: true
+relative_link: false
 future: true
 highlight:
   enable: true
