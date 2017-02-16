@@ -1,11 +1,14 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mala">
-<head>
-  
 
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -16,25 +19,67 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="../../vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
-
-
-
-
-<link rel="stylesheet" type="text/css" href="../../css/main.css?v=0.4.5.1"/>
-
-
-    <meta name="description" content="Stay Hungry, Stay Foolish." />
-
-
-
-  <meta name="keywords" content="Bingo's Blog" />
 
 
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="../../favicon.ico?v=0.4.5.1" />
+
+  
+  
+  <link href="../../lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="../../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="../../css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Bingo's Blog,iOS" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico?v=5.1.0" />
+
+
+
+
 
 
 <meta name="description" content="Stay Hungry, Stay Foolish.">
@@ -48,45 +93,74 @@
 <meta name="twitter:description" content="Stay Hungry, Stay Foolish.">
 
 
-<script type="text/javascript" id="hexo.configuration">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mala',
-    sidebar: 'post'
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'bingozb'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
   };
 </script>
+
+
+
+  <link rel="canonical" href="http://bingo.ren/archives/2016/"/>
+
+
+
+
 
   <title> 归档 | Bingo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
   
 
 
 
-  <div class="container one-column  page-archive ">
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand" rel="start">
-      <span class="logo">
-        <i class="icon-next-logo"></i>
-      </span>
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">Bingo's Blog</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+</div>
 
 <div class="site-nav-toggle">
   <button>
@@ -100,12 +174,14 @@
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
           <a href="" rel="section">
-            <i class="menu-item-icon icon-next-home"></i> <br />
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -113,15 +189,29 @@
         
         <li class="menu-item menu-item-categories">
           <a href="" rel="section">
-            <i class="menu-item-icon icon-next-categories"></i> <br />
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="" rel="section">
-            <i class="menu-item-icon icon-next-archives"></i> <br />
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
             归档
           </a>
         </li>
@@ -129,21 +219,24 @@
         
         <li class="menu-item menu-item-tags">
           <a href="" rel="section">
-            <i class="menu-item-icon icon-next-tags"></i> <br />
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
             标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-sitemap">
           <a href="" rel="section">
-            <i class="menu-item-icon icon-next-about"></i> <br />
-            关于
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Sitemap
           </a>
         </li>
       
 
-      
       
     </ul>
   
@@ -151,14 +244,16 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
-    
-
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <section id="posts" class="posts-collapse">
     <span class="archive-move-on"></span>
@@ -188,19 +283,25 @@
 
       
 
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
       <h1 class="post-title">
         
             <a class="post-title-link" href="../../2016/12/30/1/" itemprop="url">
-              <span itemprop="name">MySQL支持emoji字符的插入</span>
+              
+                <span itemprop="name">MySQL支持emoji字符的插入</span>
+              
             </a>
         
       </h1>
 
       <div class="post-meta">
-        <time class="post-time" datetime="2016-12-29T18:30:37.000Z" itemprop="dateCreated" content="2016-12-29"> 12-30 </time>
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-12-30T02:30:37+08:00"
+              content="2016-12-30" >
+          12-30
+        </time>
       </div>
 
     </header>
@@ -219,19 +320,25 @@
 
       
 
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
       <h1 class="post-title">
         
             <a class="post-title-link" href="../../2016/08/10/3/" itemprop="url">
-              <span itemprop="name">iOS战斗总结笔记一期</span>
+              
+                <span itemprop="name">iOS战斗总结笔记一期</span>
+              
             </a>
         
       </h1>
 
       <div class="post-meta">
-        <time class="post-time" datetime="2016-08-10T02:15:19.000Z" itemprop="dateCreated" content="2016-08-10"> 08-10 </time>
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-10T10:15:19+08:00"
+              content="2016-08-10" >
+          08-10
+        </time>
       </div>
 
     </header>
@@ -245,14 +352,17 @@
 
   
 
- </div>
 
+
+          </div>
+          
+
+
+          
+
+        </div>
         
-
-        
-      </div>
-
-      
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -267,33 +377,41 @@
 
       
 
-      <section class="site-overview">
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="../../images/default_avatar.jpg" alt="Bingo" itemprop="image"/>
+          <img class="site-author-image" itemprop="image"
+               src="../../images/avatar.jpg"
+               alt="Bingo" />
           <p class="site-author-name" itemprop="name">Bingo</p>
+          <p class="site-description motion-element" itemprop="description">Stay Hungry, Stay Foolish.</p>
         </div>
-        <p class="site-description motion-element" itemprop="description">Stay Hungry, Stay Foolish.</p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="../../index.html">
+            <a href="../../archives">
               <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
-          <div class="site-state-item site-state-categories">
-            
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">分类</span>
-              
-          </div>
+          
+            <div class="site-state-item site-state-categories">
+              <a href="../../categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            
-              <span class="site-state-item-count">7</span>
-              <span class="site-state-item-name">标签</span>
-              
-          </div>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="../../tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
 
         </nav>
 
@@ -303,12 +421,14 @@
           
         </div>
 
-        <div class="links-of-friendly motion-element">
-          
-        </div>
+        
+        
 
         
         
+
+        
+
 
       </section>
 
@@ -318,40 +438,116 @@
   </aside>
 
 
+        
+      </div>
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  Copyright © 
-  <span itemprop="copyrightYear">2017
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Bingo
-  </span>
-  All rights reserved.
+  <span class="author" itemprop="copyrightHolder">Bingo</span>
 </div>
+
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://github.com/bingozb">Bingo zb</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
- </div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
-  <script type="text/javascript" src="../../vendors/jquery/index.js?v=2.1.3"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="../../lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="../../lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="../../lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="../../lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="../../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="../../lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="../../js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="../../js/src/motion.js?v=5.1.0"></script>
+
+
 
   
   
-  
-    <script type="text/javascript">
-      postMotionOptions = {stagger: 100, drag: true};
-    </script>
-  
+
+
+  <script type="text/javascript" src="../../js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="../../js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
 
   
-    
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../../js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
 
   
     
@@ -362,76 +558,150 @@
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
       ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
       || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
   </script>
+
+  
     
-     
-  	  <script type="text/javascript">
-  		var duoshuo_user_ID = bingozb
-  	  </script>
-     
-  	<script src="../../js/ua-parser.min.js"></script>
-  	<script src="../../js/hook-duoshuo.js"></script>
-  
-
+      
+      <script src="../../lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="../../js/src/hook-duoshuo.js?v=5.1.0"></script>
     
-  
-  
-  <script type="text/javascript" src="../../vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="../../js/fancy-box.js?v=0.4.5.1"></script>
-
-
-  <script type="text/javascript" src="../../js/helpers.js?v=0.4.5.1"></script>
-  
-
-  <script type="text/javascript" src="../../vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="../../vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="../../js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
-
-
-
-
-  <script type="text/javascript" src="../../js/nav-toggle.js?v=0.4.5.1"></script>
-  <script type="text/javascript" src="../../vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
+    
+    <script src="../../lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="../../js/src/hook-duoshuo.js"></script>
   
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-    });
-  </script>
 
-  
+
+
+
+
 
   
   
 
   
-  <script type="text/javascript" src="../../js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "../../images/loading.gif",
-        effect: "fadeIn"
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("i94Fztq8fCCVeVdaAsj5QJFA-gzGzoHsz", "qaPHXx9ykQRH0XhF1DawhWN1");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
       });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
     });
   </script>
+
+
+
+  
+
+  
+
+
 </body>
 </html>

@@ -1,8 +1,8 @@
 ---
 title: 关于我
 date: 2017-02-03 21:36:17
-description: "About me."
 type: "about"
+description: "About me."
 ---
 
 <img src="http://bingo.ren/images/me.jpg" width=120 style="float:right;margin-right:20px">
@@ -40,7 +40,7 @@ type: "about"
 
 - iOS（主）
 
-    现在主攻 iOS 方向，研究底层。开始看汇编，接触逆向工程，逐渐走向安全攻防方向。正是因为开始了解逆向工程，才发现原来 iOS 的安全性并没有想象中的那么好，反编译也不是不可能，App Store 为我们的 ipa 穿上的“外套”挡不住有心人。混淆加密等措施非常重要，特别是当app面向客户的量级很大的时候，安全摆在了第一位。
+现在主攻 iOS 方向，研究底层。开始看汇编，接触逆向工程，逐渐走向安全攻防方向。正是因为开始了解逆向工程，才发现原来 iOS 的安全性并没有想象中的那么好，反编译也不是不可能，App Store 为我们的 ipa 穿上的“外套”挡不住有心人。混淆加密等措施非常重要，特别是当app面向客户的量级很大的时候，安全摆在了第一位。
 
 - Android
 - JavaWeb

@@ -4,8 +4,8 @@
 
 # Site
 title: Bingo's Blog
-#subtitle: Stay Hungry, Stay Foolish.
-subtitle: Bingo's Blog
+subtitle: Stay Hungry, Stay Foolish.
+#subtitle: Bingo's Blog
 #description: Mark the dev-notes.
 description: Stay Hungry, Stay Foolish.
 author: Bingo
@@ -65,7 +65,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-next
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
