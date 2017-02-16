@@ -4,10 +4,12 @@
 
 # Site
 title: Bingo's Blog
-subtitle: Stay Hungry, Stay Foolish.
-description: Mark the dev-notes.
+#subtitle: Stay Hungry, Stay Foolish.
+subtitle: Bingo's Blog
+#description: Mark the dev-notes.
+description: Stay Hungry, Stay Foolish.
 author: Bingo
-language: zh-CN
+language: zh-Hans
 timezone:
 
 # URL
@@ -63,7 +65,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hexo-theme-next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
