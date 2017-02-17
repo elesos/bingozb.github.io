@@ -1,0 +1,757 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言移动端开发人员占了公司技术部的半壁江山，但还是很散乱，有些规范还是很模糊，都完全没有这个概念。希望启动一个计划，让整个团队的效率变高，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端规划大纲">
+<meta property="og:url" content="https://bingo.ren/2017/02/17/16/index.html">
+<meta property="og:site_name" content="Bingo's Blog">
+<meta property="og:description" content="前言移动端开发人员占了公司技术部的半壁江山，但还是很散乱，有些规范还是很模糊，都完全没有这个概念。希望启动一个计划，让整个团队的效率变高，">
+<meta property="og:updated_time" content="2017-02-17T08:25:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端规划大纲">
+<meta name="twitter:description" content="前言移动端开发人员占了公司技术部的半壁江山，但还是很散乱，有些规范还是很模糊，都完全没有这个概念。希望启动一个计划，让整个团队的效率变高，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'bingozb'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bingo.ren/2017/02/17/16/"/>
+
+
+
+
+
+  <title> 移动端规划大纲 | Bingo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Bingo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/02/17/16/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Bingo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Bingo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Bingo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动端规划大纲
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-17T15:59:08+08:00">
+                2017-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作总结/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/02/17/16/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/17/16/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>移动端开发人员占了公司技术部的半壁江山，但还是很散乱，有些规范还是很模糊，都完全没有这个概念。希望启动一个计划，让整个团队的效率变高，</p>
+<a id="more"></a>
+<h2 id="招聘标准"><a href="#招聘标准" class="headerlink" title="招聘标准"></a>招聘标准</h2><ul>
+<li><h4 id="对-Git-操作的熟悉度"><a href="#对-Git-操作的熟悉度" class="headerlink" title="对 Git 操作的熟悉度"></a>对 Git 操作的熟悉度</h4><p>  eg : 冲突解决</p>
+</li>
+<li><h4 id="项目开发经验"><a href="#项目开发经验" class="headerlink" title="项目开发经验"></a>项目开发经验</h4></li>
+<li><h4 id="iOS-Android-架构的理解"><a href="#iOS-Android-架构的理解" class="headerlink" title="iOS / Android 架构的理解"></a>iOS / Android 架构的理解</h4></li>
+</ul>
+<h2 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h2><ul>
+<li><h4 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h4><p>  eg : 类名、前缀、模块名、协议命名、通知命名等。</p>
+</li>
+<li><h4 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h4><p>  eg : 换行问题、比如该继承的时候就用继承，但又不能滥用继承等。</p>
+</li>
+<li><h4 id="Git-操作规范"><a href="#Git-操作规范" class="headerlink" title="Git 操作规范"></a>Git 操作规范</h4><p>  eg : 创建规范、迁入团队、提交、合并commit、分支管理等。</p>
+</li>
+<li><h4 id="立项规范"><a href="#立项规范" class="headerlink" title="立项规范"></a>立项规范</h4><p>  eg : 哪些东西是每个项目的立项会议就需要定下来的，立项的目的是什么？</p>
+</li>
+<li><h4 id="内测流程规范"><a href="#内测流程规范" class="headerlink" title="内测流程规范"></a>内测流程规范</h4><p>  eg : 使用 fir.im 内测分发，考虑持续构建等。</p>
+</li>
+<li><h4 id="上线流程规范"><a href="#上线流程规范" class="headerlink" title="上线流程规范"></a>上线流程规范</h4><p>  eg : 比如 iOS 上线需要哪些材料，比如 appicon 是无透明通道的 1024x1024，还要几种尺寸的屏幕截图等，需要对方公司提供什么版权信息等；又比如安卓的，上线的市场都有几种，流程是怎么样的，需要总结下来。</p>
+</li>
+<li><h4 id="技术文档规范"><a href="#技术文档规范" class="headerlink" title="技术文档规范"></a>技术文档规范</h4><p>  eg : 每个项目都要写技术文档，重要说明核心业务是哪几个类，列出接口方法。包括使用了哪些第三方 SDK 等等（规范待斟酌）。</p>
+</li>
+<li><h4 id="归档规范"><a href="#归档规范" class="headerlink" title="归档规范"></a>归档规范</h4><p>  eg : 源码归档、成员开发技术/经验总结，技术文档归档，使用说明归档，部署说明归档。</p>
+</li>
+</ul>
+<h2 id="技术方案"><a href="#技术方案" class="headerlink" title="技术方案"></a>技术方案</h2><ul>
+<li><h4 id="SDK、框架、类库"><a href="#SDK、框架、类库" class="headerlink" title="SDK、框架、类库"></a>SDK、框架、类库</h4><p>  eg : 好用的第三方框架、蛋壳自己开发的类库开发、一些解决方案会采用的sdk。想要达到的目标就是，为了解决某个需求，就能想起某个能直接使用的框架，比如键盘遮挡有问题，第一个就想起 <code>IQKeyboardManager</code>，比如要做分享，第一个就想起 <code>mob</code>，需要总结这些框架等。</p>
+</li>
+<li><h4 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h4><p>  eg : 安卓 <code>MVP</code>，iOS <code>MVVM + RAC</code>，为什么？架构应该是需求决定的，“我们 iOS 是用 MVVM” 或者 “我们安卓是用MVP” 这种屁话是年轻人说的，没有万能的架构，应该是需求决定的。三层架构 != MVC，具体的架构设计要学会分析需求。必须要清楚要做什么，业务方希望要什么。而不是为了架构而架构，也不是为了体验新技术而改架构方案。以前是 MVC，最近流行 MVVM，如果过去的 MVC 是个好架构，没什么特别大的缺陷，就不要推倒然后搞成 MVVM。</p>
+<p>  <strong>APP 架构 四个方面</strong></p>
+<ul>
+<li>调用网络 API</li>
+<li>页面展示</li>
+<li>数据的本地持久化</li>
+<li><p>动态部署方案</p>
+<p><strong>针对 APP：</strong></p>
+</li>
+<li>如何让业务开发工程师方便安全地调用网络API？然后尽可能保证用户在各种网络环境下都能有良好的体验？</li>
+<li>页面如何组织，才能尽可能降低业务方代码的耦合度？尽可能降低业务方开发界面的复杂度，提高他们的效率？</li>
+<li>当数据有在本地存取的需求的时候，如何能够保证数据在本地的合理安排？如何尽可能地减小性能消耗？</li>
+<li><p>iOS应用有审核周期，如何能够通过不发版本的方式展示新的内容给用户？如何修复紧急bug？</p>
+<p><strong>针对团队：</strong></p>
+</li>
+<li>收集用户数据，给产品和运营提供参考</li>
+<li>合理地组织各业务方开发的业务模块，以及相关基础模块</li>
+<li>每日app的自动打包，提供给 QA 工程师的测试工具</li>
+</ul>
+</li>
+<li><h4 id="安全攻防设计"><a href="#安全攻防设计" class="headerlink" title="安全攻防设计"></a>安全攻防设计</h4><p>  eg : 混淆加密，iOS class-dump 可以拿到所有的 .h 的方法名，用另外的一种工具可以拿到所有的方法实现。虽然反编译出来都是汇编，但是字符串是原封不动的显示的。例如 NSLog 里的字符串都可以看到，那么就有问题了，比如我们的网络层工具，请求接口的时候传的是字符串，那么就完全暴露的接口。同样的，如果有私钥或者其他一些隐私信息放在本地，不做混淆加密是很危险的。</p>
+</li>
+<li><h4 id="兼容性-amp-amp-测试"><a href="#兼容性-amp-amp-测试" class="headerlink" title="兼容性 &amp;&amp; 测试"></a>兼容性 &amp;&amp; 测试</h4><p>  eg : 目前这个问题最严重的是安卓，第三方的 sdk 很难兼容所有机型。iOS 也不是说没问题，如果用了最新的特性，在低版本系统的手机一样会有问题。要划定一个兼容范围，并且给出对应的兼容方案。例如 iOS 现在兼容 iOS 8.0 ~ iOS 10.x，在这个范围内跪着也要做好适配，而在此之外的大可不管，屏幕适配为 4.0、4.7、5.5英寸三个尺寸，小于 4.0 英寸的不考虑。安卓方面，能兼容安卓4.x 以上? 如何保证？如何做兼容性测试？</p>
+</li>
+<li><h4 id="新技术掌握"><a href="#新技术掌握" class="headerlink" title="新技术掌握"></a>新技术掌握</h4><p>  eg : 移动端走向没落，市场决定了我们的价值。现在 vue.js 的开发者已经是全栈，可以做前端，也可以做 iOS / 安卓开发，还可以做 Mac 开发等，前端的崛起意味着市场的竞争会更大。作为移动端开发人员，只有不断掌握新技术，才能不被市场完全抛弃。eg : React Native 等</p>
+</li>
+</ul>
+<h2 id="新方法"><a href="#新方法" class="headerlink" title="新方法"></a>新方法</h2><ul>
+<li><h4 id="蛋壳式敏捷开发"><a href="#蛋壳式敏捷开发" class="headerlink" title="蛋壳式敏捷开发"></a>蛋壳式敏捷开发</h4><p>  eg : 优韵宝出现的问题，有没有更好的解决方案，需要一起讨论得出一套合理的开发流程，达到<del>又快又好</del>较满意的进度把控。</p>
+</li>
+<li><h4 id="责任响应链"><a href="#责任响应链" class="headerlink" title="责任响应链"></a>责任响应链</h4><p>  eg : 角色定位、职能等 </p>
+<ul>
+<li>Bingo 项目经理</li>
+<li>Ivan 前端、安卓 技术支持</li>
+<li>Arc iOS 技术支持</li>
+<li>Fio 后台 技术支持</li>
+</ul>
+</li>
+<li><h4 id="每日晨会"><a href="#每日晨会" class="headerlink" title="每日晨会"></a>每日晨会</h4><p>  eg : 9 : 00 ~ 9 : 30，总结前一天的工作情况，快速 Review 代码，总结分配当天的工作任务。</p>
+</li>
+<li><h4 id="每个需要上班的周六，搞事情"><a href="#每个需要上班的周六，搞事情" class="headerlink" title="每个需要上班的周六，搞事情"></a>每个需要上班的周六，搞事情</h4><p>  eg : 除了项目非常非常赶之外，周六不工作，继续以前的头脑风暴，做点事情，写写框架，比如 DKKIT，技术分享等，并做好总结。</p>
+</li>
+<li><h4 id="活力"><a href="#活力" class="headerlink" title="活力"></a>活力</h4><p>  eg : 扩展 … 大保健 …</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/12/15/" rel="next" title="DKIpaBuilder shell实现自动打包ipa并上传到fir.im">
+                <i class="fa fa-chevron-left"></i> DKIpaBuilder shell实现自动打包ipa并上传到fir.im
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/17/16/"
+           data-title="移动端规划大纲" data-url="https://bingo.ren/2017/02/17/16/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Bingo" />
+          <p class="site-author-name" itemprop="name">Bingo</p>
+          <p class="site-description motion-element" itemprop="description">He who hesitates is lost.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#招聘标准"><span class="nav-number">2.</span> <span class="nav-text">招聘标准</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对-Git-操作的熟悉度"><span class="nav-number">2.0.1.</span> <span class="nav-text">对 Git 操作的熟悉度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目开发经验"><span class="nav-number">2.0.2.</span> <span class="nav-text">项目开发经验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-Android-架构的理解"><span class="nav-number">2.0.3.</span> <span class="nav-text">iOS / Android 架构的理解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发规范"><span class="nav-number">3.</span> <span class="nav-text">开发规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命名规范"><span class="nav-number">3.0.1.</span> <span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码规范"><span class="nav-number">3.0.2.</span> <span class="nav-text">代码规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-操作规范"><span class="nav-number">3.0.3.</span> <span class="nav-text">Git 操作规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#立项规范"><span class="nav-number">3.0.4.</span> <span class="nav-text">立项规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内测流程规范"><span class="nav-number">3.0.5.</span> <span class="nav-text">内测流程规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上线流程规范"><span class="nav-number">3.0.6.</span> <span class="nav-text">上线流程规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#技术文档规范"><span class="nav-number">3.0.7.</span> <span class="nav-text">技术文档规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#归档规范"><span class="nav-number">3.0.8.</span> <span class="nav-text">归档规范</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术方案"><span class="nav-number">4.</span> <span class="nav-text">技术方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDK、框架、类库"><span class="nav-number">4.0.1.</span> <span class="nav-text">SDK、框架、类库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#架构设计"><span class="nav-number">4.0.2.</span> <span class="nav-text">架构设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全攻防设计"><span class="nav-number">4.0.3.</span> <span class="nav-text">安全攻防设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#兼容性-amp-amp-测试"><span class="nav-number">4.0.4.</span> <span class="nav-text">兼容性 && 测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新技术掌握"><span class="nav-number">4.0.5.</span> <span class="nav-text">新技术掌握</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新方法"><span class="nav-number">5.</span> <span class="nav-text">新方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#蛋壳式敏捷开发"><span class="nav-number">5.0.1.</span> <span class="nav-text">蛋壳式敏捷开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#责任响应链"><span class="nav-number">5.0.2.</span> <span class="nav-text">责任响应链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#每日晨会"><span class="nav-number">5.0.3.</span> <span class="nav-text">每日晨会</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#每个需要上班的周六，搞事情"><span class="nav-number">5.0.4.</span> <span class="nav-text">每个需要上班的周六，搞事情</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#活力"><span class="nav-number">5.0.5.</span> <span class="nav-text">活力</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  Copyright © 
+  <span itemprop="copyrightYear">2017
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bingo
+  </span>
+  All rights reserved.
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bingozb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
