@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://bingo.ren/2017/02/19/17/</loc>
+    <lastmod>2017-02-22T04:02:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>Objective-C 代码混淆</title>
+        <pubTime>2017-02-18T18:21:41.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>安全攻防</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://bingo.ren/2017/02/21/20/</loc>
     <lastmod>2017-02-21T03:55:25.000Z</lastmod>
     <data>
@@ -119,23 +141,19 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/02/09/11/</loc>
+    <loc>https://bingo.ren/2017/02/10/12/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
         <display>
-        <title>解决iOS项目文件合并.xcodeproj冲突</title>
-        <pubTime>2017-02-08T17:00:42.000Z</pubTime>
+        <title>彻底删除MySQL相关文件</title>
+        <pubTime>2017-02-10T13:09:16.000Z</pubTime>
         
-        <tag>Git</tag>
-         
-        <tag>Xcode</tag>
-         
-        <tag>iOS</tag>
+        <tag>MySQL</tag>
          
          
            
              
-              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
@@ -247,39 +265,23 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/02/10/12/</loc>
+    <loc>https://bingo.ren/2017/02/09/11/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
         <display>
-        <title>彻底删除MySQL相关文件</title>
-        <pubTime>2017-02-10T13:09:16.000Z</pubTime>
+        <title>解决iOS项目文件合并.xcodeproj冲突</title>
+        <pubTime>2017-02-08T17:00:42.000Z</pubTime>
         
-        <tag>MySQL</tag>
+        <tag>Git</tag>
          
+        <tag>Xcode</tag>
          
-           
-             
-              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://bingo.ren/2017/01/24/6/</loc>
-    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>常用的分类和宏封装库 DKExtension</title>
-        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
-        
         <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
           
         </display>
     </data>
@@ -307,19 +309,39 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/05/2/</loc>
+    <loc>https://bingo.ren/2016/08/10/3/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
-        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
+        <title>iOS战斗总结笔记一期</title>
+        <pubTime>2016-08-10T02:15:19.000Z</pubTime>
         
         <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2017/01/24/6/</loc>
+    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>常用的分类和宏封装库 DKExtension</title>
+        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
           
         </display>
     </data>
@@ -391,19 +413,19 @@
 
     
   <url>
-    <loc>https://bingo.ren/2016/08/10/3/</loc>
+    <loc>https://bingo.ren/2017/01/05/2/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>iOS战斗总结笔记一期</title>
-        <pubTime>2016-08-10T02:15:19.000Z</pubTime>
+        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
+        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
         
         <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
           
         </display>
     </data>
