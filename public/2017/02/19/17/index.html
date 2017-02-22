@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://cdn.bingo.ren/protect/confuse.png">
 <meta property="og:image" content="https://cdn.bingo.ren/protect/obscure.png">
 <meta property="og:image" content="https://cdn.bingo.ren/protect/codeObscure.png">
-<meta property="og:updated_time" content="2017-02-22T04:02:28.000Z">
+<meta property="og:updated_time" content="2017-02-22T04:08:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 代码混淆">
 <meta name="twitter:description" content="前言终于开始做攻防相关的操作了，我会一边攻一边防，这篇文章先介绍一个简单的代码混淆的防备操作。文章会从为何要加密、加密市场市场现状、加密思路、方法、工具、操作等方面进行阐述，也作为我个人的记录以便日后的回顾。">
@@ -399,10 +399,8 @@
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/** 获取立即支付前的准备数据 */</div><div class="line">+ (void)fetchPreDataWithProductId:(NSString *)productId quantity:(NSInteger)quantity callback:(void(^)(DKPayPreData *preData, NSError *error))callback;</div></pre></td></tr></table></figure>
 <p> 可写成：</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fetchPreDataWithProductId</div><div class="line">quantity</div><div class="line">callback</div></pre></td></tr></table></figure>
+<p> 一般情况下，需要混淆加密的方法应该只是一些比较敏感的，比如与支付相关的 API Service 等。当然，如果需要写入混淆的方法名太多了，一个一个写也是很麻烦，后面我会写一个根据规则自动生成所有方法名列表的脚本。</p>
 </li>
-</ol>
-<p>  一般情况下，需要混淆加密的方法应该只是一些比较敏感的，比如与支付相关的 API Service 等。当然，如果需要写入混淆的方法名太多了，一个一个写也是很麻烦，后面我会写一个根据规则自动生成所有方法名列表的脚本。</p>
-<ol>
 <li><p>将 func.list 文件放置于与 confuse.sh 脚本同级</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv func.list to/project/path/</div></pre></td></tr></table></figure>
 </li>
