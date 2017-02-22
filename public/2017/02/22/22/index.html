@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MySQL,J2EE," />
+  <meta name="keywords" content="iOS,安全攻防," />
 
 
 
@@ -82,19 +82,18 @@
 
 
 
-<meta name="description" content="插入emoji表情报错一般情况下，往数据库插入emoji字符，会报类似如下的错误:1Error 1366: Incorrect string value: &amp;apos;\xF0\x9F\x91\xBD\xF0\x9F...&amp;apos; for column &amp;apos;xxx&amp;apos;
-Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4个字节就会报错。解决">
+<meta name="description" content="前言经过前面几番捣鼓，终于可以使用 ssh 连接到越狱设备，但还是有问题，不能用 scp 传输文件到设备上。每次都要打开 iTools 等工具来传输文件是很 low 的，所以要让越狱设备支持 scp，程序员就应该基于终端命令行操作，这样才酷！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL支持emoji字符的插入">
-<meta property="og:url" content="https://bingo.ren/2016/12/30/1/index.html">
+<meta property="og:title" content="让越狱设备支持scp文件传输">
+<meta property="og:url" content="https://bingo.ren/2017/02/22/22/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="插入emoji表情报错一般情况下，往数据库插入emoji字符，会报类似如下的错误:1Error 1366: Incorrect string value: &amp;apos;\xF0\x9F\x91\xBD\xF0\x9F...&amp;apos; for column &amp;apos;xxx&amp;apos;
-Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4个字节就会报错。解决">
-<meta property="og:updated_time" content="2017-02-13T05:32:15.000Z">
+<meta property="og:description" content="前言经过前面几番捣鼓，终于可以使用 ssh 连接到越狱设备，但还是有问题，不能用 scp 传输文件到设备上。每次都要打开 iTools 等工具来传输文件是很 low 的，所以要让越狱设备支持 scp，程序员就应该基于终端命令行操作，这样才酷！">
+<meta property="og:image" content="https://cdn.bingo.ren/protect/scp.png">
+<meta property="og:updated_time" content="2017-02-22T09:08:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL支持emoji字符的插入">
-<meta name="twitter:description" content="插入emoji表情报错一般情况下，往数据库插入emoji字符，会报类似如下的错误:1Error 1366: Incorrect string value: &amp;apos;\xF0\x9F\x91\xBD\xF0\x9F...&amp;apos; for column &amp;apos;xxx&amp;apos;
-Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4个字节就会报错。解决">
+<meta name="twitter:title" content="让越狱设备支持scp文件传输">
+<meta name="twitter:description" content="前言经过前面几番捣鼓，终于可以使用 ssh 连接到越狱设备，但还是有问题，不能用 scp 传输文件到设备上。每次都要打开 iTools 等工具来传输文件是很 low 的，所以要让越狱设备支持 scp，程序员就应该基于终端命令行操作，这样才酷！">
+<meta name="twitter:image" content="https://cdn.bingo.ren/protect/scp.png">
 
 
 
@@ -122,13 +121,13 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
 
 
 
-  <link rel="canonical" href="https://bingo.ren/2016/12/30/1/"/>
+  <link rel="canonical" href="https://bingo.ren/2017/02/22/22/"/>
 
 
 
 
 
-  <title> MySQL支持emoji字符的插入 | Bingo's Blog </title>
+  <title> 让越狱设备支持scp文件传输 | Bingo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +258,7 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2016/12/30/1/">
+  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/02/22/22/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Bingo">
@@ -283,7 +282,7 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
             
             
               
-                MySQL支持emoji字符的插入
+                让越狱设备支持scp文件传输
               
             
           </h1>
@@ -296,8 +295,8 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-30T02:30:37+08:00">
-                2016-12-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T16:44:34+08:00">
+                2017-02-22
               </time>
             
 
@@ -315,8 +314,8 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/解决方案/" itemprop="url" rel="index">
-                    <span itemprop="name">解决方案</span>
+                  <a href="/categories/战斗笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">战斗笔记</span>
                   </a>
                 </span>
 
@@ -330,8 +329,8 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/12/30/1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/30/1/" itemprop="commentCount"></span>
+                <a href="/2017/02/22/22/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/22/22/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -357,41 +356,30 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
       
 
       
-        <h4 id="插入emoji表情报错"><a href="#插入emoji表情报错" class="headerlink" title="插入emoji表情报错"></a>插入emoji表情报错</h4><p>一般情况下，往数据库插入emoji字符，会报类似如下的错误:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Error 1366: Incorrect string value: &apos;\xF0\x9F\x91\xBD\xF0\x9F...&apos; for column &apos;xxx&apos;</div></pre></td></tr></table></figure></p>
-<p>Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4个字节就会报错。解决这个问题要使用<code>utf8mb4</code>这个编码。</p>
-<ul>
-<li>mysql 5.5.3 版本之前，utf8编码最多支持3个字节，也就是BMP这部分的编码区，范围0000～FFFF这一部分。</li>
-<li>mysql 5.5.3 之后的版本，增加utf8mb4，官方介绍它是向下兼容utf8字符集，比utf8能标示更多的字符。<a id="more"></a>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>经过前面几番捣鼓，终于可以使用 ssh 连接到越狱设备，但还是有问题，不能用 scp 传输文件到设备上。每次都要打开 iTools 等工具来传输文件是很 low 的，所以要让越狱设备支持 scp，程序员就应该基于终端命令行操作，这样才酷！</p>
+<a id="more"></a>
+<h2 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h2><p>没做处理的操作前，scp 命令敲完就一直没反应，过了几分钟后出现操作超时的提示，然后就断开了连接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Bingos-MacBook-Pro:dumpdecrypted-master bingo$ scp ./dumpdecrypted.dylib root@192.168.1.22:/var/mobile/Containers/Data/Application/E2ABB23B-EC66-4DA4-AD3E-E14E20D680B5/Documents/</div><div class="line">ssh: connect to host 192.168.1.22 port 22: Operation timed out</div><div class="line">lost connection</div></pre></td></tr></table></figure>
+<h4 id="开始处理"><a href="#开始处理" class="headerlink" title="开始处理"></a>开始处理</h4><p>在 Cydia 下载安装 wget 以及 MTerminal（终端），完成后打开桌面的 MTerminal。</p>
+<ol>
+<li><p>输入 <code>su root</code> 回车（return）</p>
 </li>
-</ul>
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><ul>
-<li><p>检查MySQL版本，如果版本低于5.5.3,请先升级数据库。</p>
+<li><p>输入密码 <code>alpine (默认密码)</code> 回车</p>
 </li>
-<li><p>以linux服务器为例，找到数据库配置文件<code>my.cnf</code>，编辑在对应标签下添加参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">vim /etc/my.cnf</div><div class="line"></div><div class="line">[client]</div><div class="line">default-character-set = utf8mb4</div><div class="line"></div><div class="line">[mysql]</div><div class="line">default-character-set = utf8mb4</div><div class="line"></div><div class="line">[mysqld]</div><div class="line">character-set-client-handshake = FALSE</div><div class="line">character-set-server = utf8mb4</div><div class="line">collation-server = utf8mb4_unicode_ci</div><div class="line">init_connect = &apos;SET NAMES utf8mb4&apos;</div></pre></td></tr></table></figure>
+<li><p>输入 <code>wget mila432.com/scp</code> 下载安装 scp 补丁到手机 回车</p>
 </li>
-<li><p>修改 database、table 和 column字符集 （根据情况决定）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ALTER DATABASE database_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;</div><div class="line"></div><div class="line">$ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</div><div class="line"></div><div class="line">$ ALTER TABLE table_name CHANGE column_name VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</div></pre></td></tr></table></figure>
+<li><p>输入 <code>ldid -S scp</code> 回车</p>
 </li>
-<li><p>重启服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo /etc/init.d/mysql restart</div></pre></td></tr></table></figure>
+<li><p>输入 <code>chmod 777 scp</code> 获取权限 回车</p>
 </li>
-<li><p>检查字符集</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SHOW VARIABLES WHERE Variable_name LIKE &apos;character\_set\_%&apos; OR Variable_name LIKE &apos;collation%&apos;;</div><div class="line">+--------------------------+--------------------+</div><div class="line">| Variable_name            | Value              |</div><div class="line">+--------------------------+--------------------+</div><div class="line">| character_set_client     | utf8mb4            |</div><div class="line">| character_set_connection | utf8mb4            |</div><div class="line">| character_set_database   | utf8mb4            |</div><div class="line">| character_set_filesystem | binary             |</div><div class="line">| character_set_results    | utf8mb4            |</div><div class="line">| character_set_server     | utf8mb4            |</div><div class="line">| character_set_system     | utf8               |</div><div class="line">| collation_connection     | utf8mb4_unicode_ci |</div><div class="line">| collation_database       | utf8mb4_unicode_ci |</div><div class="line">| collation_server         | utf8mb4_unicode_ci |</div><div class="line">+--------------------------+--------------------+</div><div class="line">10 rows in set (0.01 sec)</div></pre></td></tr></table></figure>
-<p>必须要保证 <code>character_set_client</code>、<code>character_set_connection</code>、<code>character_set_database</code>、<code>character_set_results</code>、<code>character_set_server</code> 这五个的值为<code>utf8mb4</code>。</p>
+<li><p>输入 <code>mv scp /usr/bin/scp</code> 回车</p>
 </li>
-</ul>
-<h4 id="额外补充"><a href="#额外补充" class="headerlink" title="额外补充"></a>额外补充</h4><ul>
-<li><p>如果使用<code>jdbc-url</code>进行连接，characterEncoding不支持写utf8mb4，写法不变。<code>characterEncoding=utf8</code>可以被自动被识别为<code>utf8mb4</code>，兼容原来的<code>utf8</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jdbc:mysql://localhost:3306/database?useUnicode=true&amp;characterEncoding=utf8</div></pre></td></tr></table></figure>
+<li><p>最后输入 <code>killall SpringBoard</code> 回车</p>
 </li>
-<li><p>如果是新建的数据库，一般不会有什么问题，如果是从utf8改成utf8mb4的旧数据库，可能会出现插入依然报错的情况。这时候只需要把url中的<code>characterEncoding=utf8</code>去掉。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jdbc:mysql://localhost:3306/database?useUnicode=true</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果还有其他诸如中文插入乱码的问题，提供一种可行性很高的解决方法，即更新数据库连接驱动包，附上官网下载链接 <a href="http://dev.mysql.com/downloads/file/?id=456317" target="_blank" rel="external">mysql-connector-java-5.1.35.zip</a>；再不行就把url中<code>characterEncoding=utf8</code>的<code>utf8</code>改为<code>gbk</code>。</p>
-</li>
-</ul>
-
+</ol>
+<p>&nbsp;&nbsp;<img src="https://cdn.bingo.ren/protect/scp.png" width="300"></p>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>当然还是得重启设备才有效，尝试传输，成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Bingos-MacBook-Pro:dumpdecrypted bingo$ scp ./dumpdecrypted.dylib root@192.168.1.22:/var/mobile/Containers/Data/Application/E2ABB23B-EC66-4DA4-AD3E-E14E20D680B5/Documents/</div><div class="line">root@192.168.1.22&apos;s password: </div><div class="line">dumpdecrypted.dylib                           100%  193KB 664.9KB/s   00:00    </div><div class="line">Bingos-MacBook-Pro:dumpdecrypted-master bingo$</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -414,9 +402,9 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
       
         <div class="post-tags">
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/J2EE/" rel="tag"># J2EE</a>
+            <a href="/tags/安全攻防/" rel="tag"># 安全攻防</a>
           
         </div>
       
@@ -425,8 +413,8 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/10/3/" rel="next" title="iOS战斗总结笔记一期">
-                <i class="fa fa-chevron-left"></i> iOS战斗总结笔记一期
+              <a href="/2017/02/22/21/" rel="next" title="iOS10.2 SSH连接越狱设备">
+                <i class="fa fa-chevron-left"></i> iOS10.2 SSH连接越狱设备
               </a>
             
           </div>
@@ -434,10 +422,6 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/05/2/" rel="prev" title="解决NSString stringWithFormat:参数nil时返回(null)">
-                解决NSString stringWithFormat:参数nil时返回(null) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -463,8 +447,8 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/30/1/"
-           data-title="MySQL支持emoji字符的插入" data-url="https://bingo.ren/2016/12/30/1/">
+      <div class="ds-thread" data-thread-key="2017/02/22/22/"
+           data-title="让越狱设备支持scp文件传输" data-url="https://bingo.ren/2017/02/22/22/">
       </div>
     
   </div>
@@ -561,7 +545,7 @@ Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#插入emoji表情报错"><span class="nav-number">1.</span> <span class="nav-text">插入emoji表情报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#额外补充"><span class="nav-number">3.</span> <span class="nav-text">额外补充</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理"><span class="nav-number">2.</span> <span class="nav-text">处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开始处理"><span class="nav-number">2.0.1.</span> <span class="nav-text">开始处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">2.0.2.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
