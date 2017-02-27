@@ -88,7 +88,7 @@
 <meta property="og:url" content="https://bingo.ren/2017/02/23/23/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言从 App Store 上下载的 ipa 里面的二进制文件是经过加密的，class-dump 和 Hopper Disassembler 都需要用到未加密的二进制文件，需要通过砸壳得到。网上敲壳教程还是挺多的，几乎都差不多，但都太旧了都没有更新，例如在 iOS10.2 下，传统的 dumpdecrypted 砸壳就会有问题，需要加点其它操作才能敲成功。">
-<meta property="og:updated_time" content="2017-02-24T01:45:27.000Z">
+<meta property="og:updated_time" content="2017-02-27T06:25:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS10.2下的ipa砸壳">
 <meta name="twitter:description" content="前言从 App Store 上下载的 ipa 里面的二进制文件是经过加密的，class-dump 和 Hopper Disassembler 都需要用到未加密的二进制文件，需要通过砸壳得到。网上敲壳教程还是挺多的，几乎都差不多，但都太旧了都没有更新，例如在 iOS10.2 下，传统的 dumpdecrypted 砸壳就会有问题，需要加点其它操作才能敲成功。">
@@ -368,15 +368,15 @@
 <p> 找到微信的的进程，记住 <strong>PID</strong> 为 1190，<strong>Bundle 路径</strong>为 <code>/var/containers/Bundle/Application/46316B03-5DC3-4534-8D40-A29FE9315E22/WeChat.app/WeChat</code></p>
 <h4 id="勾住进程"><a href="#勾住进程" class="headerlink" title="勾住进程"></a>勾住进程</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> Dankal-Device-5s:~ root# cycript -p 1190</div><div class="line">cy#</div></pre></td></tr></table></figure>
 <p> 看到 <code>cy#</code> 的出现就说明，成功勾住了微信的进程。</p>
-<h4 id="获取沙盒路径"><a href="#获取沙盒路径" class="headerlink" title="获取沙盒路径"></a>获取沙盒路径</h4><p>通过 Cycript 与进程交互动态获取应用的沙盒路径，根据设备类型输入对应的命令。</p>
+<h4 id="获取沙盒路径"><a href="#获取沙盒路径" class="headerlink" title="获取沙盒路径"></a>获取沙盒路径</h4><p>通过 Cycript 与进程交互动态获取应用的沙盒路径，输入以下任一行代码。</p>
 <ul>
-<li><p>iPad : <code>NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES)[0]</code></p>
+<li><p><code>[NSHomeDirectory() stringByAppendingString:@&quot;/Documents&quot;]</code></p>
 </li>
-<li><p>iPhone : <code>[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomans:NSUserDomainMask][0]</code></p>
+<li><p><code>NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES)[0]</code></p>
 </li>
 </ul>
-<p>以 iPhone 为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cy# [NSHomeDirectory() stringByAppendingString:@&quot;/Documents&quot;]</div><div class="line">@&quot;/var/mobile/Containers/Data/Application/E2ABB23B-EC66-4DA4-AD3E-E14E20D680B5/Documents&quot;</div></pre></td></tr></table></figure></p>
-<p>显示出来的即为<strong>沙盒路径</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cy# [NSHomeDirectory() stringByAppendingString:@&quot;/Documents&quot;]</div><div class="line">@&quot;/var/mobile/Containers/Data/Application/E2ABB23B-EC66-4DA4-AD3E-E14E20D680B5/Documents&quot;</div></pre></td></tr></table></figure>
+<p>显示出来的字符串即为<strong>沙盒路径</strong>。</p>
 <h4 id="dumpdecrypted-dylib"><a href="#dumpdecrypted-dylib" class="headerlink" title="dumpdecrypted.dylib"></a>dumpdecrypted.dylib</h4><p>敲壳的最重要的东西就是 dumpdecrypted.dylib，确保从 Github 上下载了最新的 <a href="https://github.com/stefanesser/dumpdecrypted" target="_blank" rel="external">dumpdecrypted 源码</a> ，解压后进入 dumpdecrypted 文件夹的跟目录，make 编译 dumpdecrypted.dylib。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd /Users/bingo/Downloads/dumpdecrypted-master</div><div class="line">$ make</div><div class="line">`xcrun --sdk iphoneos --find gcc` -Os  -Wimplicit -isysroot `xcrun --sdk iphoneos --show-sdk-path` -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/Frameworks -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/PrivateFrameworks -arch armv7 -arch armv7s -arch arm64 -c -o dumpdecrypted.o dumpdecrypted.c </div><div class="line">`xcrun --sdk iphoneos --find gcc` -Os  -Wimplicit -isysroot `xcrun --sdk iphoneos --show-sdk-path` -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/Frameworks -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/PrivateFrameworks -arch armv7 -arch armv7s -arch arm64 -dynamiclib -o dumpdecrypted.dylib dumpdecrypted.o</div></pre></td></tr></table></figure>
 <p>结束后会在当前目录中生成 dumpdecrypted.dylib，这里有坑，下面会说。</p>
