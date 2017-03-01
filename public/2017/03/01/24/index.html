@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MySQL," />
+  <meta name="keywords" content="iOS,Android," />
 
 
 
@@ -82,16 +82,16 @@
 
 
 
-<meta name="description" content="前言现在最新版本的MySQL的安装有点坑，安装过程不需要用户输入 MySQL 密码，而是生成了默认的密码。并且这个密码是无法使用的，必须通过终端用命令行将其改掉，不支持桌面客户端更改。在此记录，以便以后需要时快速安装 MySQL。">
+<meta name="description" content="前言正如之前所规划的大纲一样，现在开始执行这个计划。会分为几期来完成这个计划，第一期先完成开发整体流程的规范，后几期再慢慢补充和扩展，该篇文章将会持续完善。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL5.7 默认密码重设">
-<meta property="og:url" content="https://bingo.ren/2017/02/10/13/index.html">
+<meta property="og:title" content="移动端规范计划">
+<meta property="og:url" content="https://bingo.ren/2017/03/01/24/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="前言现在最新版本的MySQL的安装有点坑，安装过程不需要用户输入 MySQL 密码，而是生成了默认的密码。并且这个密码是无法使用的，必须通过终端用命令行将其改掉，不支持桌面客户端更改。在此记录，以便以后需要时快速安装 MySQL。">
-<meta property="og:updated_time" content="2017-02-13T05:32:16.000Z">
+<meta property="og:description" content="前言正如之前所规划的大纲一样，现在开始执行这个计划。会分为几期来完成这个计划，第一期先完成开发整体流程的规范，后几期再慢慢补充和扩展，该篇文章将会持续完善。">
+<meta property="og:updated_time" content="2017-03-01T01:52:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL5.7 默认密码重设">
-<meta name="twitter:description" content="前言现在最新版本的MySQL的安装有点坑，安装过程不需要用户输入 MySQL 密码，而是生成了默认的密码。并且这个密码是无法使用的，必须通过终端用命令行将其改掉，不支持桌面客户端更改。在此记录，以便以后需要时快速安装 MySQL。">
+<meta name="twitter:title" content="移动端规范计划">
+<meta name="twitter:description" content="前言正如之前所规划的大纲一样，现在开始执行这个计划。会分为几期来完成这个计划，第一期先完成开发整体流程的规范，后几期再慢慢补充和扩展，该篇文章将会持续完善。">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://bingo.ren/2017/02/10/13/"/>
+  <link rel="canonical" href="https://bingo.ren/2017/03/01/24/"/>
 
 
 
 
 
-  <title> MySQL5.7 默认密码重设 | Bingo's Blog </title>
+  <title> 移动端规范计划 | Bingo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +256,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/02/10/13/">
+  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/03/01/24/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Bingo">
@@ -280,7 +280,7 @@
             
             
               
-                MySQL5.7 默认密码重设
+                移动端规范计划
               
             
           </h1>
@@ -293,8 +293,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-10T21:14:19+08:00">
-                2017-02-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-01T09:47:00+08:00">
+                2017-03-01
               </time>
             
 
@@ -312,8 +312,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/战斗笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">战斗笔记</span>
+                  <a href="/categories/工作总结/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
                   </a>
                 </span>
 
@@ -327,8 +327,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/02/10/13/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/10/13/" itemprop="commentCount"></span>
+                <a href="/2017/03/01/24/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/01/24/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -354,15 +354,72 @@
       
 
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>现在最新版本的MySQL的安装有点坑，安装过程不需要用户输入 MySQL 密码，而是生成了默认的密码。并且这个密码是无法使用的，必须通过终端用命令行将其改掉，不支持桌面客户端更改。在此记录，以便以后需要时快速安装 MySQL。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>正如之前所规划的大纲一样，现在开始执行这个计划。会分为几期来完成这个计划，第一期先完成开发整体流程的规范，后几期再慢慢补充和扩展，该篇文章将会持续完善。</p>
 <a id="more"></a>
-<h4 id="默认密码"><a href="#默认密码" class="headerlink" title="默认密码"></a>默认密码</h4><p>第一次启动时会默认生成一个随机密码，在安装的最后有弹出对话框提示。如果还没复制就点了确定关掉了对话框，不知道默认密码，可以在<code>/var/log/mysqld.log</code>文件里找到，也可以使用以下命令来查询。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ grep &apos;temporary password&apos; /var/log/mysqld.log</div></pre></td></tr></table></figure>
-<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><p>找到默认密码后，用默认密码登录，不管执行任何命令，总会报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.</div></pre></td></tr></table></figure>
-<p>这个时候，在终端执行以下三行命令即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SET PASSWORD = PASSWORD(&apos;新密码&apos;);</div><div class="line">Query OK, 0 rows affected, 1 warning (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; PASSWORD EXPIRE NEVER;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; flush privileges;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div></pre></td></tr></table></figure>
-<p>最后用新密码重新登录即可。</p>
+<h2 id="一期"><a href="#一期" class="headerlink" title="一期"></a>一期</h2><p><strong> 说明 </strong></p>
+<p>按照开发的流程来规划整体规范</p>
+<ul>
+<li>开发前： 【立项规范】</li>
+<li>开发中： 【开发规范】、【Git操作规范】</li>
+<li>上架前： 【内测流程规范】</li>
+<li>上架时：【上架流程规范】</li>
+<li>归档：【技术文档规范】、【归档规范】</li>
+</ul>
+<p><strong> 计划表 </strong></p>
+<table>
+<thead>
+<tr>
+<th>计划</th>
+<th>说明</th>
+<th>时间</th>
+<th>完成情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>立项规范</td>
+<td>哪些东西是每个项目的立项会议就需要定下来的，立项的目的是什么？</td>
+<td>3月1日</td>
+<td>未完成</td>
+</tr>
+<tr>
+<td>开发规范</td>
+<td>包括命名规范和代码规范，类名、前缀、模块名、协议命名、通知命名等，换行问题、比如该继承的时候就用继承，但又不能滥用继承等</td>
+<td>3月2日</td>
+<td>未完成</td>
+</tr>
+<tr>
+<td>Git操作规范</td>
+<td>创建规范、迁入团队、提交、合并commit、分支管理等</td>
+<td>3月3日</td>
+<td>未完成</td>
+</tr>
+<tr>
+<td>内测流程规范</td>
+<td>使用 fir.im 内测分发，考虑持续构建等</td>
+<td>3月10日</td>
+<td>未完成</td>
+</tr>
+<tr>
+<td>上架流程规范</td>
+<td>比如 iOS 上线需要哪些材料，比如 appicon 是无透明通道的 1024x1024，还要几种尺寸的屏幕截图等，需要对方公司提供什么版权信息等；又比如安卓的，上线的市场都有几种，流程是怎么样的，需要总结下来</td>
+<td>3月13日</td>
+<td>未完成</td>
+</tr>
+<tr>
+<td>技术文档规范</td>
+<td>每个项目都要写技术文档，重要说明核心业务是哪几个类，列出接口方法。包括使用了哪些第三方 SDK 等等</td>
+<td>3月15日</td>
+<td>未完成</td>
+</tr>
+<tr>
+<td>归档规范</td>
+<td>源码归档、成员开发技术/经验总结，技术文档归档，使用说明归档，部署说明归档等</td>
+<td>3月17日</td>
+<td>未完成</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -386,7 +443,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -395,8 +454,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/10/12/" rel="next" title="彻底删除MySQL相关文件">
-                <i class="fa fa-chevron-left"></i> 彻底删除MySQL相关文件
+              <a href="/2017/02/23/23/" rel="next" title="iOS10.2下的ipa砸壳">
+                <i class="fa fa-chevron-left"></i> iOS10.2下的ipa砸壳
               </a>
             
           </div>
@@ -404,10 +463,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/10/14/" rel="prev" title="MacOS配置MySQL的my.cnf">
-                MacOS配置MySQL的my.cnf <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -433,8 +488,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/10/13/"
-           data-title="MySQL5.7 默认密码重设" data-url="https://bingo.ren/2017/02/10/13/">
+      <div class="ds-thread" data-thread-key="2017/03/01/24/"
+           data-title="移动端规范计划" data-url="https://bingo.ren/2017/03/01/24/">
       </div>
     
   </div>
@@ -531,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认密码"><span class="nav-number">2.</span> <span class="nav-text">默认密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改密码"><span class="nav-number">3.</span> <span class="nav-text">修改密码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一期"><span class="nav-number">2.</span> <span class="nav-text">一期</span></a></li></ol></div>
             
 
           </div>
