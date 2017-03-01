@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://bingo.ren/2017/03/01/25/</loc>
+    <lastmod>2017-03-01T03:58:48.000Z</lastmod>
+    <data>
+        <display>
+        <title>立项规范</title>
+        <pubTime>2017-03-01T03:55:15.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作总结" url="https://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://bingo.ren/2017/03/01/24/</loc>
     <lastmod>2017-03-01T01:52:09.000Z</lastmod>
     <data>
@@ -229,26 +251,6 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/23/5/</loc>
-    <lastmod>2017-02-13T05:32:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>Git 分支管理</title>
-        <pubTime>2017-01-23T09:53:58.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://bingo.ren/2017/01/31/10/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
@@ -278,9 +280,9 @@
         <title>MacOS配置MySQL的my.cnf</title>
         <pubTime>2017-02-10T14:15:19.000Z</pubTime>
         
-        <tag>MySQL</tag>
-         
         <tag>Mac</tag>
+         
+        <tag>MySQL</tag>
          
          
            
@@ -333,12 +335,12 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/29/8/</loc>
+    <loc>https://bingo.ren/2017/01/23/5/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
         <display>
-        <title>Git 合并Commit</title>
-        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
+        <title>Git 分支管理</title>
+        <pubTime>2017-01-23T09:53:58.000Z</pubTime>
         
         <tag>Git</tag>
          
@@ -377,39 +379,19 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/24/6/</loc>
-    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
+    <loc>https://bingo.ren/2017/01/29/8/</loc>
+    <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
         <display>
-        <title>常用的分类和宏封装库 DKExtension</title>
-        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
+        <title>Git 合并Commit</title>
+        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
         
-        <tag>iOS</tag>
+        <tag>Git</tag>
          
          
            
              
-              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://bingo.ren/2017/01/24/7/</loc>
-    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>扫一扫框架 DKScanner</title>
-        <pubTime>2017-01-24T07:12:51.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
           
         </display>
     </data>
@@ -430,6 +412,26 @@
            
              
               <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2017/01/24/7/</loc>
+    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>扫一扫框架 DKScanner</title>
+        <pubTime>2017-01-24T07:12:51.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
           
         </display>
     </data>
@@ -459,26 +461,6 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/22/4/</loc>
-    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>年度工作总结</title>
-        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="工作总结" url="https://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://bingo.ren/2017/01/05/2/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
@@ -492,6 +474,26 @@
            
              
               <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2017/01/24/6/</loc>
+    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>常用的分类和宏封装库 DKExtension</title>
+        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
           
         </display>
     </data>
@@ -514,6 +516,26 @@
            
              
               <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2017/01/22/4/</loc>
+    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>年度工作总结</title>
+        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作总结" url="https://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
