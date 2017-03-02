@@ -1,0 +1,776 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Mac,iOS,WebSocket,NodeJS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言程序员调试程序无非就两种，打印日志和断点调试。大部分情况下，这是足够的，但有些特殊情况，比如 iPhone 接着外接设备比如 OTG，这个时候就没办法用数据线连电脑了，自然也就无法断点调试，只能靠日志。而日志也没办法直接显示在 Xcode 上，只能用保存文件的方式将日志文件保存到手机，再去找到日志去看。非常麻烦，于是想了一下用 webSocket 与服务器通讯，就能以一种更直接方便的方式来看日">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DKSocketLog 实现终端输出设备日志">
+<meta property="og:url" content="https://bingo.ren/2017/03/02/26/index.html">
+<meta property="og:site_name" content="Bingo's Blog">
+<meta property="og:description" content="前言程序员调试程序无非就两种，打印日志和断点调试。大部分情况下，这是足够的，但有些特殊情况，比如 iPhone 接着外接设备比如 OTG，这个时候就没办法用数据线连电脑了，自然也就无法断点调试，只能靠日志。而日志也没办法直接显示在 Xcode 上，只能用保存文件的方式将日志文件保存到手机，再去找到日志去看。非常麻烦，于是想了一下用 webSocket 与服务器通讯，就能以一种更直接方便的方式来看日">
+<meta property="og:updated_time" content="2017-03-02T09:35:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DKSocketLog 实现终端输出设备日志">
+<meta name="twitter:description" content="前言程序员调试程序无非就两种，打印日志和断点调试。大部分情况下，这是足够的，但有些特殊情况，比如 iPhone 接着外接设备比如 OTG，这个时候就没办法用数据线连电脑了，自然也就无法断点调试，只能靠日志。而日志也没办法直接显示在 Xcode 上，只能用保存文件的方式将日志文件保存到手机，再去找到日志去看。非常麻烦，于是想了一下用 webSocket 与服务器通讯，就能以一种更直接方便的方式来看日">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'bingozb'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bingo.ren/2017/03/02/26/"/>
+
+
+
+
+
+  <title> DKSocketLog 实现终端输出设备日志 | Bingo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Bingo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/03/02/26/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Bingo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Bingo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Bingo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                DKSocketLog 实现终端输出设备日志
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-02T17:29:09+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DKKIT/" itemprop="url" rel="index">
+                    <span itemprop="name">DKKIT</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DKKIT/战斗笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">战斗笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/03/02/26/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/02/26/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>程序员调试程序无非就两种，打印日志和断点调试。大部分情况下，这是足够的，但有些特殊情况，比如 iPhone 接着外接设备比如 OTG，这个时候就没办法用数据线连电脑了，自然也就无法断点调试，只能靠日志。而日志也没办法直接显示在 Xcode 上，只能用保存文件的方式将日志文件保存到手机，再去找到日志去看。非常麻烦，于是想了一下用 webSocket 与服务器通讯，就能以一种更直接方便的方式来看日志。</p>
+<a id="more"></a>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li>Node.JS</li>
+</ul>
+<p>到 <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js 官网</a> <strong>安装 nodejs 环境</strong>，安装完成后敲<code>node -v</code>，如果 log 输出了版本号，说明 node 环境已经配好了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ node -v</div><div class="line">v4.4.1</div></pre></td></tr></table></figure>
+<ul>
+<li>socket.io</li>
+</ul>
+<p>先贴上 <a href="https://socket.io/" target="_blank" rel="external">Socket.io 官网</a>，<a href="https://github.com/socketio/socket.io/" target="_blank" rel="external">Socket.io GitHub</a></p>
+<p><strong>安装 socket.io</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install &apos;socket.io&apos;@0.9</div></pre></td></tr></table></figure>
+<p>注意，要指定版本号为0.9，用1.0以上的1.x版本有问题，因为 Client（iOS）端的 socket.io 是0.9版本，不支持1.x，如果使用0.9版本的客户端给1.x版本的服务端发消息，会出现400报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;code&quot;:0,</div><div class="line">&quot;message&quot;:&quot;Transport unknown&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>解决办法就是 fall back，卸载重装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo npm uninstall &apos;socket.io&apos;</div><div class="line">$ sudo npm install &apos;socket.io&apos;@0.9</div></pre></td></tr></table></figure>
+<ul>
+<li>app.js</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var io = require(&apos;socket.io&apos;).listen(8888);</div><div class="line"></div><div class="line">io.sockets.on(&apos;connection&apos;, function (socket) &#123;</div><div class="line">socket.on(&apos;message&apos;, function (data) &#123;</div><div class="line">console.info(data);</div><div class="line">&#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">io.configure(&apos;development&apos;, function()&#123;</div><div class="line">io.enable(&apos;browser client etag&apos;);</div><div class="line">io.set(&apos;log level&apos;, 1);</div><div class="line">&#125;);</div><div class="line">io.configure(&apos;release&apos;, function()&#123;</div><div class="line">io.set(&apos;transports&apos;, [&apos;websocket&apos;]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>其中 8888 为 node 监听的端口，可根据需求更改。<br>log level 设为 1 是为了不输出 debug 的 log。</p>
+<p>保存这个 js 文件并用 node 命令执行，（建议保存到项目目录下，后期可能会做一些自动化脚本来执行。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ node app.js</div><div class="line">info - socket.io started</div></pre></td></tr></table></figure>
+<p>如果看到<code>info - socket.io started</code> 就说明，服务端已经启动完毕。当然，可能没有那么一帆风顺，可能有几个报错：</p>
+<p><code>Error: Cannot find module &#39;express&#39;</code> ： 缺少插件，将 <code>express</code> 和 <code>ejs</code> 都安装即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install &apos;express&apos;</div><div class="line">$ sudo npm install &apos;ejs&apos;</div></pre></td></tr></table></figure>
+<p><code>warn  - error raised: Error: listen EADDRINUSE :::8888</code> : 端口占用，要么监听其它端口，要么将端口占用的程序杀掉。</p>
+<p>查看 PID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo lsof -i tcp:8888</div><div class="line">COMMAND  PID  USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME</div><div class="line">node    1371 bingo   11u  IPv6 0xdaf792eabddb3d4d      0t0  TCP *:ddi-tcp-1 (LISTEN)</div></pre></td></tr></table></figure>
+<p>杀死进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo kill -9 1371</div></pre></td></tr></table></figure>
+<p>再试着执行 nodejs 即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ node app.js </div><div class="line">info  - socket.io started</div></pre></td></tr></table></figure>
+<p>如果还有其它问题，自行网上查找资料解决，后面我会考虑将端口占用的问题也用脚本自动化解决。</p>
+<p>以上都是准备工作，其实也不多，只需要准备一次环境，以后就不需要再搞服务端了。</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ul>
+<li>将源代码中的 <code>DKSocketLog</code> 文件夹整个添加到 iOS 项目中，并在 PCH 文件中引入头文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &quot;DKSocketLog.h&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>项目需要在 Build Phases 添加 <code>libicucore.tbd</code>，否则会报如下错误。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Undefined symbols for architecture arm64:</div><div class="line">&quot;_utf8_nextCharSafeBody&quot;, referenced from:</div><div class="line">_validate_dispatch_data_partial_string in SRWebSocket.o</div><div class="line">ld: symbol(s) not found for architecture arm64</div><div class="line">clang: error: linker command failed with exit code 1 (use -v to see invocation)</div></pre></td></tr></table></figure>
+<ul>
+<li>找一个地方写 DKSocketLog 的配置，可以写在 AppDelegate 或者其它地方，根据项目架构自行安排。Demo 中我新建了一个类 DKLogConfig，并在 load 方法中进行配置。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+ (void)load</div><div class="line">&#123;</div><div class="line">//    [[DKSocketLog sharedInstance] setDebugMode:YES];</div><div class="line">//    [[DKSocketLog sharedInstance] setSecureEnable:YES];</div><div class="line">[[DKSocketLog sharedInstance] setupHostname:@&quot;192.168.1.89&quot; port:8888];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setDebugMode</td>
+<td>是否开启DEBUG模式，默认关闭</td>
+</tr>
+<tr>
+<td>setSecureEnable</td>
+<td>是否使用安全传输协议（HTTPS）</td>
+</tr>
+<tr>
+<td>setupHostname:port</td>
+<td>设置主机名和端口，模拟器可以不设置，默认是 localhost；真机要确保与电脑在同一个网段下，局域网下或使用 WIFI</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>DKLog</li>
+</ul>
+<p>使用 DKLog(…) 代替 NSLog(…)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DKLog(@&quot;打印100内的随机数:%d&quot;, arc4random_uniform(100));</div></pre></td></tr></table></figure></p>
+<p>如果没问题，就可以看到 Xcode 的控制台与终端同步输出 log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2017-03-02 15:36:40.705 -[ViewController logBtnClick] 第25行: 打印100内的随机数:14</div></pre></td></tr></table></figure></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>或许会有疑问，真实环境下会不会浪费带宽，每次都尝试链接会不会消耗性能？</p>
+<p>可以放心，这种 log 只在 DEBUG 包下有效，发布 Release 包什么操作也没有，详情可以看 DKLog 宏的定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#ifdef DEBUG</div><div class="line">#define DKLog(...) \</div><div class="line">NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; \</div><div class="line">[dateFormatter setDateFormat:@&quot;yyyy-MM-dd hh:mm:ss.SSS&quot;]; \</div><div class="line">NSString *dateStr = [dateFormatter stringFromDate:[NSDate date]]; \</div><div class="line">NSString *logStr = [NSString stringWithFormat:@&quot;%@ %s 第%d行: %@&quot;,dateStr, __func__, __LINE__, [NSString stringWithFormat:__VA_ARGS__]]; \</div><div class="line">printf(&quot;%s\n&quot;, [logStr UTF8String]);\</div><div class="line">[[DKSocketLog sharedInstance].socketIO sendMessage:logStr];</div><div class="line">#else</div><div class="line">#define DKLog(...)</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>一个简单的终端监听日志并输出的功能就这样集成实现了，当然还是显得有些简陋，可扩展的功能还有很多，比如很多东西都可以封成一个 Shell 脚本，除了上面说到的执行 node 命令，杀死占用端口的进程外，还可以将日志写到电脑上，在项目根目录下建一个 log 文件夹并将日志都保存到 log 文件夹下，并按日期分文件，好像挺好玩的样子，还有同事说既然都用到了 webSocket，为什么不用网页来展示日志？可以更美观，好像也有道理，这样就不用开着终端了，node 在后台跑着进程就行，再写一个守护进程的保证它不死掉等等，后面有时间慢慢扩展。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mac/" rel="tag"># Mac</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/WebSocket/" rel="tag"># WebSocket</a>
+          
+            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/01/25/" rel="next" title="立项规范">
+                <i class="fa fa-chevron-left"></i> 立项规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/02/26/"
+           data-title="DKSocketLog 实现终端输出设备日志" data-url="https://bingo.ren/2017/03/02/26/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Bingo" />
+          <p class="site-author-name" itemprop="name">Bingo</p>
+          <p class="site-description motion-element" itemprop="description">He who hesitates is lost.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-number">3.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">5.</span> <span class="nav-text">后话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  Copyright © 
+  <span itemprop="copyrightYear">2017
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bingo
+  </span>
+  All rights reserved.
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bingozb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
