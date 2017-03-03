@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>https://bingo.ren/2017/03/02/26/</loc>
+    <lastmod>2017-03-03T18:30:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>DKSocketLog 实现终端输出设备日志</title>
+        <pubTime>2017-03-02T09:29:09.000Z</pubTime>
+        
+        <tag>Mac</tag>
+         
+        <tag>iOS</tag>
+         
+        <tag>WebSocket</tag>
+         
+        <tag>NodeJS</tag>
+         
+         
+           
+             
+              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://bingo.ren/2017/03/03/27/</loc>
     <lastmod>2017-03-03T09:11:00.000Z</lastmod>
     <data>
@@ -41,35 +67,6 @@
            
              
               <breadCrumb title="工作总结" url="https://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://bingo.ren/2017/03/02/26/</loc>
-    <lastmod>2017-03-02T09:35:17.000Z</lastmod>
-    <data>
-        <display>
-        <title>DKSocketLog 实现终端输出设备日志</title>
-        <pubTime>2017-03-02T09:29:09.000Z</pubTime>
-        
-        <tag>Mac</tag>
-         
-        <tag>iOS</tag>
-         
-        <tag>WebSocket</tag>
-         
-        <tag>NodeJS</tag>
-         
-         
-           
-             
-              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
-          
-             
-              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/DKKIT/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
@@ -470,12 +467,12 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/24/6/</loc>
+    <loc>https://bingo.ren/2017/01/24/7/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>常用的分类和宏封装库 DKExtension</title>
-        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
+        <title>扫一扫框架 DKScanner</title>
+        <pubTime>2017-01-24T07:12:51.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -483,6 +480,26 @@
            
              
               <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2017/01/05/2/</loc>
+    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
+        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
           
         </display>
     </data>
@@ -532,32 +549,12 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/05/2/</loc>
+    <loc>https://bingo.ren/2017/01/24/6/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
-        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://bingo.ren/2017/01/24/7/</loc>
-    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>扫一扫框架 DKScanner</title>
-        <pubTime>2017-01-24T07:12:51.000Z</pubTime>
+        <title>常用的分类和宏封装库 DKExtension</title>
+        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
         
         <tag>iOS</tag>
          
