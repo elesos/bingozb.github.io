@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://bingo.ren/2017/03/05/28/</loc>
-    <lastmod>2017-03-05T19:54:08.000Z</lastmod>
+    <lastmod>2017-03-06T03:28:26.000Z</lastmod>
     <data>
         <display>
         <title>Centos 6 x86 minimal 部署</title>
@@ -467,21 +467,19 @@
 
     
   <url>
-    <loc>https://bingo.ren/2016/12/30/1/</loc>
+    <loc>https://bingo.ren/2017/01/24/6/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>MySQL支持emoji字符的插入</title>
-        <pubTime>2016-12-29T18:30:37.000Z</pubTime>
+        <title>常用的分类和宏封装库 DKExtension</title>
+        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
         
-        <tag>MySQL</tag>
-         
-        <tag>J2EE</tag>
+        <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
           
         </display>
     </data>
@@ -502,26 +500,6 @@
            
              
               <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://bingo.ren/2016/08/10/3/</loc>
-    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS战斗总结笔记一期</title>
-        <pubTime>2016-08-10T02:15:19.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
@@ -551,19 +529,41 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/22/4/</loc>
+    <loc>https://bingo.ren/2016/08/10/3/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>年度工作总结</title>
-        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
+        <title>iOS战斗总结笔记一期</title>
+        <pubTime>2016-08-10T02:15:19.000Z</pubTime>
         
         <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="工作总结" url="https://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
+              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2016/12/30/1/</loc>
+    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL支持emoji字符的插入</title>
+        <pubTime>2016-12-29T18:30:37.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>J2EE</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
           
         </display>
     </data>
@@ -591,19 +591,19 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/24/6/</loc>
+    <loc>https://bingo.ren/2017/01/22/4/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>常用的分类和宏封装库 DKExtension</title>
-        <pubTime>2017-01-24T06:37:35.000Z</pubTime>
+        <title>年度工作总结</title>
+        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
         
         <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="DKKIT" url="https://bingo.ren/categories/DKKIT/"/>
+              <breadCrumb title="工作总结" url="https://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
