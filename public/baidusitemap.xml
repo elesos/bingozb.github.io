@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://bingo.ren/2017/03/05/28/</loc>
-    <lastmod>2017-03-06T03:28:26.000Z</lastmod>
+    <lastmod>2017-03-06T03:33:48.000Z</lastmod>
     <data>
         <display>
         <title>Centos 6 x86 minimal 部署</title>
@@ -17,6 +17,30 @@
            
              
               <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2017/03/06/29/</loc>
+    <lastmod>2017-03-06T03:32:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git操作规范</title>
+        <pubTime>2017-03-06T03:31:34.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+        <tag>iOS</tag>
+         
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作总结" url="https://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -319,15 +343,13 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/31/10/</loc>
+    <loc>https://bingo.ren/2017/01/23/5/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
         <display>
-        <title>解决讨厌的.DS_Store文件（下）</title>
-        <pubTime>2017-01-31T09:20:21.000Z</pubTime>
+        <title>Git 分支管理</title>
+        <pubTime>2017-01-23T09:53:58.000Z</pubTime>
         
-        <tag>Mac</tag>
-         
         <tag>Git</tag>
          
          
@@ -403,33 +425,15 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/23/5/</loc>
+    <loc>https://bingo.ren/2017/01/31/10/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
         <display>
-        <title>Git 分支管理</title>
-        <pubTime>2017-01-23T09:53:58.000Z</pubTime>
+        <title>解决讨厌的.DS_Store文件（下）</title>
+        <pubTime>2017-01-31T09:20:21.000Z</pubTime>
         
-        <tag>Git</tag>
+        <tag>Mac</tag>
          
-         
-           
-             
-              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://bingo.ren/2017/01/29/8/</loc>
-    <lastmod>2017-02-13T05:32:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>Git 合并Commit</title>
-        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
-        
         <tag>Git</tag>
          
          
@@ -455,6 +459,26 @@
         <tag>Xcode</tag>
          
         <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2017/01/29/8/</loc>
+    <lastmod>2017-02-13T05:32:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git 合并Commit</title>
+        <pubTime>2017-01-29T01:38:18.000Z</pubTime>
+        
+        <tag>Git</tag>
          
          
            
@@ -507,6 +531,26 @@
 
     
   <url>
+    <loc>https://bingo.ren/2017/01/05/2/</loc>
+    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
+        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://bingo.ren/2017/01/31/9/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
@@ -522,6 +566,26 @@
            
              
               <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2017/01/22/4/</loc>
+    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>年度工作总结</title>
+        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作总结" url="https://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -564,46 +628,6 @@
            
              
               <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://bingo.ren/2017/01/05/2/</loc>
-    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
-        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://bingo.ren/2017/01/22/4/</loc>
-    <lastmod>2017-02-13T05:32:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>年度工作总结</title>
-        <pubTime>2017-01-22T00:15:42.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="工作总结" url="https://bingo.ren/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
