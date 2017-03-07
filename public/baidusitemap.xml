@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://bingo.ren/2017/03/07/30/</loc>
+    <lastmod>2017-03-07T04:30:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS9 UniversalLink 实现用链接打开APP</title>
+        <pubTime>2017-03-07T03:34:53.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://bingo.ren/2017/03/01/24/</loc>
     <lastmod>2017-03-06T04:32:54.000Z</lastmod>
     <data>
@@ -531,14 +551,16 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/05/2/</loc>
+    <loc>https://bingo.ren/2017/01/31/9/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
-        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
+        <title>解决讨厌的.DS_Store文件（上）</title>
+        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
         
-        <tag>iOS</tag>
+        <tag>Mac</tag>
+         
+        <tag>Git</tag>
          
          
            
@@ -551,16 +573,14 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/31/9/</loc>
+    <loc>https://bingo.ren/2017/01/05/2/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>解决讨厌的.DS_Store文件（上）</title>
-        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
+        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
+        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
         
-        <tag>Mac</tag>
-         
-        <tag>Git</tag>
+        <tag>iOS</tag>
          
          
            
