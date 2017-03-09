@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://bingo.ren/2017/03/09/31/</loc>
+    <lastmod>2017-03-09T14:50:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决 App Installation failed, No code signature found.</title>
+        <pubTime>2017-03-09T14:32:03.000Z</pubTime>
+        
+        <tag>Xcode</tag>
+         
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://bingo.ren/2017/03/07/30/</loc>
     <lastmod>2017-03-07T04:30:23.000Z</lastmod>
     <data>
@@ -390,29 +412,9 @@
         <title>MacOS配置MySQL的my.cnf</title>
         <pubTime>2017-02-10T14:15:19.000Z</pubTime>
         
+        <tag>MySQL</tag>
+         
         <tag>Mac</tag>
-         
-        <tag>MySQL</tag>
-         
-         
-           
-             
-              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://bingo.ren/2017/02/10/13/</loc>
-    <lastmod>2017-02-13T05:32:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>MySQL5.7 默认密码重设</title>
-        <pubTime>2017-02-10T13:14:19.000Z</pubTime>
-        
-        <tag>MySQL</tag>
          
          
            
@@ -447,23 +449,19 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/02/09/11/</loc>
+    <loc>https://bingo.ren/2017/02/10/13/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
         <display>
-        <title>解决iOS项目文件合并.xcodeproj冲突</title>
-        <pubTime>2017-02-08T17:00:42.000Z</pubTime>
+        <title>MySQL5.7 默认密码重设</title>
+        <pubTime>2017-02-10T13:14:19.000Z</pubTime>
         
-        <tag>Git</tag>
-         
-        <tag>Xcode</tag>
-         
-        <tag>iOS</tag>
+        <tag>MySQL</tag>
          
          
            
              
-              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
@@ -484,6 +482,30 @@
            
              
               <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://bingo.ren/2017/02/09/11/</loc>
+    <lastmod>2017-02-13T05:32:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决iOS项目文件合并.xcodeproj冲突</title>
+        <pubTime>2017-02-08T17:00:42.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+        <tag>Xcode</tag>
+         
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
           
         </display>
     </data>
@@ -551,16 +573,14 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/31/9/</loc>
+    <loc>https://bingo.ren/2017/01/05/2/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>解决讨厌的.DS_Store文件（上）</title>
-        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
+        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
+        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
         
-        <tag>Mac</tag>
-         
-        <tag>Git</tag>
+        <tag>iOS</tag>
          
          
            
@@ -573,14 +593,16 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/05/2/</loc>
+    <loc>https://bingo.ren/2017/01/31/9/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
-        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
+        <title>解决讨厌的.DS_Store文件（上）</title>
+        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
         
-        <tag>iOS</tag>
+        <tag>Mac</tag>
+         
+        <tag>Git</tag>
          
          
            

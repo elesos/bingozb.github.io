@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MySQL," />
+  <meta name="keywords" content="Xcode,iOS," />
 
 
 
@@ -82,16 +82,21 @@
 
 
 
-<meta name="description" content="终端12345678sudo rm -rf /usr/local/mysql  sudo rm -rf /usr/local/mysql*  sudo rm -rf /Library/StartupItems/MySQLCOM  sudo rm -rf /Library/PreferencePanes/My*  sudo rm -rf ~/Library/PreferencePanes/My*">
+<meta name="description" content="问题
+Xcode 8.2.1 真机调试的时候经常安装失败，弹出 App Installation failed, No code signature found. 的报错。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="彻底删除MySQL相关文件">
-<meta property="og:url" content="https://bingo.ren/2017/02/10/12/index.html">
+<meta property="og:title" content="解决 App Installation failed, No code signature found.">
+<meta property="og:url" content="https://bingo.ren/2017/03/09/31/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="终端12345678sudo rm -rf /usr/local/mysql  sudo rm -rf /usr/local/mysql*  sudo rm -rf /Library/StartupItems/MySQLCOM  sudo rm -rf /Library/PreferencePanes/My*  sudo rm -rf ~/Library/PreferencePanes/My*">
-<meta property="og:updated_time" content="2017-02-13T05:32:16.000Z">
+<meta property="og:description" content="问题
+Xcode 8.2.1 真机调试的时候经常安装失败，弹出 App Installation failed, No code signature found. 的报错。">
+<meta property="og:image" content="https://cdn.bingo.ren/blog/31.png">
+<meta property="og:updated_time" content="2017-03-09T14:50:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="彻底删除MySQL相关文件">
-<meta name="twitter:description" content="终端12345678sudo rm -rf /usr/local/mysql  sudo rm -rf /usr/local/mysql*  sudo rm -rf /Library/StartupItems/MySQLCOM  sudo rm -rf /Library/PreferencePanes/My*  sudo rm -rf ~/Library/PreferencePanes/My*">
+<meta name="twitter:title" content="解决 App Installation failed, No code signature found.">
+<meta name="twitter:description" content="问题
+Xcode 8.2.1 真机调试的时候经常安装失败，弹出 App Installation failed, No code signature found. 的报错。">
+<meta name="twitter:image" content="https://cdn.bingo.ren/blog/31.png">
 
 
 
@@ -119,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://bingo.ren/2017/02/10/12/"/>
+  <link rel="canonical" href="https://bingo.ren/2017/03/09/31/"/>
 
 
 
 
 
-  <title> 彻底删除MySQL相关文件 | Bingo's Blog </title>
+  <title> 解决 App Installation failed, No code signature found. | Bingo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +261,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/02/10/12/">
+  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/03/09/31/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Bingo">
@@ -280,7 +285,7 @@
             
             
               
-                彻底删除MySQL相关文件
+                解决 App Installation failed, No code signature found.
               
             
           </h1>
@@ -293,8 +298,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-10T21:09:16+08:00">
-                2017-02-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T22:32:03+08:00">
+                2017-03-09
               </time>
             
 
@@ -327,8 +332,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/02/10/12/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/10/12/" itemprop="commentCount"></span>
+                <a href="/2017/03/09/31/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/09/31/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -354,7 +359,14 @@
       
 
       
-        <h4 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sudo rm -rf /usr/local/mysql  </div><div class="line">sudo rm -rf /usr/local/mysql*  </div><div class="line">sudo rm -rf /Library/StartupItems/MySQLCOM  </div><div class="line">sudo rm -rf /Library/PreferencePanes/My*  </div><div class="line">sudo rm -rf ~/Library/PreferencePanes/My*  </div><div class="line">sudo rm -rf /Library/Receipts/mysql*  </div><div class="line">sudo rm -rf /Library/Receipts/MySQL*  </div><div class="line">sudo rm -rf /var/db/receipts/com.mysql.*</div></pre></td></tr></table></figure>
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><img src="https://cdn.bingo.ren/blog/31.png" alt="No code signature found"></p>
+<p>Xcode 8.2.1 真机调试的时候经常安装失败，弹出 App Installation failed, No code signature found. 的报错。</p>
+<a id="more"></a>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk</div></pre></td></tr></table></figure>
+<p>将该目录下的 <code>SDKSettings.plist</code> 文件，将<code>CODE_SIGNING_REQUIRED</code>的值，从<code>NO</code>改为<code>YES</code>，再重启 Xcode 即可。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>用编辑器例如 Sublime 直接打开是乱码，无法修改，只能通过 Xcode（默认）打开，但是直接在原路径下的原文件修改是无法保存的，会提示没有写的权限。即使在 Xcode.app 的显示简介下面给当前用户读与写的权限，还是一样无法保存。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>拷贝一份 <code>SDKSettings.plist</code> 到其它目录下，如桌面，进行修改，然后保存，再拖进原路径进行替换，这时只需要“鉴定”输入用户密码即可。</p>
+
       
     </div>
 
@@ -377,7 +389,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            <a href="/tags/Xcode/" rel="tag"># Xcode</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
         </div>
       
@@ -386,8 +400,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/09/11/" rel="next" title="解决iOS项目文件合并.xcodeproj冲突">
-                <i class="fa fa-chevron-left"></i> 解决iOS项目文件合并.xcodeproj冲突
+              <a href="/2017/03/07/30/" rel="next" title="iOS9 UniversalLink 实现用链接打开APP">
+                <i class="fa fa-chevron-left"></i> iOS9 UniversalLink 实现用链接打开APP
               </a>
             
           </div>
@@ -395,10 +409,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/10/13/" rel="prev" title="MySQL5.7 默认密码重设">
-                MySQL5.7 默认密码重设 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -424,8 +434,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/10/12/"
-           data-title="彻底删除MySQL相关文件" data-url="https://bingo.ren/2017/02/10/12/">
+      <div class="ds-thread" data-thread-key="2017/03/09/31/"
+           data-title="解决 App Installation failed, No code signature found." data-url="https://bingo.ren/2017/03/09/31/">
       </div>
     
   </div>
@@ -522,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#终端"><span class="nav-number">1.</span> <span class="nav-text">终端</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">3.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法"><span class="nav-number">3.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li></ol></div>
             
 
           </div>
