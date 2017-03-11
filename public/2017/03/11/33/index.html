@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="Linux,SSH," />
 
 
 
@@ -82,22 +82,16 @@
 
 
 
-<meta name="description" content="前言UniversalLink（通用链接），是 Apple 在 WWDC 2015 上为 iOS9 引入的一个新功能，是通过传统 HTTP 链接来启动 App 的技术。可以使用相同的网址打开网站和 App。
-通过唯一的网址，如果用户有安装域名绑定的 App，点击就可以打开 App，跳转到具体的界面，不需要特殊的 Schema；如果用户没有安装 App 则点击链接跳到对应的普通网页。">
+<meta name="description" content="前言最近在搞持续构建，因为要用 Shell 脚本来连接 mac mini 然后执行一系列任务，所以不能用密码登录的方式访问，需要配置 ssh 免密码登录。就算把 .ssh 目录权限改为 700，目录下所有文件的权限改为 600，还是需要密码登录。ssh -vvv 后发现密钥验证未通过，最后把 StrictModes 关闭就可以了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS9 UniversalLink 实现用链接打开APP">
-<meta property="og:url" content="https://bingo.ren/2017/03/07/30/index.html">
+<meta property="og:title" content="解决SSH免密码登陆失败">
+<meta property="og:url" content="https://bingo.ren/2017/03/11/33/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="前言UniversalLink（通用链接），是 Apple 在 WWDC 2015 上为 iOS9 引入的一个新功能，是通过传统 HTTP 链接来启动 App 的技术。可以使用相同的网址打开网站和 App。
-通过唯一的网址，如果用户有安装域名绑定的 App，点击就可以打开 App，跳转到具体的界面，不需要特殊的 Schema；如果用户没有安装 App 则点击链接跳到对应的普通网页。">
-<meta property="og:image" content="https://cdn.bingo.ren/blog/AssociatedDomains.png">
-<meta property="og:image" content="https://cdn.bingo.ren/blog/webPageURL.png">
-<meta property="og:updated_time" content="2017-03-07T04:30:23.000Z">
+<meta property="og:description" content="前言最近在搞持续构建，因为要用 Shell 脚本来连接 mac mini 然后执行一系列任务，所以不能用密码登录的方式访问，需要配置 ssh 免密码登录。就算把 .ssh 目录权限改为 700，目录下所有文件的权限改为 600，还是需要密码登录。ssh -vvv 后发现密钥验证未通过，最后把 StrictModes 关闭就可以了。">
+<meta property="og:updated_time" content="2017-03-11T08:36:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS9 UniversalLink 实现用链接打开APP">
-<meta name="twitter:description" content="前言UniversalLink（通用链接），是 Apple 在 WWDC 2015 上为 iOS9 引入的一个新功能，是通过传统 HTTP 链接来启动 App 的技术。可以使用相同的网址打开网站和 App。
-通过唯一的网址，如果用户有安装域名绑定的 App，点击就可以打开 App，跳转到具体的界面，不需要特殊的 Schema；如果用户没有安装 App 则点击链接跳到对应的普通网页。">
-<meta name="twitter:image" content="https://cdn.bingo.ren/blog/AssociatedDomains.png">
+<meta name="twitter:title" content="解决SSH免密码登陆失败">
+<meta name="twitter:description" content="前言最近在搞持续构建，因为要用 Shell 脚本来连接 mac mini 然后执行一系列任务，所以不能用密码登录的方式访问，需要配置 ssh 免密码登录。就算把 .ssh 目录权限改为 700，目录下所有文件的权限改为 600，还是需要密码登录。ssh -vvv 后发现密钥验证未通过，最后把 StrictModes 关闭就可以了。">
 
 
 
@@ -125,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://bingo.ren/2017/03/07/30/"/>
+  <link rel="canonical" href="https://bingo.ren/2017/03/11/33/"/>
 
 
 
 
 
-  <title> iOS9 UniversalLink 实现用链接打开APP | Bingo's Blog </title>
+  <title> 解决SSH免密码登陆失败 | Bingo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +256,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/03/07/30/">
+  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/03/11/33/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Bingo">
@@ -286,7 +280,7 @@
             
             
               
-                iOS9 UniversalLink 实现用链接打开APP
+                解决SSH免密码登陆失败
               
             
           </h1>
@@ -299,8 +293,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T11:34:53+08:00">
-                2017-03-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T16:07:05+08:00">
+                2017-03-11
               </time>
             
 
@@ -333,8 +327,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/03/07/30/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/07/30/" itemprop="commentCount"></span>
+                <a href="/2017/03/11/33/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/11/33/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -360,59 +354,27 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>UniversalLink（通用链接），是 Apple 在 WWDC 2015 上为 iOS9 引入的一个新功能，是通过传统 HTTP 链接来启动 App 的技术。可以使用相同的网址打开网站和 App。</p>
-<p>通过唯一的网址，如果用户有安装域名绑定的 App，点击就可以打开 App，跳转到具体的界面，不需要特殊的 Schema；如果用户没有安装 App 则点击链接跳到对应的普通网页。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在搞持续构建，因为要用 Shell 脚本来连接 mac mini 然后执行一系列任务，所以不能用密码登录的方式访问，需要配置 ssh 免密码登录。就算把 .ssh 目录权限改为 700，目录下所有文件的权限改为 600，还是需要密码登录。ssh -vvv 后发现密钥验证未通过，最后把 StrictModes 关闭就可以了。</p>
 <a id="more"></a>
-<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ul>
-<li>Xcode 7 beta 2 以上</li>
-<li>iOS 9 beta2 以上</li>
-<li>支持 HTTPS 的域名</li>
-</ul>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="添加域名到-Capabilities-gt-Associated-Domains"><a href="#添加域名到-Capabilities-gt-Associated-Domains" class="headerlink" title="添加域名到 Capabilities -&gt; Associated Domains"></a>添加域名到 Capabilities -&gt; Associated Domains</h3><p>在 Xcode 的 Capabilities 里，打开 Associated Domains 开关，并添加需要绑定的域名, 必须用 applinks: 为前缀。可以添加一些子域和扩展（www.domain.com, news.domain.com 等等）。</p>
-<p><img src="https://cdn.bingo.ren/blog/AssociatedDomains.png" alt="Associated Domains"></p>
-<p>如果正常，可以看到项目中会自动添加一个 entitlements 文件。</p>
-<h3 id="配置-apple-app-site-association-文件"><a href="#配置-apple-app-site-association-文件" class="headerlink" title="配置 apple-app-site-association 文件"></a>配置 apple-app-site-association 文件</h3><p>新建一个文件名，命名为<code>apple-app-site-association</code>，然后编辑内容为一段 Json。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;applinks&quot;: &#123;</div><div class="line">    &quot;apps&quot;: [],</div><div class="line">    &quot;details&quot;: [</div><div class="line">      &#123;</div><div class="line">        &quot;appID&quot;: &quot;4MX4MNJ2AK.cn.dankal.SF&quot;,</div><div class="line">        &quot;paths&quot;:[ &quot;*&quot; ]</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>apps</td>
-<td>必须为空数组</td>
-</tr>
-<tr>
-<td>details</td>
-<td>字典数组，每个app对应一个字典</td>
-</tr>
-<tr>
-<td>appID</td>
-<td>由前缀和ID两部分组成，可以在 developer.apple.com 中的 Identifiers → AppIDs 中点击对应的 App ID 查看。</td>
-</tr>
-<tr>
-<td>paths</td>
-<td>对应域名中的path，用于过滤可以跳转到App的链接，支持通配符‘*’，‘？’以及‘NOT’进行匹配，匹配的优先级是从左至右依次降低。</td>
-</tr>
-</tbody>
-</table>
-<p>最后, 把这个文件上传到域名根目录。确保打开 <a href="https://domain.com/apple-app-site-association" target="_blank" rel="external">https://domain.com/apple-app-site-association</a> 如果可以看到或下载到该文件。</p>
-<h3 id="在-APP-里处理通用链接"><a href="#在-APP-里处理通用链接" class="headerlink" title="在 APP 里处理通用链接"></a>在 APP 里处理通用链接</h3><p>为了在 APP 里支持通用链接，需要在 AppDelegate 里实现一个方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler</div><div class="line">&#123;</div><div class="line">    if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) &#123;</div><div class="line">        // 打开App后，做某些具体的视图跳转操作</div><div class="line">        // 如果需要获取链接的参数，可以通过userActivity.webpageURL.absoluteString拿到url字符串</div><div class="line">        // 然后再根据规则切割或者截取，获取到想要的参数值</div><div class="line">        // ...</div><div class="line">        return YES;</div><div class="line">    &#125;</div><div class="line">    return NO; // 只打开App</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="通用链接工作流程图"><a href="#通用链接工作流程图" class="headerlink" title="通用链接工作流程图"></a>通用链接工作流程图</h2><p><img src="https://cdn.bingo.ren/blog/webPageURL.png" alt="工作流程图"></p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><ol>
-<li><p>apple-app-site-association 不需要 .json 后缀。</p>
-</li>
-<li><p>对 json 文件的请求仅在 App 第一次启动时进行，如果此时网络连接出了问题，apple 会缓存请求，等有网的时候再去请求，而实际测试抓包就算网络恢复了也没有请求，所以此时的通用连接会失效。</p>
-</li>
-<li><p>paths 匹配的优先级是从左至右依次降低，但需要明确，否则会出问题。比如<code>&quot;paths&quot;:[&quot;NOT /together/*&quot;,&quot;*&quot;]</code>，在 iOS 9.2 上 path 为 <code>/together/*</code> 都不会跳到 App，但是在 iOS 9.0 上会跳到 App，这就有问题了。</p>
-</li>
-<li><p>从 iOS 9.2 开始，在相同的 domain 内 Universal Links 是不起作用的，必须要跨域才能生效。</p>
-</li>
-</ol>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>修改 SSH 配置文件 sshd_config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>StrictModes 默认为 <code>#StrictModes yes</code>，打开注释，修改为 <code>StrictModes no</code>。</p>
+<p>然后重启 sshd 服务即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ whereis sshd</div><div class="line">/usr/sbin/sshd</div><div class="line">$ /usr/sbin/sshd</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://matt-u.iteye.com/blog/851158" target="_blank" rel="external">《Linux SSH配置和禁止Root远程登陆设置》</a></p>
+<p>用 key 登陆时出现 server refused our key。如果 StrictModes 为 yes，必需保证存放公钥的文件夹的拥有与登陆用户名是相同的。“StrictModes” 设置 ssh 在接收登录请求之前是否检查用户目录和 rhosts 文件的权限和所有权。</p>
+<p>这通常是必要的，因为新手经常会把自己的目录和文件设成任何人都有写权限。</p>
+<h3 id="English-Note"><a href="#English-Note" class="headerlink" title="English Note"></a>English Note</h3><h4 id="First"><a href="#First" class="headerlink" title="First"></a>First</h4><p><strong>3.14 - I copied my public key to authorized_keys but public-key authentication still doesn’t work.</strong></p>
+<p>Typically this is caused by the file permissions on $HOME, $HOME/.ssh or $HOME/.ssh/authorized_keys being more permissive than sshd allows by default.</p>
+<p>In this case, it can be solved by executing the following on the server.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chmod go-w $HOME $HOME/.ssh</div><div class="line">$ chmod 600 $HOME/.ssh/authorized_keys</div><div class="line">$ chown `whoami` $HOME/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p>If this is not possible for some reason, an alternative is to set <strong>StrictModes no</strong> in <em>sshd_config</em>, however this is not recommended.</p>
+<h4 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h4><p>~/.ssh/authorized_keysLists the public keys (DSA, ECDSA, Ed25519, RSA) that can be used for logging in as this user. The format of this file is described above. The content of the file is not highly sensitive, but the recommended permissions are read/write for the user, and not accessible by others.<br>If this file, the ~/.ssh directory, or the user’s home directory are writable by other users, then the file could be modified or replaced by unauthorized users. In this case, sshd will not allow it to be used unless the <strong>StrictModes</strong> option has been set to “no”.</p>
+<h4 id="Last"><a href="#Last" class="headerlink" title="Last"></a>Last</h4><p><a href="http://man.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/sshd_config.5?query=sshd_config%26sec=5" target="_blank" rel="external">《sshd_config — OpenSSH SSH daemon configuration file》</a></p>
+<p><strong>StrictModes</strong> </p>
+<p>Specifies whether sshd(8) should check file modes and ownership of the user’s files and home directory before accepting login. This is normally desirable because novices sometimes accidentally leave their directory or files world-writable. The default is “yes”. Note that this does not apply to ChrootDirectory, whose permissions and ownership are checked unconditionally. </p>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>卡了半天的问题，最后还是 Google 查找到了解决办法，技术类问题真的不要用百度了，谷歌吧！</p>
+<p>于是自己写了一个反向代理的镜像，科学<del>开车</del>上网 <a href="https://gg.bingo.ren/" target="_blank" rel="external">&gt;&gt;&gt; Bingo的Google镜像 &gt;&gt;&gt;</a></p>
 
       
     </div>
@@ -436,7 +398,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/SSH/" rel="tag"># SSH</a>
           
         </div>
       
@@ -445,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/06/29/" rel="next" title="Git操作规范">
-                <i class="fa fa-chevron-left"></i> Git操作规范
+              <a href="/2017/03/10/32/" rel="next" title="使用SSH反向隧道进行内网穿透">
+                <i class="fa fa-chevron-left"></i> 使用SSH反向隧道进行内网穿透
               </a>
             
           </div>
@@ -454,10 +418,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/09/31/" rel="prev" title="解决 App Installation failed, No code signature found.">
-                解决 App Installation failed, No code signature found. <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -483,8 +443,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/07/30/"
-           data-title="iOS9 UniversalLink 实现用链接打开APP" data-url="https://bingo.ren/2017/03/07/30/">
+      <div class="ds-thread" data-thread-key="2017/03/11/33/"
+           data-title="解决SSH免密码登陆失败" data-url="https://bingo.ren/2017/03/11/33/">
       </div>
     
   </div>
@@ -581,7 +541,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">2.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">3.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加域名到-Capabilities-gt-Associated-Domains"><span class="nav-number">3.1.</span> <span class="nav-text">添加域名到 Capabilities -> Associated Domains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-apple-app-site-association-文件"><span class="nav-number">3.2.</span> <span class="nav-text">配置 apple-app-site-association 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-APP-里处理通用链接"><span class="nav-number">3.3.</span> <span class="nav-text">在 APP 里处理通用链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用链接工作流程图"><span class="nav-number">4.</span> <span class="nav-text">通用链接工作流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">5.</span> <span class="nav-text">补充</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#English-Note"><span class="nav-number">3.1.</span> <span class="nav-text">English Note</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#First"><span class="nav-number">3.1.1.</span> <span class="nav-text">First</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Second"><span class="nav-number">3.1.2.</span> <span class="nav-text">Second</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Last"><span class="nav-number">3.1.3.</span> <span class="nav-text">Last</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">4.</span> <span class="nav-text">后话</span></a></li></ol></div>
             
 
           </div>
