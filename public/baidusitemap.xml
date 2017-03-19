@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://bingo.ren/2017/03/19/34/</loc>
+    <lastmod>2017-03-19T03:02:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决 Pod include of non-modular header inside framework module 错误</title>
+        <pubTime>2017-03-19T02:30:27.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>Cocoapods</tag>
+         
+         
+           
+             
+              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://bingo.ren/2017/03/11/33/</loc>
     <lastmod>2017-03-11T08:36:30.000Z</lastmod>
     <data>
@@ -165,9 +187,9 @@
         <title>DKSocketLog 实现终端输出设备日志</title>
         <pubTime>2017-03-02T09:29:09.000Z</pubTime>
         
-        <tag>Mac</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>Mac</tag>
          
         <tag>WebSocket</tag>
          
@@ -451,6 +473,30 @@
 
     
   <url>
+    <loc>https://bingo.ren/2017/02/09/11/</loc>
+    <lastmod>2017-02-13T05:32:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决iOS项目文件合并.xcodeproj冲突</title>
+        <pubTime>2017-02-08T17:00:42.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+        <tag>Xcode</tag>
+         
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://bingo.ren/2017/01/31/10/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
@@ -458,9 +504,9 @@
         <title>解决讨厌的.DS_Store文件（下）</title>
         <pubTime>2017-01-31T09:20:21.000Z</pubTime>
         
-        <tag>Mac</tag>
-         
         <tag>Git</tag>
+         
+        <tag>Mac</tag>
          
          
            
@@ -495,26 +541,6 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/02/10/13/</loc>
-    <lastmod>2017-02-13T05:32:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>MySQL5.7 默认密码重设</title>
-        <pubTime>2017-02-10T13:14:19.000Z</pubTime>
-        
-        <tag>MySQL</tag>
-         
-         
-           
-             
-              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://bingo.ren/2017/02/10/12/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
@@ -535,23 +561,19 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/02/09/11/</loc>
+    <loc>https://bingo.ren/2017/02/10/13/</loc>
     <lastmod>2017-02-13T05:32:16.000Z</lastmod>
     <data>
         <display>
-        <title>解决iOS项目文件合并.xcodeproj冲突</title>
-        <pubTime>2017-02-08T17:00:42.000Z</pubTime>
+        <title>MySQL5.7 默认密码重设</title>
+        <pubTime>2017-02-10T13:14:19.000Z</pubTime>
         
-        <tag>Git</tag>
-         
-        <tag>Xcode</tag>
-         
-        <tag>iOS</tag>
+        <tag>MySQL</tag>
          
          
            
              
-              <breadCrumb title="解决方案" url="https://bingo.ren/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+              <breadCrumb title="战斗笔记" url="https://bingo.ren/categories/%E6%88%98%E6%96%97%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
@@ -619,14 +641,16 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/05/2/</loc>
+    <loc>https://bingo.ren/2017/01/31/9/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
-        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
+        <title>解决讨厌的.DS_Store文件（上）</title>
+        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
         
-        <tag>iOS</tag>
+        <tag>Git</tag>
+         
+        <tag>Mac</tag>
          
          
            
@@ -639,16 +663,14 @@
 
     
   <url>
-    <loc>https://bingo.ren/2017/01/31/9/</loc>
+    <loc>https://bingo.ren/2017/01/05/2/</loc>
     <lastmod>2017-02-13T05:32:15.000Z</lastmod>
     <data>
         <display>
-        <title>解决讨厌的.DS_Store文件（上）</title>
-        <pubTime>2017-01-31T04:20:21.000Z</pubTime>
+        <title>解决NSString stringWithFormat:参数nil时返回(null)</title>
+        <pubTime>2017-01-04T16:15:19.000Z</pubTime>
         
-        <tag>Mac</tag>
-         
-        <tag>Git</tag>
+        <tag>iOS</tag>
          
          
            

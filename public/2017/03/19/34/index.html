@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,安全攻防," />
+  <meta name="keywords" content="iOS,Cocoapods," />
 
 
 
@@ -82,16 +82,16 @@
 
 
 
-<meta name="description" content="前言上一篇《屏蔽iPhone自动下载更新（上）》的做法，虽然可以屏蔽点击进入详情的自动更新界面，但是，提示的红色气泡“1”并没有消失。并且固件依然被偷偷下载到设备上了，占用了硬盘空间（1.5G 左右），只是没提示更新罢了。要想完美地屏蔽自动更新，就要解决这两个问题。">
+<meta name="description" content="前言今天在封装网络层框架 DKNetworking，更新到 Cocoapods 的时候出现一个错误，核心语句是 error: include of non-modular header inside framework module ，去到  Apple Developer Forums 发现有很多人有这样的问题，大概是在使用 Swift 的库时会出现这个问题，他们把 Target 下 Build">
 <meta property="og:type" content="article">
-<meta property="og:title" content="屏蔽iPhone自动下载更新（下）">
-<meta property="og:url" content="https://bingo.ren/2017/02/21/20/index.html">
+<meta property="og:title" content="解决 Pod include of non-modular header inside framework module 错误">
+<meta property="og:url" content="https://bingo.ren/2017/03/19/34/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="前言上一篇《屏蔽iPhone自动下载更新（上）》的做法，虽然可以屏蔽点击进入详情的自动更新界面，但是，提示的红色气泡“1”并没有消失。并且固件依然被偷偷下载到设备上了，占用了硬盘空间（1.5G 左右），只是没提示更新罢了。要想完美地屏蔽自动更新，就要解决这两个问题。">
-<meta property="og:updated_time" content="2017-02-21T03:55:25.000Z">
+<meta property="og:description" content="前言今天在封装网络层框架 DKNetworking，更新到 Cocoapods 的时候出现一个错误，核心语句是 error: include of non-modular header inside framework module ，去到  Apple Developer Forums 发现有很多人有这样的问题，大概是在使用 Swift 的库时会出现这个问题，他们把 Target 下 Build">
+<meta property="og:updated_time" content="2017-03-19T03:02:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="屏蔽iPhone自动下载更新（下）">
-<meta name="twitter:description" content="前言上一篇《屏蔽iPhone自动下载更新（上）》的做法，虽然可以屏蔽点击进入详情的自动更新界面，但是，提示的红色气泡“1”并没有消失。并且固件依然被偷偷下载到设备上了，占用了硬盘空间（1.5G 左右），只是没提示更新罢了。要想完美地屏蔽自动更新，就要解决这两个问题。">
+<meta name="twitter:title" content="解决 Pod include of non-modular header inside framework module 错误">
+<meta name="twitter:description" content="前言今天在封装网络层框架 DKNetworking，更新到 Cocoapods 的时候出现一个错误，核心语句是 error: include of non-modular header inside framework module ，去到  Apple Developer Forums 发现有很多人有这样的问题，大概是在使用 Swift 的库时会出现这个问题，他们把 Target 下 Build">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://bingo.ren/2017/02/21/20/"/>
+  <link rel="canonical" href="https://bingo.ren/2017/03/19/34/"/>
 
 
 
 
 
-  <title> 屏蔽iPhone自动下载更新（下） | Bingo's Blog </title>
+  <title> 解决 Pod include of non-modular header inside framework module 错误 | Bingo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +256,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/02/21/20/">
+  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/03/19/34/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Bingo">
@@ -280,7 +280,7 @@
             
             
               
-                屏蔽iPhone自动下载更新（下）
+                解决 Pod include of non-modular header inside framework module 错误
               
             
           </h1>
@@ -293,8 +293,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-21T09:50:25+08:00">
-                2017-02-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-19T10:30:27+08:00">
+                2017-03-19
               </time>
             
 
@@ -327,8 +327,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/02/21/20/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/21/20/" itemprop="commentCount"></span>
+                <a href="/2017/03/19/34/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/19/34/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -354,25 +354,17 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇<a href="https://bingo.ren/2017/02/20/19/">《屏蔽iPhone自动下载更新（上）》</a>的做法，虽然可以屏蔽点击进入详情的自动更新界面，但是，提示的红色气泡“1”并没有消失。并且固件依然被偷偷下载到设备上了，占用了硬盘空间（1.5G 左右），只是没提示更新罢了。要想完美地屏蔽自动更新，就要解决这两个问题。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天在封装网络层框架 DKNetworking，更新到 Cocoapods 的时候出现一个错误，核心语句是 <code>error: include of non-modular header inside framework module</code> ，去到 <a href="https://forums.developer.apple.com/thread/23554" target="_blank" rel="external"> Apple Developer Forums</a> 发现有很多人有这样的问题，大概是在使用 Swift 的库时会出现这个问题，他们把 Target 下 Build Settings 中 <code>Allow Non-modular includes in Framework Modules</code> 设为 Yes 就解决了。</p>
+<p>但是我依然报错，因为我不是在 Pod install 的时候报错，而是在上传 Pod 的时候 xcodebuild 编译不通过，这个时候的<code>Building with xcodebuild</code>应该是默认的 Xcode 编译环境，不受 Pod 项目本身 Build Settings 的影响，所以改什么都是无用功，最终的解决办法只能从那句 <code>pod trunk push</code> 入手。</p>
 <a id="more"></a>
-<h2 id="屏蔽"><a href="#屏蔽" class="headerlink" title="屏蔽"></a>屏蔽</h2><h4 id="NoOTA-Badge"><a href="#NoOTA-Badge" class="headerlink" title="NoOTA Badge"></a>NoOTA Badge</h4><p>用 Cydia 插件来禁止在 “设置” 上显示一个数字“1”的气泡，在 Cydia 中搜索 NoOTA Badge ，然后安装即可。</p>
-<blockquote>
-<p>Requires iOS 5 or higher<br>Clear OTA software update badge on Settings.app<br>No new icons will be added to your homescreen. There are no options to configure</p>
-</blockquote>
-<p>由于这个方法只是隐藏气泡，正如前言所说，固件还是会被下载到设备上，占用了硬盘空间，治标不治本，所以只简单贴一下插件的描述，有兴趣的狱友可以去玩一下。</p>
-<h4 id="更优雅地屏蔽"><a href="#更优雅地屏蔽" class="headerlink" title="更优雅地屏蔽"></a>更优雅地屏蔽</h4><p>要从根本上杜绝这种偷偷摸摸下载占用带宽占用设备空间的行为，可以利用 etc/host 文件屏蔽 Apple 更新服务器。</p>
-<p>用电脑 iTools 打开 etc/hosts 文件，添加如下一行到文件中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">127.0.0.1 mesu.apple.com</div></pre></td></tr></table></figure>
-<p>如果不方便直接进行修改，可以先导出，修改完再导入替换原来的 hosts 文件。修改完的 hosts 文件如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">##</div><div class="line"># Host Database</div><div class="line">#</div><div class="line"># localhost is used to configure the loopback interface</div><div class="line"># when the system is booting.  Do not change this entry.</div><div class="line">##</div><div class="line">127.0.0.1	localhost</div><div class="line">255.255.255.255	broadcasthost</div><div class="line">::1             localhost</div><div class="line">127.0.0.1 iphonesubmissions.apple.com</div><div class="line">127.0.0.1 radarsubmissions.apple.com</div><div class="line">127.0.0.1 mesu.apple.com</div></pre></td></tr></table></figure>
-<p>这样，系统就无法检查更新了，被重定向到本地服务器了，连不上服务器自然也就不能偷偷下载了。如果想验证，进入设置 - 通用 - 软件更新，如果弹出无法检查更新对话框，就说明修改成功了。</p>
-<p>如果之前已经自动下载了，还要删除之前已经下载到本地的更新包，如果在16G的设备上，1.5G可占了不小的比例；如果没有下载则可忽略。</p>
-<h4 id="删除已经下载到设备的升级包"><a href="#删除已经下载到设备的升级包" class="headerlink" title="删除已经下载到设备的升级包"></a>删除已经下载到设备的升级包</h4><p>如果可以找到 <code>/var/mobile/Library/Assets/com_apple_MobileAsset_SoftwareUpdate</code> 这个目录，把这个目录下的 OTA 下载临时固件包全部删除，或者干脆把整个文件夹删除。</p>
-<h4 id="让红色气泡消失"><a href="#让红色气泡消失" class="headerlink" title="让红色气泡消失"></a>让红色气泡消失</h4><p>Cydia 插件装多了确实会变卡，如果想不用 NoOTA Badge 插件，或者插件失效的时候，也想让设置里的通用、以及软件更新的数字气泡“1”消失，可以自己动手修改。</p>
-<p>进入 <code>System/Library/CoreServices</code> 文件夹，找到 SystemVersion.plist，将 ProductBuildVersion 改为 9B179，然后重启设备，就可以发现气泡已经消失。最后最好再重新将它改回去，我的 iPhone 5s 的默认值是 14C92。</p>
-<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>至此，设备自动更新彻底屏蔽了，气泡的问题也解决了，还释放了1G多的空间，完美！接下来就放手去干吧！</p>
-
+<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><p>最后的一段错误输出日志如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">While building module 'DKNetworking' imported from /var/folders/9j/c_9mf_4913z66d00dw_lqwsm0000gn/T/CocoaPods/Lint/App/main.m:3:</div><div class="line">In file included from &lt;module-includes&gt;:1:</div><div class="line">In file included from /Users/bingo/Library/Developer/Xcode/DerivedData/App-adpwvlhhgeknoqdfxpvlfodkbype/Build/Products/Release-iphonesimulator/DKNetworking/DKNetworking.framework/Headers/DKNetworking-umbrella.h:19:</div><div class="line">/Users/bingo/Library/Developer/Xcode/DerivedData/App-adpwvlhhgeknoqdfxpvlfodkbype/Build/Products/Release-iphonesimulator/DKNetworking/DKNetworking.framework/Headers/DKNetworkSessionManager.h:9:9: error: include of non-modular header inside framework module 'DKNetworking.DKNetworkSessionManager' [-Werror,-Wnon-modular-include-in-framework-module]</div><div class="line">#import "AFHTTPSessionManager.h"</div><div class="line">        ^</div><div class="line">1 error generated.</div><div class="line">/var/folders/9j/c_9mf_4913z66d00dw_lqwsm0000gn/T/CocoaPods/Lint/App/main.m:3:9: fatal error: could not build module 'DKNetworking'</div><div class="line">@import DKNetworking;</div><div class="line"> ~~~~~~~^~~~~~~~~~~~</div><div class="line">2 errors generated.</div><div class="line"></div><div class="line">** BUILD FAILED **</div><div class="line"></div><div class="line"></div><div class="line">The following build commands failed:</div><div class="line">	CompileC /Users/bingo/Library/Developer/Xcode/DerivedData/App-adpwvlhhgeknoqdfxpvlfodkbype/Build/Intermediates/App.build/Release-iphonesimulator/App.build/Objects-normal/i386/main.o App/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler</div><div class="line">	CompileC /Users/bingo/Library/Developer/Xcode/DerivedData/App-adpwvlhhgeknoqdfxpvlfodkbype/Build/Intermediates/App.build/Release-iphonesimulator/App.build/Objects-normal/x86_64/main.o App/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler</div><div class="line">(2 failures)</div><div class="line"> -&gt; DKNetworking (0.1.0)</div><div class="line">    - ERROR | [iOS] xcodebuild: Returned an unsuccessful exit code.</div><div class="line">    - WARN  | [iOS] xcodebuild:  DKNetworking/DKNetworking/DKNetworking.m:362:122: warning: values of type 'NSUInteger' should not be used as format arguments; add an explicit cast to 'unsigned long' instead [-Wformat]</div><div class="line">    - WARN  | xcodebuild:  DKNetworking/DKNetworking/DKNetworking.m:408:25: warning: variable 'downloadTask' is uninitialized when captured by block [-Wuninitialized]</div><div class="line">    - NOTE  | xcodebuild:  DKNetworking/DKNetworking/DKNetworking.m:396:5: note: variable 'downloadTask' is declared here</div><div class="line">    - ERROR | xcodebuild:  /Users/bingo/Library/Developer/Xcode/DerivedData/App-adpwvlhhgeknoqdfxpvlfodkbype/Build/Products/Release-iphonesimulator/DKNetworking/DKNetworking.framework/Headers/DKNetworkSessionManager.h:9:9: error: include of non-modular header inside framework module 'DKNetworking.DKNetworkSessionManager' [-Werror,-Wnon-modular-include-in-framework-module]</div><div class="line">    - NOTE  | xcodebuild:  /var/folders/9j/c_9mf_4913z66d00dw_lqwsm0000gn/T/CocoaPods/Lint/App/main.m:3:9: fatal error: could not build module 'DKNetworking'</div><div class="line"></div><div class="line">Analyzed 1 podspec.</div><div class="line"></div><div class="line">[!] The spec did not pass validation, due to 2 errors and 2 warnings.</div><div class="line">[!] The validator for Swift projects uses Swift 3.0 by default, if you are using a different version of swift you can use a `.swift-version` file to set the version for your Pod. For example to use Swift 2.3, run: </div><div class="line">    `echo "2.3" &gt; .swift-version`.</div><div class="line"></div><div class="line">/Library/Ruby/Gems/2.0.0/gems/cocoapods-1.2.0/lib/cocoapods/command/spec/lint.rb:81:in `run'</div><div class="line">/Library/Ruby/Gems/2.0.0/gems/claide-1.0.1/lib/claide/command.rb:334:in `run'</div><div class="line">/Library/Ruby/Gems/2.0.0/gems/cocoapods-1.2.0/lib/cocoapods/command.rb:52:in `run'</div><div class="line">/Library/Ruby/Gems/2.0.0/gems/cocoapods-1.2.0/bin/pod:55:in `&lt;top (required)&gt;'</div><div class="line">/usr/local/bin/pod:22:in `load'</div><div class="line">/usr/local/bin/pod:22:in `&lt;main&gt;'</div></pre></td></tr></table></figure>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>解决 warning : </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">--allow-warnings // 允许警告，有一些警告是代码自身带的可以忽略</div></pre></td></tr></table></figure>
+<p>解决 error : </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">--use-libraries // 私有库、静态库引用的时候加上</div></pre></td></tr></table></figure>
+<p>所以最终的解决方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod trunk push --verbose --allow-warnings --use-libraries</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -397,7 +389,7 @@
           
             <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/安全攻防/" rel="tag"># 安全攻防</a>
+            <a href="/tags/Cocoapods/" rel="tag"># Cocoapods</a>
           
         </div>
       
@@ -406,8 +398,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/20/19/" rel="next" title="屏蔽iPhone自动下载更新（上）">
-                <i class="fa fa-chevron-left"></i> 屏蔽iPhone自动下载更新（上）
+              <a href="/2017/03/11/33/" rel="next" title="解决SSH免密码登陆失败">
+                <i class="fa fa-chevron-left"></i> 解决SSH免密码登陆失败
               </a>
             
           </div>
@@ -415,10 +407,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/22/21/" rel="prev" title="iOS10.2 SSH连接越狱设备">
-                iOS10.2 SSH连接越狱设备 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -444,8 +432,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/21/20/"
-           data-title="屏蔽iPhone自动下载更新（下）" data-url="https://bingo.ren/2017/02/21/20/">
+      <div class="ds-thread" data-thread-key="2017/03/19/34/"
+           data-title="解决 Pod include of non-modular header inside framework module 错误" data-url="https://bingo.ren/2017/03/19/34/">
       </div>
     
   </div>
@@ -542,7 +530,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屏蔽"><span class="nav-number">2.</span> <span class="nav-text">屏蔽</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NoOTA-Badge"><span class="nav-number">2.0.1.</span> <span class="nav-text">NoOTA Badge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更优雅地屏蔽"><span class="nav-number">2.0.2.</span> <span class="nav-text">更优雅地屏蔽</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除已经下载到设备的升级包"><span class="nav-number">2.0.3.</span> <span class="nav-text">删除已经下载到设备的升级包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#让红色气泡消失"><span class="nav-number">2.0.4.</span> <span class="nav-text">让红色气泡消失</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">3.</span> <span class="nav-text">后话</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误"><span class="nav-number">2.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">3.</span> <span class="nav-text">解决</span></a></li></ol></div>
             
 
           </div>
