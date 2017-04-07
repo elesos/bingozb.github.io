@@ -26,3 +26,12 @@ source_id	----	title
 25			----	立项规范
 26			----	DKSocketLog 实现终端输出设备日志
 27			----	iOS开发编码规范
+28			----	Centos 6 x86 minimal 部署
+29			----	Git操作规范
+30			----	iOS9 UniversalLink 实现用链接打开APP
+31			----	解决 App Installation failed, No code signature found.
+32			----	使用SSH反向隧道进行内网穿透
+33			----	解决SSH免密码登陆失败
+34			----	解决 Pod include of non-modular header inside framework module 错误
+35			----	DKNetworking 网络层框架
+36			----	JavaWeb 基于Maven+SSM 提供API服务

@@ -1,0 +1,767 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java EE," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言当后台项目使用 JavaWeb 进行开发时，写接口就成为一门艺术活。无论是后台管理系统的前后端分离、还是要给移动端提供数据，返回方便、规范的数据及其重要。掌握以后，你肯定会爱不释手。有一年以上 Java 开发经验的人，相信不会再选择 PHP、Nodejs 等来写接口，原因只能意会，不可言传。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb 基于Maven+SSM 提供API服务">
+<meta property="og:url" content="https://bingo.ren/2017/04/08/36/index.html">
+<meta property="og:site_name" content="Bingo's Blog">
+<meta property="og:description" content="前言当后台项目使用 JavaWeb 进行开发时，写接口就成为一门艺术活。无论是后台管理系统的前后端分离、还是要给移动端提供数据，返回方便、规范的数据及其重要。掌握以后，你肯定会爱不释手。有一年以上 Java 开发经验的人，相信不会再选择 PHP、Nodejs 等来写接口，原因只能意会，不可言传。">
+<meta property="og:image" content="https://github.com/bingozb/DKJavaWebApiDemo/blob/master/demo.jpg">
+<meta property="og:updated_time" content="2017-04-07T21:14:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaWeb 基于Maven+SSM 提供API服务">
+<meta name="twitter:description" content="前言当后台项目使用 JavaWeb 进行开发时，写接口就成为一门艺术活。无论是后台管理系统的前后端分离、还是要给移动端提供数据，返回方便、规范的数据及其重要。掌握以后，你肯定会爱不释手。有一年以上 Java 开发经验的人，相信不会再选择 PHP、Nodejs 等来写接口，原因只能意会，不可言传。">
+<meta name="twitter:image" content="https://github.com/bingozb/DKJavaWebApiDemo/blob/master/demo.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'bingozb'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bingo.ren/2017/04/08/36/"/>
+
+
+
+
+
+  <title> JavaWeb 基于Maven+SSM 提供API服务 | Bingo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Bingo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/04/08/36/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Bingo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Bingo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Bingo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaWeb 基于Maven+SSM 提供API服务
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T04:49:51+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/战斗笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">战斗笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/04/08/36/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/08/36/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当后台项目使用 JavaWeb 进行开发时，写接口就成为一门艺术活。无论是后台管理系统的前后端分离、还是要给移动端提供数据，返回方便、规范的数据及其重要。掌握以后，你肯定会爱不释手。有一年以上 Java 开发经验的人，相信不会再选择 PHP、Nodejs 等来写接口，原因只能意会，不可言传。</p>
+<a id="more"></a>
+<h2 id="规定与约束"><a href="#规定与约束" class="headerlink" title="规定与约束"></a>规定与约束</h2><ul>
+<li><p>开发工具：IntelliJ IDEA</p>
+</li>
+<li><p>开发语言：Java</p>
+</li>
+<li><p>依赖管理：Maven</p>
+</li>
+<li><p>整合框架：Spring 4.1.4 + SpringMVC 4.1.4 + Mybatis 3.4.1</p>
+</li>
+<li><p>架构：MMCS（Mapper、Model、Controller、Service）</p>
+<ul>
+<li>Mapper 是对象持久化映射层，使用 mybatis 进行数据库交互</li>
+<li>Model 是数据模型层相当于 MVC 的 M层，存放 POJO 类</li>
+<li>Controller 是控制层，相当于 MVC 的 C层</li>
+<li>Servive 是一些业务逻辑的处理层</li>
+</ul>
+</li>
+</ul>
+<h2 id="核心配置"><a href="#核心配置" class="headerlink" title="核心配置"></a>核心配置</h2><p>三大框架的整合网上例子很多，这里只阐述针对写 API 的核心点。</p>
+<h3 id="依赖-Jackson"><a href="#依赖-Jackson" class="headerlink" title="依赖 Jackson"></a>依赖 Jackson</h3><p>pom.xml 添加 jackson 依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.jackson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-mapper-asl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.13<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Spring-MVC-配置"><a href="#Spring-MVC-配置" class="headerlink" title="Spring MVC 配置"></a>Spring MVC 配置</h3><p>修改 springmvc 的配置文件，对应 Demo 中的 springmvc-servlet.xml。</p>
+<h4 id="开启注解模式驱动"><a href="#开启注解模式驱动" class="headerlink" title="开启注解模式驱动"></a>开启注解模式驱动</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>添加这个标签相当于注册了 DefaultAnnotationHandlerMapping 和 AnnotationMethodHandlerAdapter 两个 bean，配置一些 messageconverter，解决了 @Controller 注解的使用前提配置。</p>
+<p>由于 JSON 需要配置 AnnotationMethodHandlerAdapter 和 MappingJacksonHttpMessageConverter，设置此标签后，就不需要再配置了。</p>
+<h4 id="删除视图解析器"><a href="#删除视图解析器" class="headerlink" title="删除视图解析器"></a>删除视图解析器</h4><p>由于只提供 API 服务，不需要做页面跳转，所不需要视图解析器（ViewResolver），相比普通的 Web 项目，可以<strong>不配置</strong>这个 bean。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span>  </span></div><div class="line">   <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.UrlBasedViewResolver"</span>&gt;  </div><div class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span> /&gt;</span>  </div><div class="line">   ... </div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="实现设计"><a href="#实现设计" class="headerlink" title="实现设计"></a>实现设计</h2><h3 id="Json数据格式规范"><a href="#Json数据格式规范" class="headerlink" title="Json数据格式规范"></a>Json数据格式规范</h3><h4 id="正确结果的响应"><a href="#正确结果的响应" class="headerlink" title="正确结果的响应"></a>正确结果的响应</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"state"</span>: <span class="string">"00001"</span>, </div><div class="line">    <span class="attr">"message"</span>: <span class="string">"success"</span>, </div><div class="line">    <span class="attr">"result"</span>: &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"username"</span>: <span class="string">"bingo"</span>,</div><div class="line">        <span class="attr">"enable"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">"create_time"</span>: <span class="string">"1483082840732"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="错误结果的响应"><a href="#错误结果的响应" class="headerlink" title="错误结果的响应"></a>错误结果的响应</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"state"</span>: <span class="string">"00002"</span>, </div><div class="line">    <span class="attr">"message"</span>: <span class="string">"用户名密码错误"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="字段说明"><a href="#字段说明" class="headerlink" title="字段说明"></a>字段说明</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>state</td>
+<td>状态码，例如 00001 为成功状态，其它状态码为错误码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>消息提示，例如 success 为成功，其它情况为错误原因</td>
+</tr>
+<tr>
+<td>result</td>
+<td>结果数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="API工具类封装"><a href="#API工具类封装" class="headerlink" title="API工具类封装"></a>API工具类封装</h3><h4 id="APIStatus"><a href="#APIStatus" class="headerlink" title="APIStatus"></a>APIStatus</h4><p>由于状态对应的状态码和消息都属于常量，所以抽成一个文件来统一管理枚举。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * API状态枚举</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> APIStatus &#123;</div><div class="line"></div><div class="line">    API_SUCCESS(<span class="string">"00001"</span>, <span class="string">"success"</span>),</div><div class="line">    API_USER_PASSWORD_ERROR(<span class="string">"00002"</span>, <span class="string">"用户名密码错误"</span>),</div><div class="line">    API_USER_NOT_EXIST(<span class="string">"00003"</span>, <span class="string">"用户名不存在"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String state;</div><div class="line">    <span class="keyword">private</span> String message;</div><div class="line"></div><div class="line">    APIStatus(String state, String message) &#123;</div><div class="line">        <span class="keyword">this</span>.state = state;</div><div class="line">        <span class="keyword">this</span>.message = message;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> message;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="APIResponse"><a href="#APIResponse" class="headerlink" title="APIResponse"></a>APIResponse</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * API响应实体类</div><div class="line"> */</div><div class="line"><span class="meta">@JsonSerialize</span>(include = JsonSerialize.Inclusion.NON_NULL)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">APIResponse</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String state;</div><div class="line">    <span class="keyword">private</span> String message;</div><div class="line">    <span class="keyword">private</span> Object result;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(String state)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.state = state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> message;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMessage</span><span class="params">(String message)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.message = message;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getResult</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setResult</span><span class="params">(Object result)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.result = result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取 APIResponse 单例对象</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> 单例API工具对象</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> APIResponse <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> APIResponseHolder.instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">APIResponse</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">APIResponseHolder</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> APIResponse instance = <span class="keyword">new</span> APIResponse();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>@JsonSerialize 注解用于属性或者 getter 方法上，用于在序列化时嵌入我们自定义的代码。这里设置 APIResponse 对象转为 Json 时不包含空值，也就是不会出现值为 null 的键值对。</p>
+<h4 id="APIUtil"><a href="#APIUtil" class="headerlink" title="APIUtil"></a>APIUtil</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * API工具类</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">APIUtil</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取 APIResponse 对象</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> apiStatus 接口状态枚举值</div><div class="line">     * <span class="doctag">@param</span> result    接口结果</div><div class="line">     * <span class="doctag">@return</span> APIResponse 单例对象</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> APIResponse <span class="title">getResponse</span><span class="params">(APIStatus apiStatus, Object result)</span> </span>&#123;</div><div class="line">        APIResponse response = APIResponse.getInstance();</div><div class="line">        response.setState(apiStatus.getState());</div><div class="line">        response.setMessage(apiStatus.getMessage());</div><div class="line">        response.setResult(apiStatus == API_SUCCESS ? result : <span class="keyword">null</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> response;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>APIUtil 作为工具类，原本我封装了 Gson 的相关方法，但后来使用 Spring 的 @ResponseBody 就只需要返回一个 POJO 了，所以，该工具类暂时只提供一个方法。</p>
+<p>值得一提的是，返回的 APIResponse 是一个单例对象，虽然 Java 有垃圾自动回收机制，但我个人还是觉得没有必要每个 API 请求都 new 一个 APIResponse 来转换 JSON，用单例会比较合适。</p>
+<h3 id="Mapper层设计"><a href="#Mapper层设计" class="headerlink" title="Mapper层设计"></a>Mapper层设计</h3><p>与普通的 Mapper 一样，Demo 中我为了简便，使用了 Mybatis 的注解的方式，做数据库查询操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Select</span>(<span class="string">"select * from user where username=#&#123;username&#125;"</span>)</div><div class="line">    <span class="function">User <span class="title">selectUserByUsername</span><span class="params">(@Param(<span class="string">"username"</span>)</span> String username)</span>;</div><div class="line"></div><div class="line">    <span class="meta">@Select</span>(<span class="string">"select * from user"</span>)</div><div class="line">    <span class="function">List&lt;User&gt; <span class="title">selectAllUser</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Service层设计"><a href="#Service层设计" class="headerlink" title="Service层设计"></a>Service层设计</h3><h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><ul>
+<li><p>返回值</p>
+<p>  Service 层所有的方法统一返回 APIResponse 对象。</p>
+</li>
+<li><p>参数</p>
+<ul>
+<li>当接口请求有传值时，方法的参数为 HttpServletRequest 对象；</li>
+<li>当接口请求不需要传值时，一般为 GET 请求，此时方法不需要参数。</li>
+</ul>
+</li>
+</ul>
+<p>eg.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 登录</div><div class="line">     */</div><div class="line">    <span class="function">APIResponse <span class="title">login</span><span class="params">(HttpServletRequest request)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取所有用户</div><div class="line">     */</div><div class="line">    <span class="function">APIResponse <span class="title">allUsers</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>实现类是整个架构中代码量最多的一部分，所有的业务逻辑处理全部都放在 ServiceImpl，包括请求参数值的获取、业务逻辑处理、最后返回 APIResponse 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Resource</span></div><div class="line">    <span class="keyword">private</span> UserMapper mapper;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> APIResponse <span class="title">login</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</div><div class="line">        <span class="comment">// 获取请求参数</span></div><div class="line">        String username = request.getParameter(<span class="string">"username"</span>);</div><div class="line">        String password = request.getParameter(<span class="string">"password"</span>);</div><div class="line">        <span class="comment">// 处理业务逻辑</span></div><div class="line">        User user = <span class="keyword">new</span> User(username, password);</div><div class="line">        user = mapper.selectUserByUsername(user.getUsername());</div><div class="line">        APIStatus status = API_SUCCESS;</div><div class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;</div><div class="line">            status = API_USER_NOT_EXIST;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (!MD5Util.md5(password).equals(user.getPassword()))</div><div class="line">                status = API_USER_PASSWORD_ERROR;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 返回APIResponse对象，配合@ResponseBody转为Json</span></div><div class="line">        <span class="keyword">return</span> APIUtil.getResponse(status, user);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> APIResponse <span class="title">allUsers</span><span class="params">()</span> </span>&#123;</div><div class="line">        List&lt;User&gt; users = mapper.selectAllUser();</div><div class="line">        <span class="keyword">return</span> APIUtil.getResponse(API_SUCCESS, users);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Controller-层设计"><a href="#Controller-层设计" class="headerlink" title="Controller 层设计"></a>Controller 层设计</h3><p>基于前面的设计，此时的 Controller 层变得非常轻量级。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"user"</span>)</div><div class="line"><span class="meta">@Controller</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Resource</span></div><div class="line">    <span class="keyword">private</span> UserService userService;</div><div class="line"></div><div class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/login"</span>, method = RequestMethod.POST, headers = <span class="string">"api-version=1"</span>)</div><div class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span></div><div class="line">    <span class="function">APIResponse <span class="title">login</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> userService.login(request);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/query"</span>, method = RequestMethod.GET, headers = <span class="string">"api-version=1"</span>)</div><div class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span></div><div class="line">    <span class="function">APIResponse <span class="title">query</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> userService.allUsers();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中，@RequestMapping 除了绑定路由，headers 还规定一定要有 <code>api-version=1</code>（参考） 这对键值对，这是接口的版本控制，在迭代开发中是非常重要的。</p>
+<p>方法的返回值为 APIResponse，要加上注解 <code>@ResponseBody</code>，作用是将返回的对象作为 HTTP 响应正文返回，并调用适合 HttpMessageConverter 的 Adapter 转换对象，写入输出流。由于前面已经配置了<code>&lt;mvc:annotation-driven /&gt;</code>，就由 Spring 指定了 Converter 为 MappingJacksonHttpMessageConverter，所以需要依赖 Jackson 就是这个原因。</p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>至此，整套写 API 的框架就整合配置完成了，测试效果符合预期。</p>
+<p><img src="https://github.com/bingozb/DKJavaWebApiDemo/blob/master/demo.jpg" alt="Demo"></p>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>Demo 源码已经托管到 <a href="https://github.com/bingozb/DKJavaWebApiDemo" target="_blank" rel="external">GitHub-DKJavaWebApiDemo</a>，一方面作为个人的战斗记录，另一方面，也准备为公司的后台开创一个 JavaWeb 组，这是我今年的计划，还在评估阶段。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-EE/" rel="tag"># Java EE</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/19/35/" rel="next" title="DKNetworking 网络层框架">
+                <i class="fa fa-chevron-left"></i> DKNetworking 网络层框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/08/36/"
+           data-title="JavaWeb 基于Maven+SSM 提供API服务" data-url="https://bingo.ren/2017/04/08/36/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Bingo" />
+          <p class="site-author-name" itemprop="name">Bingo</p>
+          <p class="site-description motion-element" itemprop="description">He who hesitates is lost.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规定与约束"><span class="nav-number">2.</span> <span class="nav-text">规定与约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心配置"><span class="nav-number">3.</span> <span class="nav-text">核心配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖-Jackson"><span class="nav-number">3.1.</span> <span class="nav-text">依赖 Jackson</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-MVC-配置"><span class="nav-number">3.2.</span> <span class="nav-text">Spring MVC 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开启注解模式驱动"><span class="nav-number">3.2.1.</span> <span class="nav-text">开启注解模式驱动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除视图解析器"><span class="nav-number">3.2.2.</span> <span class="nav-text">删除视图解析器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现设计"><span class="nav-number">4.</span> <span class="nav-text">实现设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Json数据格式规范"><span class="nav-number">4.1.</span> <span class="nav-text">Json数据格式规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正确结果的响应"><span class="nav-number">4.1.1.</span> <span class="nav-text">正确结果的响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误结果的响应"><span class="nav-number">4.1.2.</span> <span class="nav-text">错误结果的响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字段说明"><span class="nav-number">4.1.3.</span> <span class="nav-text">字段说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API工具类封装"><span class="nav-number">4.2.</span> <span class="nav-text">API工具类封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#APIStatus"><span class="nav-number">4.2.1.</span> <span class="nav-text">APIStatus</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APIResponse"><span class="nav-number">4.2.2.</span> <span class="nav-text">APIResponse</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APIUtil"><span class="nav-number">4.2.3.</span> <span class="nav-text">APIUtil</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mapper层设计"><span class="nav-number">4.3.</span> <span class="nav-text">Mapper层设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service层设计"><span class="nav-number">4.4.</span> <span class="nav-text">Service层设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#接口"><span class="nav-number">4.4.1.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">4.4.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-层设计"><span class="nav-number">4.5.</span> <span class="nav-text">Controller 层设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">5.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">6.</span> <span class="nav-text">后话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  Copyright © 
+  <span itemprop="copyrightYear">2017
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bingo
+  </span>
+  All rights reserved.
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bingozb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
