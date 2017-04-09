@@ -85,7 +85,7 @@
 <meta name="description" content="前言团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章《Git 分支管理》，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 合并Commit">
-<meta property="og:url" content="https://bingozb.github.io/2017/01/29/8/index.html">
+<meta property="og:url" content="https://bingo.ren/2017/01/29/8/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章《Git 分支管理》，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。">
 <meta property="og:updated_time" content="2017-02-13T05:32:16.000Z">
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="https://bingozb.github.io/2017/01/29/8/"/>
+  <link rel="canonical" href="https://bingo.ren/2017/01/29/8/"/>
 
 
 
@@ -256,7 +256,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://bingozb.github.io/2017/01/29/8/">
+  <link itemprop="mainEntityOfPage" href="https://bingo.ren/2017/01/29/8/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Bingo">
@@ -354,7 +354,7 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章<a href="http://bingo.ren/2017/01/23/5/" target="_blank" rel="external">《Git 分支管理》</a>，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>团队项目开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。之前写了一篇文章<a href="http://bingo.ren/2017/01/23/5/">《Git 分支管理》</a>，说到Git分支管理是一门艺术，但其实想要合理规范Git的使用，可以讨论的地方还有很多。前阵子跟我们公司的后台同事讨论到Commit合并的问题。由fio说到的rebase，以及我使用GUI - GitHub Desktop 的时候发现的Undo，在此做一篇关于合并提交的总结。</p>
 <a id="more"></a>
 <h2 id="合并-Commit"><a href="#合并-Commit" class="headerlink" title="合并 Commit"></a>合并 Commit</h2><h4 id="为什么需要合并Commit"><a href="#为什么需要合并Commit" class="headerlink" title="为什么需要合并Commit"></a>为什么需要合并Commit</h4><p>其实这种需求很常见，假设你刚刚添加了一个新功能，Commit了，还没Push。此时，你发现了一个小Bug，然后修复了它，又Commit了。过了一会，你又发现另外一个Bug，于是你又修复了它，然后又Commit了。此时，在你Push之前，已经有3个Commit了。</p>
 <p>如果你想要让远程仓库的项目网络“好看”，即简洁明了，每个Commit都有它的意义。那么就应该把这3个Commit合并后，再Push。否则如果这种随便Commit然后就Push的现象越来越多，会导致项目网络上面的提交信息可读性很差，还会让项目经理Get不到点。像我们团队的项目网络经常会看到像这样的提交信息：“小修复”、“改了一点小东西” …</p>
@@ -489,7 +489,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/01/29/8/"
-           data-title="Git 合并Commit" data-url="https://bingozb.github.io/2017/01/29/8/">
+           data-title="Git 合并Commit" data-url="https://bingo.ren/2017/01/29/8/">
       </div>
     
   </div>
@@ -551,7 +551,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
