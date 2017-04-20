@@ -1,0 +1,738 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git,iOS,Shell," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。">
+<meta name="keywords" content="Git,iOS,Shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DKIpaBuilder shell实现自动打包ipa并上传到fir.im">
+<meta property="og:url" content="https://bingozb.github.io/15.html">
+<meta property="og:site_name" content="Bingo's Blog">
+<meta property="og:description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。">
+<meta property="og:updated_time" content="2017-04-20T11:45:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DKIpaBuilder shell实现自动打包ipa并上传到fir.im">
+<meta name="twitter:description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'bingozb'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bingozb.github.io/15.html"/>
+
+
+
+
+
+  <title> DKIpaBuilder shell实现自动打包ipa并上传到fir.im | Bingo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Bingo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://bingozb.github.io/15.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Bingo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Bingo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Bingo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                DKIpaBuilder shell实现自动打包ipa并上传到fir.im
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-12T18:35:01+08:00">
+                2017-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/解决方案/" itemprop="url" rel="index">
+                    <span itemprop="name">解决方案</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/15.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="15.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。</p>
+<a id="more"></a>
+<h4 id="为什么不采用-Jenkins"><a href="#为什么不采用-Jenkins" class="headerlink" title="为什么不采用 Jenkins"></a>为什么不采用 Jenkins</h4><p>首先搞清楚 Jenkins 是什么。</p>
+<p><a href="https://jenkins.io/index.html" target="_blank" rel="external">Jenkins</a> 是一个开源项目，提供了一种易于使用的持续集成系统，使开发者从繁杂的集成中解脱出来，专注于更为重要的业务逻辑实现上。同时 Jenkins 能实施监控集成中存在的错误，提供详细的日志文件和提醒功能，还能用图表的形式形象地展示项目构建的趋势和稳定性。</p>
+<p>根据官方定义，Jenkins 有以下的用途：</p>
+<ul>
+<li>构建项目</li>
+<li>跑测试用例检测bug</li>
+<li>静态代码检测</li>
+<li>部署</li>
+</ul>
+<p>刚开始在思考持续构建问题的时候，在网上摸索得到最多的结果就是 Jenkins，各种持续集成如 Jenkins+Git+Maven+Shell+Tomcat、Gitlab+jenkins+shell、Jenkins+Git+Maven+tomcat 等等，不同领域都有着不一样的集成。但是，无一例外，集成的成本非常非常高，非常麻烦，出错也不好定位与解决。我尝试搭建，构建了几十次扔然失败，感觉有点绕，那么问题来了，绕在哪里？</p>
+<p>思路是，基于 webHook，在基于 git 协议的托管平台上，每次收到 pull request 的时候往我们自己的服务器上 post 一个请求，服务器上用 nginx 反向代理到某个有 nodejs 监听的端口上，触发 shell 脚本 pull 项目代码，然后打包 ipa 并自动发布到内测分发平台上。</p>
+<p>想法很美好，但是针对 iOS 来说，打包 ipa 必须要有 xcode 环境，而我们的 Ubuntu<br> 系统并不能安装 Xcode，最多通过安装 GNUSetp 来编译 Objective-C 的文件。换句话说，没有 mac 环境，用 Jenkins 也无法实现我们需求。 </p>
+<p>现在我们需要一个 mac 服务器，但是租赁的价格非常昂贵。网上有人用 mac mini 来当 macOS 服务器，但是并不在外网环境，Coding、GitHub 等平台的 webHook 接收不到。</p>
+<p>好了，又有人有想法了，既然不能被动接收 post 请求，那就反过来主动轮询 Coding 等平台上面的分支，如果发现有新的 commit，就触发接下来的一系列事件。如果要足够时效性，轮询的时间间隔可能还要考虑1分钟左右，（远程托管平台 : 虽然我不会奔溃，但我鄙视你）。看似可行，但是问题又来了，打包的时间好久。</p>
+<p>因为 mini 是机械硬盘，读写速度慢，打包可能要好几分钟，大一点的项目可能要十几分钟，如果 CocoaPods 安装了很大的第三方库或者 OC 与 Swift 混编的时候，甚至只是 storyboard 和 xib 文件非常多的时候，可能会打包几十分钟。这很坑爹啊，明明我自己的电脑是 macBook Pro，有着256G的固态硬盘，为什么我要绕到 mini 去打包？</p>
+<p>另外，明明我的 Xcode 已经什么都配好了，我想省掉的只是每次 Archive 都要经过的那几个步骤，为什么我要重新配 mini 上的环境，还要配 Jenkins 里的 provisioning Profile，还要配什么钥匙串，讲道理，不绕吗？</p>
+<p>出于以上的以及其它的种种问题，最终我不采用 Jenkins 来持续集成，至少针对 iOS 我是拒绝的，这个时候需要想些别的办法。</p>
+<h4 id="pre-push-hook"><a href="#pre-push-hook" class="headerlink" title="pre-push hook"></a>pre-push hook</h4><p>于是我想到了个办法，换个思想，先打包ipa，上传到分发平台，然后才push。这样的话，操作完全是在本机，不需要服务器。而相关的配置，只要在 Xcode 中配置好，确定本地可以手动打包，就可以通过命令行来实现。</p>
+<p>把 push 放在最后是很巧妙的！在<a href="https://blog.bingo.ren/11.html" target="_blank" rel="external">《解决iOS项目文件合并.xcodeproj冲突》</a>中，用 xUnique 去解决问题，切入点就是 hooks，选择的是 pre-commit。这种情况不适合 pre-commit，而应该选择 pre-push。这样就可以用 pre-push 这个钩子来先调用 Shell 脚本。对我们而言，不需要敲什么别的命令，只要一句非常普通的 push 命令。</p>
+<p>开始写 pre-push，先在项目根目录创建一个 Shell 文件，并在 pre-push 中写入执行它。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>cd to/path/project </div><div class="line"><span class="variable">$ </span>touch DKIpaBuilder.sh</div><div class="line"><span class="variable">$ </span>chmod <span class="number">777</span> DKIpaBuilder.sh</div><div class="line"><span class="variable">$ </span>&#123; echo <span class="string">'#!/bin/sh'</span>; echo <span class="string">'./DKIpaBuilder.sh'</span>; &#125; &gt; .git/hooks/pre-push</div></pre></td></tr></table></figure>
+<h4 id="DKIpaBuilder-sh"><a href="#DKIpaBuilder-sh" class="headerlink" title="DKIpaBuilder.sh"></a>DKIpaBuilder.sh</h4><p>前面的触发器已经搭建好了，现在的重点已经转移到后续工作了，如何用命令行去打包 ipa，并上传到 fir.im。</p>
+<p>用命令行打包是重点，也是 Jenkins 帮用户搞定的部分中最难的一部分，众所周知的是用 Xcode 自带的 Command Line Tools。顺便说一下这个 shell 脚本依赖的环境。</p>
+<ul>
+<li>MacOS 10.9+ </li>
+<li>Xcode 6.0 or later and Command Line Tools </li>
+<li>WorkSpace 工程，例如使用了 Cocoapods 依赖库管理的工程</li>
+<li>配置好开发证书和 Ad Hoc 证书（for Debug）和（for Release），建议在 Xcode 中选择 Automatically manage signing</li>
+<li>工程中配置好 Scheme 并勾上 Shared</li>
+</ul>
+<p>好了，接下来上脚本源码，大概分为以下几步：</p>
+<p><strong>shell config</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># target name</span></div><div class="line"><span class="attr">target_name</span>=<span class="string">"SF"</span></div><div class="line"></div><div class="line"><span class="comment"># workspace name</span></div><div class="line"><span class="attr">build_workspace</span>=<span class="string">"$&#123;target_name&#125;.xcworkspace"</span> </div><div class="line"></div><div class="line"><span class="comment"># project name and path</span></div><div class="line"><span class="attr">project_path</span>=$(pwd)</div><div class="line"><span class="attr">project_name</span>=$(ls | grep xcodeproj | awk -F.xcodeproj <span class="string">'&#123;print $1&#125;'</span>)</div><div class="line"></div><div class="line"><span class="comment"># provisiong profile name</span></div><div class="line"><span class="attr">provisioningProfile</span>=<span class="string">'"XC iOS Ad Hoc: cn.dankal.$&#123;target_name&#125;"'</span></div><div class="line"></div><div class="line"><span class="comment"># fir token</span></div><div class="line"><span class="attr">fir_token</span>=<span class="string">"19cbd0975bf5099b68a045a73a5c4fe2"</span></div><div class="line"></div><div class="line"><span class="comment"># scheme name</span></div><div class="line"><span class="attr">build_scheme</span>=<span class="string">"SF"</span> </div><div class="line"></div><div class="line"><span class="comment"># build config. the default is Debug|Release</span></div><div class="line"><span class="attr">build_config</span>=<span class="string">"Release"</span></div></pre></td></tr></table></figure>
+<p><strong>clean</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># clean build</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"****** DKIpaBuilder: 开始清理构建缓存 ******"</span></div><div class="line">clean_cmd=<span class="string">'xcodebuild'</span></div><div class="line">clean_cmd=<span class="variable">$&#123;clean_cmd&#125;</span><span class="string">' clean -workspace '</span><span class="variable">$&#123;build_workspace&#125;</span><span class="string">' -scheme '</span><span class="variable">$&#123;build_scheme&#125;</span><span class="string">' -configuration '</span><span class="variable">$&#123;build_config&#125;</span></div><div class="line"><span class="variable">$clean_cmd</span> &gt;  <span class="variable">$build_path</span>/clean.log || <span class="built_in">exit</span></div></pre></td></tr></table></figure>
+<p><strong>build &amp; archive, generate the archive file</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"****** DKIpaBuilder: 清理构建缓存文件完毕，开始归档 ******"</span></div><div class="line">archive_name=<span class="string">"<span class="variable">$&#123;target_name&#125;</span>_<span class="variable">$&#123;timeStamp&#125;</span>.xcarchive"</span></div><div class="line">archive_path=<span class="variable">$&#123;build_path&#125;</span>/<span class="variable">$archive_name</span> </div><div class="line">build_cmd=<span class="string">'xcodebuild'</span></div><div class="line">build_cmd=<span class="variable">$&#123;build_cmd&#125;</span><span class="string">' -workspace '</span><span class="variable">$&#123;build_workspace&#125;</span><span class="string">' -scheme '</span><span class="variable">$&#123;build_scheme&#125;</span><span class="string">' -destination generic/platform=iOS archive -configuration '</span><span class="variable">$&#123;build_config&#125;</span><span class="string">' ONLY_ACTIVE_ARCH=NO -archivePath '</span><span class="variable">$&#123;archive_path&#125;</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"****** DKIpaBuilder: 归档完成，开始导出归档文件，路径:<span class="variable">$&#123;archive_path&#125;</span> ******"</span></div><div class="line"></div><div class="line"><span class="variable">$build_cmd</span> &gt; <span class="variable">$build_path</span>/archive.log || <span class="built_in">exit</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="string">"<span class="variable">$&#123;archive_path&#125;</span>"</span> ]; <span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span>  <span class="string">"****** DKIpaBuilder: 归档失败! 请查看日志文件，路径:<span class="variable">$&#123;build_path&#125;</span>/archive.log. ******"</span></div><div class="line">    <span class="built_in">exit</span> 2</div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"****** DKIpaBuilder: 归档完成，路径:<span class="variable">$&#123;archive_path&#125;</span> ******"</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p><strong>export to ipa</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># export to ipa </span></div><div class="line">ipa_name=<span class="string">"<span class="variable">$&#123;target_name&#125;</span>_ADHoc_<span class="variable">$&#123;timeStamp&#125;</span>.ipa"</span></div><div class="line">ipa_path=<span class="variable">$&#123;build_path&#125;</span>/<span class="variable">$ipa_name</span> </div><div class="line"></div><div class="line">ipa_cmd=<span class="string">'xcodebuild'</span></div><div class="line">ipa_cmd=<span class="variable">$&#123;ipa_cmd&#125;</span><span class="string">' -exportArchive -exportFormat ipa -archivePath '</span><span class="variable">$&#123;archive_path&#125;</span><span class="string">' -exportPath '</span><span class="variable">$&#123;ipa_path&#125;</span><span class="string">' -exportProvisioningProfile '</span><span class="variable">$&#123;provisioningProfile&#125;</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"****** DKIpaBuilder: 开始导出ipa文件，路径:<span class="variable">$&#123;ipa_path&#125;</span> ******"</span></div><div class="line"><span class="comment"># echo $&#123;ipa_cmd&#125;</span></div><div class="line"><span class="built_in">eval</span> <span class="variable">$&#123;ipa_cmd&#125;</span> &gt; <span class="variable">$build_path</span>/export.log || <span class="built_in">exit</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-f</span> <span class="string">"<span class="variable">$&#123;ipa_path&#125;</span>"</span> ]; <span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span>  <span class="string">"****** DKIpaBuilder: 导出ipa失败，请查看日志文件，路径:<span class="variable">$&#123;build_path&#125;</span>/export.log. ******"</span></div><div class="line">    <span class="built_in">exit</span> 2</div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"****** DKIpaBuilder: 导出ipa完成，路径:<span class="variable">$&#123;ipa_path&#125;</span> ******"</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p><strong>upload to fir.im</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">echo "<span class="strong">*****</span><span class="bullet">* DKIpaBuilder: 即将上传 ipa 到 fir.im *</span><span class="strong">*****</span>"</div><div class="line"><span class="section"># 上传ipa到fir</span></div><div class="line">fir login $&#123;fir_token&#125;</div><div class="line">echo "<span class="strong">*****</span><span class="bullet">* DKIpaBuilder: 解析 ipa *</span><span class="strong">*****</span>"</div><div class="line">fir i $&#123;ipa_path&#125;</div><div class="line">echo "<span class="strong">*****</span><span class="bullet">* DKIpaBuilder: 上传 ipa *</span><span class="strong">*****</span>"</div><div class="line">fir p $&#123;ipa_path&#125;</div><div class="line">echo "<span class="strong">*****</span><span class="bullet">* DKIpaBuilder: 上传成功，构建任务已完成！*</span><span class="strong">*****</span>"</div></pre></td></tr></table></figure>
+<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><p>贴上一行 push 代码后的完整 log。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">Bingos-MacBook-Pro:SF bingo$ git <span class="keyword">push</span> origin master</div><div class="line"><span class="symbol">mkdir:</span> ./build: File exists</div><div class="line">****** DKIpaBuilder: 开始构建任务，当前版本【<span class="number">0.2</span><span class="meta">.4</span>】，构建号【<span class="number">1</span>】 ******</div><div class="line">****** DKIpaBuilder: 开始清理构建缓存 ******</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">57.082</span> xcodebuild[<span class="number">15249</span>:<span class="number">206686</span>] [MT] DVTPlugInManager: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for KSImageNamed.ideplugin (com.ksuther.KSImageNamed) <span class="keyword">not</span> present</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">57.134</span> xcodebuild[<span class="number">15249</span>:<span class="number">206686</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/VVDocumenter-Xcode.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">57.134</span> xcodebuild[<span class="number">15249</span>:<span class="number">206686</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/SCXcodeSwitchExpander.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">57.134</span> xcodebuild[<span class="number">15249</span>:<span class="number">206686</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/DXXcodeConsoleUnicodePlugin.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">57.135</span> xcodebuild[<span class="number">15249</span>:<span class="number">206686</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/CocoaPods.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">57.135</span> xcodebuild[<span class="number">15249</span>:<span class="number">206686</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line">****** DKIpaBuilder: 清理构建缓存文件完毕，开始归档 ******</div><div class="line">****** DKIpaBuilder: 归档完成，开始导出归档文件，路径:./build/SF_2017-<span class="number">02</span>-<span class="number">12</span>-<span class="number">18</span>-<span class="number">32</span>-<span class="number">56.</span>xcarchive ******</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">59.697</span> xcodebuild[<span class="number">15262</span>:<span class="number">206786</span>] [MT] DVTPlugInManager: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for KSImageNamed.ideplugin (com.ksuther.KSImageNamed) <span class="keyword">not</span> present</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">59.750</span> xcodebuild[<span class="number">15262</span>:<span class="number">206786</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/VVDocumenter-Xcode.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">59.751</span> xcodebuild[<span class="number">15262</span>:<span class="number">206786</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/SCXcodeSwitchExpander.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">59.751</span> xcodebuild[<span class="number">15262</span>:<span class="number">206786</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/DXXcodeConsoleUnicodePlugin.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">59.751</span> xcodebuild[<span class="number">15262</span>:<span class="number">206786</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/CocoaPods.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">32</span>:<span class="number">59.751</span> xcodebuild[<span class="number">15262</span>:<span class="number">206786</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line">****** DKIpaBuilder: 归档完成，路径:./build/SF_2017-<span class="number">02</span>-<span class="number">12</span>-<span class="number">18</span>-<span class="number">32</span>-<span class="number">56.</span>xcarchive ******</div><div class="line">****** DKIpaBuilder: 开始导出ipa文件，路径:./build/SF_ADHoc_2017-<span class="number">02</span>-<span class="number">12</span>-<span class="number">18</span>-<span class="number">32</span>-<span class="number">56.</span>ipa ******</div><div class="line">--- xcodebuild: WARNING: -exportArchive without -exportOptionsPlist is deprecated</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">33</span>:<span class="number">44.754</span> xcodebuild[<span class="number">18059</span>:<span class="number">212703</span>] [MT] DVTPlugInManager: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for KSImageNamed.ideplugin (com.ksuther.KSImageNamed) <span class="keyword">not</span> present</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">33</span>:<span class="number">44.810</span> xcodebuild[<span class="number">18059</span>:<span class="number">212703</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/VVDocumenter-Xcode.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">33</span>:<span class="number">44.810</span> xcodebuild[<span class="number">18059</span>:<span class="number">212703</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/SCXcodeSwitchExpander.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">33</span>:<span class="number">44.811</span> xcodebuild[<span class="number">18059</span>:<span class="number">212703</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/DXXcodeConsoleUnicodePlugin.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">33</span>:<span class="number">44.811</span> xcodebuild[<span class="number">18059</span>:<span class="number">212703</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/CocoaPods.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">2017</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">18</span>:<span class="number">33</span>:<span class="number">44.811</span> xcodebuild[<span class="number">18059</span>:<span class="number">212703</span>] [MT] PluginLoading: Required plug-<span class="keyword">in</span> compatibility UUID E0A62D1F-3C18-4D74-BFE5-A4167D643966 for plug-<span class="keyword">in</span> <span class="meta">at</span> path <span class="string">'~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin'</span> <span class="keyword">not</span> present <span class="keyword">in</span> DVTPlugInCompatibilityUUIDs</div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line"><span class="number">1.2</span><span class="meta">.840</span><span class="meta">.113635</span><span class="meta">.100</span><span class="meta">.1</span><span class="meta">.61</span></div><div class="line">****** DKIpaBuilder: 导出ipa完成，路径:./build/SF_ADHoc_2017-<span class="number">02</span>-<span class="number">12</span>-<span class="number">18</span>-<span class="number">32</span>-<span class="number">56.</span>ipa ******</div><div class="line">****** DKIpaBuilder: 即将上传 ipa 到 fir.im ******</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">51.994670</span> #<span class="number">18073</span>]  INFO -- : Login succeed, previous user<span class="string">'s email: bingo@dankal.cn</span></div><div class="line">I, [2017-02-12T18:33:51.997097 #18073]  INFO -- : Login succeed, current  user's email: bingo@dankal.cn</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">51.997139</span> #<span class="number">18073</span>]  INFO -- : </div><div class="line">****** DKIpaBuilder: 解析 ipa ******</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">52.537591</span> #<span class="number">18077</span>]  INFO -- : Analyzing ipa file......</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">52.537691</span> #<span class="number">18077</span>]  INFO -- : ✈ -------------------------------------------- ✈</div><div class="line"><span class="symbol">security:</span> SecPolicySetValue: One <span class="keyword">or</span> more parameters passed to a function were <span class="keyword">not</span> valid.</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.494898</span> #<span class="number">18077</span>]  INFO -- : type: ios</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.495004</span> #<span class="number">18077</span>]  INFO -- : identifier: cn.dankal.SF</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.495027</span> #<span class="number">18077</span>]  INFO -- : name: SF</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.495049</span> #<span class="number">18077</span>]  INFO -- : display_name: 顺丰大当家</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.495071</span> #<span class="number">18077</span>]  INFO -- : build: <span class="number">1</span></div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.495087</span> #<span class="number">18077</span>]  INFO -- : version: <span class="number">0.2</span><span class="meta">.4</span></div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.495189</span> #<span class="number">18077</span>]  INFO -- : devices: [<span class="string">"8912698044eeacb3d12426f4e9a1469fd060fbaf"</span>, <span class="string">"b45b74ee7c93cbe95a4b9df9b8914a6c2f502800"</span>, <span class="string">"298c6e6325e6c580198d98732eb2212912989fc7"</span>, <span class="string">"9269a1abd383b440c3f1c5aa97a8c06be6b858b6"</span>, <span class="string">"939c0a3464a486657a450ac629d42939d714bed0"</span>, <span class="string">"e984ef9183f24f541cdd8f22161d628ff6519fd2"</span>, <span class="string">"056e23a5ba30dd2181d90507bde9bcb9442afdee"</span>, <span class="string">"b4b1d7b6828778f60adc59843be9ec8060d9ac2c"</span>, <span class="string">"cb3a1628b15fa0b39c0b7eee8487fae97ba57b41"</span>, <span class="string">"8517325a2ee1b640a61b6592da11908fdb6d6ff2"</span>, <span class="string">"010dece24480cf968750835a94aaecc566094f53"</span>, <span class="string">"ba591cecf0c36271c54a3fadf6a07a44e0e4f4d0"</span>, <span class="string">"d8a32422afa0aa1b58644733776f6d2f3f04203c"</span>, <span class="string">"0b72cd659b790b54a0eaa2f49806f38a9633638e"</span>, <span class="string">"9ba116a06f5071e32f46962fc866fe037bbfe9fa"</span>, <span class="string">"31a273dc5209aacfea6d787c93574dec4ea2172d"</span>, <span class="string">"aa8c668fede84bec8c0399e7e5669f42f9afdbc7"</span>, <span class="string">"31681d5b2da1a09795608732090df5ba6ba26dee"</span>, <span class="string">"df4b23976e7f63cdcb1a0fd73cdf17ff3b7b5795"</span>, <span class="string">"3e3dcc6db1b20c4439ba260a43b047a7ac6a8fd0"</span>, <span class="string">"85463ba4d3616542f7944ca41709b06f64dca5c1"</span>, <span class="string">"e340f9e6cdc8411d05449f689bb018c36f1981a9"</span>, <span class="string">"a1c4cdc6c7da483ca4f80fb5589713ba3c9cb7a1"</span>, <span class="string">"6c3ed2b3fefe74c611ac5b32c43a082c4c5bc3e3"</span>, <span class="string">"33438fc50f576b8d60c8c3182788b787a012182c"</span>, <span class="string">"72e1a4e155e6bfa84e08aec1fb36c1c67e3025d1"</span>, <span class="string">"e60330cdb817e00578d46cff328983fce5bb072e"</span>, <span class="string">"289bbfc7681ccf074d3fbd4037f0bcb6e855354f"</span>, <span class="string">"f21f49939ffb74a4018dce8f64f85387623a0556"</span>, <span class="string">"6782a38eff5b46cca0275dd903953b656a7dda43"</span>, <span class="string">"df72fe073cd77571f6a2e1b38b9ffd0c04a1ef94"</span>, <span class="string">"5887e732dcd301676690bae14e0b5822db35dabd"</span>, <span class="string">"930bab0f435ffcad8e77655f3d5fae5ed073e0ce"</span>, <span class="string">"096cb4be2e4bc3391d819920fb988422a9f3c8b5"</span>, <span class="string">"8e2476617934cb439ab5c560cf05e38e6bdbaf88"</span>, <span class="string">"7d075e37eabced973af3d061be342620c5f21d52"</span>, <span class="string">"fe019811c542ba411d87d14717d569d1f11f7bb1"</span>, <span class="string">"3e69212a532b24ecac40e3f0039609101fb538eb"</span>]</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.495286</span> #<span class="number">18077</span>]  INFO -- : release_type: adhoc</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.495318</span> #<span class="number">18077</span>]  INFO -- : distribution_name: XC iOS Ad Hoc: cn.dankal.SF - Shenzhen Dankal Creative Technology Co., Ltd.</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">53.495345</span> #<span class="number">18077</span>]  INFO -- : </div><div class="line">****** DKIpaBuilder: 上传 ipa ******</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">54.876226</span> #<span class="number">18082</span>]  INFO -- : Publishing app via bingo&lt;bingo@dankal.cn&gt;.......</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">54.876368</span> #<span class="number">18082</span>]  INFO -- : ✈ -------------------------------------------- ✈</div><div class="line"><span class="symbol">security:</span> SecPolicySetValue: One <span class="keyword">or</span> more parameters passed to a function were <span class="keyword">not</span> valid.</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">55.871057</span> #<span class="number">18082</span>]  INFO -- : Fetching cn.dankal.SF@fir.im uploading info......</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">55.871157</span> #<span class="number">18082</span>]  INFO -- : Uploading app: SF-<span class="number">0.2</span><span class="meta">.4</span>(Build <span class="number">1</span>)</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">56.097807</span> #<span class="number">18082</span>]  INFO -- : Uploading app icon......</div><div class="line">I, [<span class="number">2017</span>-<span class="number">02</span>-12T18:<span class="number">33</span>:<span class="number">56.097972</span> #<span class="number">18082</span>]  INFO -- : Converting app<span class="string">'s icon......</span></div><div class="line">I, [2017-02-12T18:33:56.705341 #18082]  INFO -- : Uploading app binary......</div><div class="line">I, [2017-02-12T18:42:27.814654 #18082]  INFO -- : Updating devices info......</div><div class="line">I, [2017-02-12T18:42:27.940879 #18082]  INFO -- : Fetch app info from fir.im</div><div class="line">I, [2017-02-12T18:42:28.074969 #18082]  INFO -- : ✈ -------------------------------------------- ✈</div><div class="line">I, [2017-02-12T18:42:28.075039 #18082]  INFO -- : Published succeed: http://fir.im/sfddj</div><div class="line">I, [2017-02-12T18:42:28.075068 #18082]  INFO -- : </div><div class="line">****** DKIpaBuilder: 上传成功，构建任务已完成！******</div><div class="line">Counting objects: 67, done.</div><div class="line">Delta compression using up to 8 threads.</div><div class="line">Compressing objects: 100% (65/65), done.</div><div class="line">Writing objects: 100% (67/67), 20.67 KiB | 0 bytes/s, done.</div><div class="line">Total 67 (delta 43), reused 0 (delta 0)</div><div class="line">To https://git.coding.net/dankal2188/SF.git</div><div class="line">   3d4cad5..bd6de73  master -&gt; master</div><div class="line">Bingos-MacBook-Pro:SF bingo$</div></pre></td></tr></table></figure>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>用命令行上传 ipa 到 fir.im 是没有更新日志的，需要手动到平台网页去编辑更新日志。但这也不是事儿，把 git commit 的 message 拷贝粘贴过去就是了，也就鼠标点几下子的事。（这也嫌麻烦？无解了，Jenkins 也不帮不了你）</p>
+<h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>对于每一个新项目，只需要修改 DKIpaBuilder.sh 的前面的几个配置，并且创建一个 pre-push 的 hook，配置过程5分钟不到，一句 git push 即可打包并上传到 fir.im，你还想用 Jenkins 吗？</p>
+<p>完整的 shell 脚本与 hook 已经放上 <a href="https://github.com/bingozb/DKIpaBuilder" target="_blank" rel="external">GitHub-DKIpaBuilder</a>，如果您有更好的解决方案，欢迎 Issues。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Shell/" rel="tag"># Shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/16.html" rel="next" title="移动端规划大纲">
+                <i class="fa fa-chevron-left"></i> 移动端规划大纲
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/14.html" rel="prev" title="MacOS配置MySQL的my.cnf">
+                MacOS配置MySQL的my.cnf <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="15.html"
+           data-title="DKIpaBuilder shell实现自动打包ipa并上传到fir.im" data-url="https://bingozb.github.io/15.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Bingo" />
+          <p class="site-author-name" itemprop="name">Bingo</p>
+          <p class="site-description motion-element" itemprop="description">He who hesitates is lost.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么不采用-Jenkins"><span class="nav-number">2.</span> <span class="nav-text">为什么不采用 Jenkins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pre-push-hook"><span class="nav-number">3.</span> <span class="nav-text">pre-push hook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DKIpaBuilder-sh"><span class="nav-number">4.</span> <span class="nav-text">DKIpaBuilder.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">5.</span> <span class="nav-text">运行结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充"><span class="nav-number">6.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后话"><span class="nav-number">7.</span> <span class="nav-text">后话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  Copyright © 
+  <span itemprop="copyrightYear">2017
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bingo
+  </span>
+  All rights reserved.
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bingozb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

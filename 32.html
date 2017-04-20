@@ -1,0 +1,773 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Mac,Linux,SSH," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言最近在摸索持续构建，正如之前的文章《DKIpaBuilder shell实现自动打包ipa并上传到fir.im》所言，“现在我们需要一个 mac 服务器，但是租赁的价格非常昂贵。网上有人用 mac mini 来当 macOS 服务器，但是并不在外网环境，Coding、GitHub 等平台的 webHook 接收不到。” 于是有个想法，利用 SSH 反向隧道穿透 NAT，连接内网的 mac mi">
+<meta name="keywords" content="Mac,Linux,SSH">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用SSH反向隧道进行内网穿透">
+<meta property="og:url" content="https://bingozb.github.io/32.html">
+<meta property="og:site_name" content="Bingo's Blog">
+<meta property="og:description" content="前言最近在摸索持续构建，正如之前的文章《DKIpaBuilder shell实现自动打包ipa并上传到fir.im》所言，“现在我们需要一个 mac 服务器，但是租赁的价格非常昂贵。网上有人用 mac mini 来当 macOS 服务器，但是并不在外网环境，Coding、GitHub 等平台的 webHook 接收不到。” 于是有个想法，利用 SSH 反向隧道穿透 NAT，连接内网的 mac mi">
+<meta property="og:updated_time" content="2017-04-20T12:47:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用SSH反向隧道进行内网穿透">
+<meta name="twitter:description" content="前言最近在摸索持续构建，正如之前的文章《DKIpaBuilder shell实现自动打包ipa并上传到fir.im》所言，“现在我们需要一个 mac 服务器，但是租赁的价格非常昂贵。网上有人用 mac mini 来当 macOS 服务器，但是并不在外网环境，Coding、GitHub 等平台的 webHook 接收不到。” 于是有个想法，利用 SSH 反向隧道穿透 NAT，连接内网的 mac mi">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'bingozb'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bingozb.github.io/32.html"/>
+
+
+
+
+
+  <title> 使用SSH反向隧道进行内网穿透 | Bingo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Bingo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://bingozb.github.io/32.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Bingo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Bingo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Bingo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用SSH反向隧道进行内网穿透
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-10T15:41:31+08:00">
+                2017-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/战斗笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">战斗笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/32.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="32.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在摸索持续构建，正如之前的文章<a href="https://blog.bingo.ren/15.html" target="_blank" rel="external">《DKIpaBuilder shell实现自动打包ipa并上传到fir.im》</a>所言，“现在我们需要一个 mac 服务器，但是租赁的价格非常昂贵。网上有人用 mac mini 来当 macOS 服务器，但是并不在外网环境，Coding、GitHub 等平台的 webHook 接收不到。”</p>
+<p>于是有个想法，利用 SSH 反向隧道穿透 NAT，连接内网的 mac mini 服务器。</p>
+<a id="more"></a>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>现在有位于公网的 VPS 一台，位于 NAT 之后的 Mac Mini 一台，本机 Macbook Pro 一台，分别取代号 A、B、C。</p>
+<table>
+<thead>
+<tr>
+<th>机器代号</th>
+<th>机器位置</th>
+<th>地址</th>
+<th>账户</th>
+<th>ssh/sshd 端口</th>
+<th>是否需要运行sshd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>位于公网</td>
+<td>bingo.ren</td>
+<td>root</td>
+<td>22</td>
+<td>是</td>
+</tr>
+<tr>
+<td>B</td>
+<td>位于NAT之后</td>
+<td>localhost</td>
+<td>dankal</td>
+<td>22</td>
+<td>是</td>
+</tr>
+<tr>
+<td>C</td>
+<td>位于NAT之后</td>
+<td>localhost</td>
+<td>bingo</td>
+<td>22</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<p>A 上的 WebServer 为 Nginx，通过 location 配置规则，把 webhook 的请求反向代理到了 Nodejs 监听的端口 (eg. 7777) </p>
+<p>目标是实现自动化部署需求：当代码提交并 Push 到 GitHub 或者 Coding 等平台时，平台往位于公网的 A 发送一个 Http Request 传递 Push Event，A 上的 nodejs 触发 shell 脚本，通过 ssh 通道连接并执行 B 上的 Shell 脚本，B 上的 Shell 脚本执行 fastlane 命令实现持续构建，自动实现单元测试、屏幕截图、打包、发布等操作。</p>
+<p>所以，搞这么多，最基本的就是要穿透内网，这就是现在首先要做的事情。</p>
+<h2 id="稳定性维持"><a href="#稳定性维持" class="headerlink" title="稳定性维持"></a>稳定性维持</h2><p>不幸的是 SSH 连接是会超时关闭的，如果连接关闭，隧道无法维持，那么 A 就无法利用反向隧道穿透 B 所在的 NAT 了，所以我们需要一种方案来提供一条稳定的 SSH 反向隧道。</p>
+<p>一个最简单的方法就是 <code>autossh</code>，这个软件会在超时之后自动重新建立 SSH 隧道，这样就解决了隧道的稳定性问题。</p>
+<h3 id="安装-autossh"><a href="#安装-autossh" class="headerlink" title="安装 autossh"></a>安装 autossh</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span><span class="keyword">install </span>autossh</div></pre></td></tr></table></figure>
+<h2 id="配置公网-VPS（A）"><a href="#配置公网-VPS（A）" class="headerlink" title="配置公网 VPS（A）"></a>配置公网 VPS（A）</h2><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>首先在 A 上编辑 sshd 的配置文件 sshd_config，将 GatewayPorts 开关打开</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A $ <span class="keyword">vim</span> /etc/ssh/sshd_config</div><div class="line">    	</div><div class="line">GatewayPorts yes</div></pre></td></tr></table></figure>
+<ul>
+<li><p>在 CentOS 下默认是<code>#GatewayPorts no</code>，把注释打开，然后把 no 改为 yes；</p>
+</li>
+<li><p>在 Ubuntu 下默认没有 GatewayPorts，直接补一行 <code>GatewayPorts yes</code> 即可</p>
+</li>
+</ul>
+<h3 id="重启-sshd-服务"><a href="#重启-sshd-服务" class="headerlink" title="重启 sshd 服务"></a>重启 sshd 服务</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A $ service sshd restart</div></pre></td></tr></table></figure>
+<h3 id="防火墙开放端口"><a href="#防火墙开放端口" class="headerlink" title="防火墙开放端口"></a>防火墙开放端口</h3><p>以 6766 和 6777 为例，可自由替换。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">B $ sudo iptables -I INPUT -<span class="keyword">p</span> tcp --dport <span class="number">6766</span> -<span class="keyword">j</span> ACCEPT</div><div class="line">B $ sudo iptables -I INPUT -<span class="keyword">p</span> tcp --dport <span class="number">6777</span> -<span class="keyword">j</span> ACCEPT</div></pre></td></tr></table></figure>
+<h2 id="配置内网-Mac-Mini-B"><a href="#配置内网-Mac-Mini-B" class="headerlink" title="配置内网 Mac Mini (B)"></a>配置内网 Mac Mini (B)</h2><h3 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h3><p>在 B 上新建一个用户 dankal，由于 macOS 是基于 Unix 系统，暂时还没有找到新建用户的命令，Linux 下可以用下面的命令新建用户。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">B $ sudo useradd -<span class="keyword">m</span> dankal</div><div class="line">B $ sudo passwd dankal</div></pre></td></tr></table></figure>
+<p>而在 mini 上，暂时基于 GUI 操作，系统偏好设置 -&gt; 用户与群组 -&gt; 点按锁按钮以进行更改 -&gt; 添加用户账户。</p>
+<h3 id="配置-SSH-密钥"><a href="#配置-SSH-密钥" class="headerlink" title="配置 SSH 密钥"></a>配置 SSH 密钥</h3><h4 id="创建密钥"><a href="#创建密钥" class="headerlink" title="创建密钥"></a>创建密钥</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">B $ su dankal</div><div class="line">B $ ssh-keygen -t <span class="string">'rsa'</span> -C <span class="string">'dankal@mini'</span></div></pre></td></tr></table></figure>
+<p>注意该密钥不要设置密码，也就是运行 ssh-keygen 命令时尽管一路回车，不要输入额外的字符。</p>
+<h4 id="上传到-VPS（A）"><a href="#上传到-VPS（A）" class="headerlink" title="上传到 VPS（A）"></a>上传到 VPS（A）</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">B $ ssh-<span class="keyword">copy</span>-id root@bingo.ren</div></pre></td></tr></table></figure>
+<p>以往我都是 scp 上传公钥到服务器上，然后再 cat &gt;&gt; 写入 authorized_keys 文件。</p>
+<p>这里用 ssh-copy-id 可以不传公钥，一步实现上面的操作。</p>
+<h3 id="反向隧道"><a href="#反向隧道" class="headerlink" title="反向隧道"></a>反向隧道</h3><p>由 B 向 A 主动建立一个 SSH 隧道，将 A 的 6766 端口转发到 B 的 22 端口上，只要这条隧道不关闭，这个转发就是有效的。</p>
+<p>通过上面的步骤，安装完的 autossh 默认在 /usr/local/Celler/autossh 目录下，而 autossh.sh 脚本的地址为 /usr/local/Celler/autossh/1.4e/bin/autossh.sh。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">B $ <span class="keyword">cd</span> /usr/local/Celler/autossh/<span class="number">1.4</span><span class="keyword">e</span>/bin/</div><div class="line">B $ ./autossh -<span class="keyword">p</span> <span class="number">22</span> -M <span class="number">6777</span> -NR <span class="string">'*:6766:localhost:22'</span> root@bingo.ren</div></pre></td></tr></table></figure>
+<p>-M 参数指定的端口用来监听隧道的状态，与端口转发无关。</p>
+<p>有了这个端口转发，只需要访问 A 的 6766 端口反向连接 B 即可。</p>
+<h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>现在可以在 A 上使用这条反向隧道穿透 B 所在的 NAT，SSH 连接到 B：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A $ ssh -<span class="keyword">p</span> <span class="number">6766</span> dankal@localhost</div></pre></td></tr></table></figure>
+<p>或者是在 C 上直接穿透两层 NAT，SSH 连接到 B：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C $ ssh -<span class="keyword">p</span> <span class="number">6766</span> dankal@bingo.ren</div></pre></td></tr></table></figure>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li><p>如果 B 重启隧道就会消失。那么需要有一种手段在 B 每次启动时使用 autossh 来建立 SSH 隧道。在 linux 下可以使用 systemd 做成服务来解决，在 macOS 下暂时还没有找到解决方案。</p>
+</li>
+<li><p>动态端口转发，在 VPS（A）安装 ShadowsocksX，SOCKS v5 代理实现访问 Mini（B）上的网页。</p>
+</li>
+</ul>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>实现内网穿透并不难，但对于 Linux/Unix 操作系统的使用的熟练度有一定的要求，我在 ssh、sudoers、iptables 等上面花了不少时间，也踩了挺多的坑。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mac/" rel="tag"># Mac</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/SSH/" rel="tag"># SSH</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/33.html" rel="next" title="解决SSH免密码登陆失败">
+                <i class="fa fa-chevron-left"></i> 解决SSH免密码登陆失败
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/31.html" rel="prev" title="解决 App Installation failed, No code signature found.">
+                解决 App Installation failed, No code signature found. <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="32.html"
+           data-title="使用SSH反向隧道进行内网穿透" data-url="https://bingozb.github.io/32.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Bingo" />
+          <p class="site-author-name" itemprop="name">Bingo</p>
+          <p class="site-description motion-element" itemprop="description">He who hesitates is lost.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">2.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#稳定性维持"><span class="nav-number">3.</span> <span class="nav-text">稳定性维持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-autossh"><span class="nav-number">3.1.</span> <span class="nav-text">安装 autossh</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置公网-VPS（A）"><span class="nav-number">4.</span> <span class="nav-text">配置公网 VPS（A）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">4.1.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启-sshd-服务"><span class="nav-number">4.2.</span> <span class="nav-text">重启 sshd 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防火墙开放端口"><span class="nav-number">4.3.</span> <span class="nav-text">防火墙开放端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置内网-Mac-Mini-B"><span class="nav-number">5.</span> <span class="nav-text">配置内网 Mac Mini (B)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建用户"><span class="nav-number">5.1.</span> <span class="nav-text">新建用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-SSH-密钥"><span class="nav-number">5.2.</span> <span class="nav-text">配置 SSH 密钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建密钥"><span class="nav-number">5.2.1.</span> <span class="nav-text">创建密钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上传到-VPS（A）"><span class="nav-number">5.2.2.</span> <span class="nav-text">上传到 VPS（A）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向隧道"><span class="nav-number">5.3.</span> <span class="nav-text">反向隧道</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接"><span class="nav-number">6.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">7.</span> <span class="nav-text">TODO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">8.</span> <span class="nav-text">后话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  Copyright © 
+  <span itemprop="copyrightYear">2017
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bingo
+  </span>
+  All rights reserved.
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bingozb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

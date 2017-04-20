@@ -1,0 +1,882 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言一直用着阿里云 ECS ，说实话确实挺好的，只可惜太贵了，而且在国内很多事情做不了。最近在找国外的 VPS，最终选择了搬瓦工。以前一直用 Ubuntu，搬瓦工默认安装了32位 Centos 6，果断重装系统选择 minimal 版，小巧、纯净、安装快、启动快、适合作自动部署。接下来需要快速部署服务器让它运作起来。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos 6 x86 minimal 部署">
+<meta property="og:url" content="https://bingozb.github.io/28.html">
+<meta property="og:site_name" content="Bingo's Blog">
+<meta property="og:description" content="前言一直用着阿里云 ECS ，说实话确实挺好的，只可惜太贵了，而且在国内很多事情做不了。最近在找国外的 VPS，最终选择了搬瓦工。以前一直用 Ubuntu，搬瓦工默认安装了32位 Centos 6，果断重装系统选择 minimal 版，小巧、纯净、安装快、启动快、适合作自动部署。接下来需要快速部署服务器让它运作起来。">
+<meta property="og:updated_time" content="2017-04-20T12:41:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Centos 6 x86 minimal 部署">
+<meta name="twitter:description" content="前言一直用着阿里云 ECS ，说实话确实挺好的，只可惜太贵了，而且在国内很多事情做不了。最近在找国外的 VPS，最终选择了搬瓦工。以前一直用 Ubuntu，搬瓦工默认安装了32位 Centos 6，果断重装系统选择 minimal 版，小巧、纯净、安装快、启动快、适合作自动部署。接下来需要快速部署服务器让它运作起来。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'bingozb'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bingozb.github.io/28.html"/>
+
+
+
+
+
+  <title> Centos 6 x86 minimal 部署 | Bingo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Bingo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://bingozb.github.io/28.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Bingo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Bingo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Bingo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Centos 6 x86 minimal 部署
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T23:25:05+08:00">
+                2017-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/战斗笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">战斗笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/28.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="28.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直用着阿里云 ECS ，说实话确实挺好的，只可惜太贵了，而且在国内很多事情做不了。最近在找国外的 VPS，最终选择了搬瓦工。以前一直用 Ubuntu，搬瓦工默认安装了32位 Centos 6，果断重装系统选择 minimal 版，小巧、纯净、安装快、启动快、适合作自动部署。接下来需要快速部署服务器让它运作起来。</p>
+<a id="more"></a>
+<h2 id="更改-SSH-密码"><a href="#更改-SSH-密码" class="headerlink" title="更改 SSH 密码"></a>更改 SSH 密码</h2><h3 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h3><p>默认的随机密码记不住，也懒得保存，干脆就改掉它吧，至少在做免密登录前不用一直拷贝粘贴那么麻烦。</p>
+<h3 id="更改"><a href="#更改" class="headerlink" title="更改"></a>更改</h3><p>用 root 用户登录后，敲 <code>passwd</code> 命令。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>passwd</div></pre></td></tr></table></figure>
+<p>然后敲两遍新密码即可。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">更改用户 root 的密码 。</div><div class="line">新的 密码：</div><div class="line">重新输入新的 密码：</div><div class="line">passwd： 所有的身份验证令牌已经成功更新。</div></pre></td></tr></table></figure>
+<h2 id="更改-SSH-端口"><a href="#更改-SSH-端口" class="headerlink" title="更改 SSH 端口"></a>更改 SSH 端口</h2><h3 id="缘由-1"><a href="#缘由-1" class="headerlink" title="缘由"></a>缘由</h3><p>出于安全考虑，搬瓦工 vps 的 SSH 默认端口不是22，而是一个随机数，例如28766。如果不改回22，用 ssh 连服务器或者 scp 传文件的命令都要加上 -p 28766 或 -P 28766，虽然可以用 alias 来解决这个问题，但还是有点烦。</p>
+<h3 id="更改-1"><a href="#更改-1" class="headerlink" title="更改"></a>更改</h3><ul>
+<li>更改配置文件</li>
+</ul>
+<p>修改 ssh 服务配置文件，路径一般是<code>/etc/ssh/sshd_config</code>。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi <span class="regexp">/etc/</span>ssh<span class="regexp">/sshd_config</span></div></pre></td></tr></table></figure>
+<p>Centos 6 x86 minimal 上默认没有 vim，只有 vi。</p>
+<p>翻到最下面，将 Port 改为 22。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">PermitRootLogin</span> <span class="literal">yes</span></div><div class="line">Port <span class="number">22</span></div></pre></td></tr></table></figure>
+<ul>
+<li>重启 sshd 服务</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>service sshd restart</div></pre></td></tr></table></figure>
+<p>刷新 kiwivm 管理面板，已经可以看到 SSH Port 改为 22。</p>
+<h2 id="SSH-免密登录"><a href="#SSH-免密登录" class="headerlink" title="SSH 免密登录"></a>SSH 免密登录</h2><h3 id="缘由-2"><a href="#缘由-2" class="headerlink" title="缘由"></a>缘由</h3><p>每次登录自己的 VPS 还要输入密码，很麻烦，通过配置公钥来让自己免密登录服务器。每次都敲 ssh 命令也有点烦，结合 alias 实现<strong>快捷免密登录</strong>。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<li><p>在本地生成公钥/私钥对，如果已经生成过了可以忽略。</p>
+  <figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>ssh-keygen -t rsa -P <span class="string">''</span></div></pre></td></tr></table></figure>
+<p>  -P 表示密码，-P ‘’ 就表示空密码，也可以不用 -P 参数，这样就要三次回车，用 -P 就一次回车。</p>
+<p>  按 Command + Shift + H 可以进到个人文件夹，会生成 <code>.ssh</code>文件夹，里面有私钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code>。</p>
+</li>
+<li><p>服务器上修改 SSH 配置文件</p>
+  <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi <span class="regexp">/etc/</span>ssh<span class="regexp">/sshd_config</span></div></pre></td></tr></table></figure>
+<p>  找到下面三行并将每行开头的注释#去掉</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#RSAAuthentication</span> yes</div><div class="line"><span class="selector-id">#PubkeyAuthentication</span> yes</div><div class="line"><span class="selector-id">#AuthorizedKeysFile</span>      .ssh/authorized_keys</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>在服务器上新建<code>.ssh</code> 目录</p>
+  <figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> .ssh</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>把本地的公钥<code>id_rsa.pub</code>复制到服务器上的<code>.ssh</code>里</p>
+  <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp <span class="regexp">/Users/</span>bingo<span class="regexp">/.ssh/</span>id_rsa.pub root<span class="meta">@blog</span>.bingo.<span class="string">ren:</span><span class="regexp">/root/</span>.ssh/</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>服务器上把公钥添加到<code>.ssh/authorized_keys</code>文件里</p>
+  <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat <span class="regexp">/root/</span>.ssh<span class="regexp">/id_rsa.pub &gt;&gt; /</span>root<span class="regexp">/.ssh/</span>authorized_keys</div></pre></td></tr></table></figure>
+</li>
+<li><p>授权</p>
+  <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ chmod <span class="number">700</span> <span class="regexp">/root/</span>.ssh</div><div class="line">$ chmod <span class="number">600</span> <span class="regexp">/root/</span>.ssh<span class="regexp">/authorized_keys</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>重启 sshd</p>
+  <figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>service sshd restart</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="免密登录"><a href="#免密登录" class="headerlink" title="免密登录"></a>免密登录</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ssh root@blog.bingo.ren</div><div class="line">The authenticity <span class="keyword">of</span> host <span class="symbol">'blog.bingo.ren</span> (<span class="number">45.78</span>.<span class="number">46.239</span>)' can<span class="symbol">'t</span> be established.</div><div class="line">RSA key fingerprint <span class="keyword">is</span> SHA256:YPO7cW9V0UXbVapNs3wh47JrpkolJWPNJUBFd9p2s64.</div></pre></td></tr></table></figure>
+<p>敲 yes 回车，以后就可以免密登录了。</p>
+<h3 id="alias-快捷登录"><a href="#alias-快捷登录" class="headerlink" title="alias 快捷登录"></a>alias 快捷登录</h3><p>按 Command + Shift + H 进入个人目录，找到 .bashrc，如果没有则先创建，然后添加一行：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alias vps='ssh root@<span class="number">45.78</span><span class="number">.46</span><span class="number">.239</span>'</div></pre></td></tr></table></figure></p>
+<p>如果在同个目录下没有 .bash_profile 文件，则创建它，然后添加一行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ~/.bashrc</div></pre></td></tr></table></figure></p>
+<p>最后在终端执行即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> ~/.bashrc</div></pre></td></tr></table></figure></p>
+<p>vps 就是 ‘ssh root@45.78.46.239’ 的别名，以后在终端直接敲 vps 回车，跟敲 ssh root@45.78.46.239 然后回车的效果是一样的。</p>
+<p>结合前面配置公钥实现的免密登录，实现了 <strong>ssh 快捷免密登录服务器</strong>。</p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>根据需要安装环境，有四种组合模式。</p>
+<table>
+<thead>
+<tr>
+<th>组合模式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LNMP</td>
+<td>安装Nginx，不安装Apache、Tomcat（系统运行php-fpm进程）</td>
+</tr>
+<tr>
+<td>LAMP</td>
+<td>不安装Nginx、Tomcat，安装Apache（无php-fpm进程，php以模块形式加载在Apache中）</td>
+</tr>
+<tr>
+<td>LNMPA</td>
+<td>安装Nginx、Apache、不安装Tomcat（该模式下，静态资源由Nginx处理，PHP由Apache处理，无php-fpm进程，php以模块形式加载在Apache中） </td>
+</tr>
+<tr>
+<td>LNMT</td>
+<td>安装Nginx和Tomcat，不安装Apache（该模式下，静态资源由Nginx处理，JAVA由Tomcat处理，可安装PHP，支持多语言环境，同时运行php、java） </td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>PHP 用户推荐使用 LNMP 模式</li>
+<li>JAVA 用户推荐使用 LNMT 模式</li>
+<li>PHP + JAVA 用户使用 LNMT 模式</li>
+</ul>
+<p>什么？你在问我为什么不用 Apache？党派之争，请自行百度谷歌，我简单说一下个人的观点，Nginx 是事件驱动，轻量级，抗并发；而 Apache 相比之下为了稳定耗了太多内存，这在低配的服务器上是无法忍受的。</p>
+<p>我的标准：</p>
+<ul>
+<li>有一定量的并发需求的时候，服务器配置内存低的用 Nginx，内存几十个G的用 Apache。</li>
+<li>静态请求多的用 Nginx，动态请求多的用 Apache。</li>
+</ul>
+<p>结合我的标准，由于我的 vps 配置较低，暂时放的静态文件会较多比如个人博客，再加上我是 Java 用户，LNMT 是我的唯一选择，静态用 Nginx 处理，动态用 Tomcat 处理。</p>
+<p>假设你是一名 PHP 用户，请参考以下两篇文章。</p>
+<ul>
+<li><a href="http://www.nowamagic.net/librarys/veda/detail/1319" target="_blank" rel="external">《概念了解：CGI，FastCGI，PHP-CGI与PHP-FPM》</a></li>
+<li><a href="http://zyan.cc/nginx_php_v6/" target="_blank" rel="external">《Nginx 0.8.x + PHP 5.2.13(FastCGI)搭建胜过 Apache 十倍的Web服务器(第6版)》</a></li>
+</ul>
+<p>第二篇是国内最早详细介绍 Nginx + PHP 的文章， 作者从2007年的第1版，一直更新到2010年的第6版。我不知道现在为什么还有 PHP 开发人员没听过 FastCGI，不知道 php-fpm 进程。也罢，等某天我想转 PHP 了再去捣鼓这些问题吧。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li><p>安装 Screen</p>
+<ul>
+<li><p>CentOS / Redhat</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum -y <span class="keyword">install </span>wget <span class="keyword">screen </span>curl python</div></pre></td></tr></table></figure>
+</li>
+<li><p>Debian / Ubuntu</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt-get -y <span class="keyword">install </span>wget <span class="keyword">screen </span>curl python</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>下载 oneinstack</p>
+<ul>
+<li><p>阿里云用户下载</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>wget <span class="symbol">http:</span>/<span class="regexp">/aliyun-oss.linuxeye.com/oneinstack</span>-full.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>包含源码，国内外均可下载</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>wget <span class="symbol">http:</span>/<span class="regexp">/mirrors.linuxeye.com/oneinstack</span>-full.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>不包含源码，建议仅国外主机下载</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>wget <span class="symbol">http:</span>/<span class="regexp">/mirrors.linuxeye.com/oneinstack</span>.tar.gz</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>解压 oneinstack</p>
+</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ tar xzf oneinstack<span class="selector-class">.tar</span><span class="selector-class">.gz</span></div></pre></td></tr></table></figure>
+<ul>
+<li>开始安装</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>cd oneinstack    </div><div class="line"><span class="variable">$ </span>screen -S oneinstack </div><div class="line"><span class="variable">$ </span>./install.sh</div></pre></td></tr></table></figure>
+<p>如果网路出现中断，可以执行命令<code>screen -r oneinstack</code>重新连接安装窗口。</p>
+<p>出现这个界面就正式开始安装组件了。</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#######################################################################</div><div class="line">#       OneinStack for CentOS/RadHat <span class="number">5</span>+ Debian <span class="number">6</span>+ and Ubuntu <span class="number">12</span>+      #</div><div class="line">#       For more information please visit https:<span class="comment">//oneinstack.com      #</span></div><div class="line">#######################################################################</div><div class="line"></div><div class="line">Please input SSH port(Default: <span class="number">22</span>):</div></pre></td></tr></table></figure>
+<p>SSH 端口，默认22，前面已经将端口改为22了，可以直接回车。接下去根据前面选择好的组合模式进行选择即可，下面是我安装 LNMT 的组合。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="keyword">install</span> Web <span class="keyword">server</span>? [y/n]: y</div><div class="line"></div><div class="line">Please <span class="keyword">select</span> Nginx <span class="keyword">server</span>:</div><div class="line">        <span class="number">1.</span> <span class="keyword">Install</span> Nginx</div><div class="line">        <span class="number">2.</span> <span class="keyword">Install</span> Tengine</div><div class="line">        <span class="number">3.</span> <span class="keyword">Install</span> OpenResty</div><div class="line">        <span class="number">4.</span> <span class="keyword">Do</span> <span class="keyword">not</span> <span class="keyword">install</span></div><div class="line">Please <span class="keyword">input</span> a <span class="built_in">number</span>:(<span class="keyword">Default</span> <span class="number">1</span> press Enter) <span class="number">1</span></div><div class="line"></div><div class="line">Please <span class="keyword">select</span> Apache <span class="keyword">server</span>:</div><div class="line">        <span class="number">1.</span> <span class="keyword">Install</span> Apache<span class="number">-2.4</span></div><div class="line">        <span class="number">2.</span> <span class="keyword">Install</span> Apache<span class="number">-2.2</span></div><div class="line">        <span class="number">3.</span> <span class="keyword">Do</span> <span class="keyword">not</span> <span class="keyword">install</span></div><div class="line">Please <span class="keyword">input</span> a <span class="built_in">number</span>:(<span class="keyword">Default</span> <span class="number">3</span> press Enter) <span class="number">3</span></div><div class="line"></div><div class="line">Please <span class="keyword">select</span> tomcat <span class="keyword">server</span>:</div><div class="line">        <span class="number">1.</span> <span class="keyword">Install</span> Tomcat<span class="number">-8</span></div><div class="line">        <span class="number">2.</span> <span class="keyword">Install</span> Tomcat<span class="number">-7</span></div><div class="line">        <span class="number">3.</span> <span class="keyword">Install</span> Tomcat<span class="number">-6</span></div><div class="line">        <span class="number">4.</span> <span class="keyword">Do</span> <span class="keyword">not</span> <span class="keyword">install</span></div><div class="line">Please <span class="keyword">input</span> a <span class="built_in">number</span>:(<span class="keyword">Default</span> <span class="number">4</span> press Enter) <span class="number">1</span></div><div class="line"></div><div class="line">Please <span class="keyword">select</span> JDK <span class="keyword">version</span>:</div><div class="line">        <span class="number">1.</span> <span class="keyword">Install</span> JDK<span class="number">-1.8</span></div><div class="line">        <span class="number">2.</span> <span class="keyword">Install</span> JDK<span class="number">-1.7</span></div><div class="line">Please <span class="keyword">input</span> a <span class="built_in">number</span>:(<span class="keyword">Default</span> <span class="number">2</span> press Enter) <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="keyword">install</span> <span class="keyword">Database</span>? [y/n]: y</div><div class="line"></div><div class="line">Please <span class="keyword">select</span> a <span class="keyword">version</span> <span class="keyword">of</span> the <span class="keyword">Database</span>:</div><div class="line">         <span class="number">1.</span> <span class="keyword">Install</span> MySQL<span class="number">-5.7</span></div><div class="line">         <span class="number">2.</span> <span class="keyword">Install</span> MySQL<span class="number">-5.6</span></div><div class="line">         <span class="number">3.</span> <span class="keyword">Install</span> MySQL<span class="number">-5.5</span></div><div class="line">         <span class="number">4.</span> <span class="keyword">Install</span> MariaDB<span class="number">-10.1</span></div><div class="line">         <span class="number">5.</span> <span class="keyword">Install</span> MariaDB<span class="number">-10.0</span></div><div class="line">         <span class="number">6.</span> <span class="keyword">Install</span> MariaDB<span class="number">-5.5</span></div><div class="line">         <span class="number">7.</span> <span class="keyword">Install</span> Percona<span class="number">-5.7</span></div><div class="line">         <span class="number">8.</span> <span class="keyword">Install</span> Percona<span class="number">-5.6</span></div><div class="line">         <span class="number">9.</span> <span class="keyword">Install</span> Percona<span class="number">-5.5</span></div><div class="line">        <span class="number">10.</span> <span class="keyword">Install</span> AliSQL<span class="number">-5.6</span></div><div class="line">Please <span class="keyword">input</span> a <span class="built_in">number</span>:(<span class="keyword">Default</span> <span class="number">2</span> press Enter) <span class="number">1</span></div><div class="line">Please <span class="keyword">input</span> the root <span class="keyword">password</span> <span class="keyword">of</span> <span class="keyword">database</span>: xxxxxx</div><div class="line"></div><div class="line">Please <span class="keyword">choose</span> installation <span class="keyword">of</span> the <span class="keyword">database</span>:</div><div class="line">        <span class="number">1.</span> <span class="keyword">Install</span> <span class="keyword">database</span> <span class="keyword">from</span> <span class="built_in">binary</span> package.</div><div class="line">        <span class="number">2.</span> <span class="keyword">Install</span> <span class="keyword">database</span> <span class="keyword">from</span> <span class="keyword">source</span> package.</div><div class="line">Please <span class="keyword">input</span> a <span class="built_in">number</span>:(<span class="keyword">Default</span> <span class="number">1</span> press Enter) <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="keyword">install</span> PHP? [y/n]: n</div><div class="line"></div><div class="line"><span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="keyword">install</span> Pure-FTPd? [y/n]: y</div><div class="line"></div><div class="line"><span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="keyword">install</span> redis? [y/n]: y</div><div class="line"></div><div class="line"><span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="keyword">install</span> memcached? [y/n]: y</div><div class="line"></div><div class="line"><span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="keyword">install</span> HHVM? [y/n]: n</div></pre></td></tr></table></figure>
+<p>到这里为止，人工操作就结束了，接下来就等脚本自动安装完毕。</p>
+<p>安装完成会显示安装信息，最好拷贝保存起来。</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">####################Congratulations########################</div><div class="line">Total OneinStack Install Time: <span class="number">11</span> minutes</div><div class="line"></div><div class="line">Nginx install dir:              /usr/local/nginx</div><div class="line"></div><div class="line">Tomcat install dir:             /usr/local/tomcat</div><div class="line"></div><div class="line">Database install dir:           /usr/local/mysql</div><div class="line">Database data dir:              /data/mysql</div><div class="line">Database user:                  root</div><div class="line">Database password:              xxxxxx</div><div class="line"></div><div class="line">Pure-FTPd install dir:          /usr/local/pureftpd</div><div class="line">Create FTP virtual script:      ./pureftpd_vhost.sh</div><div class="line"></div><div class="line">redis install dir:              /usr/local/redis</div><div class="line"></div><div class="line">memcached install dir:          /usr/local/memcached</div><div class="line"></div><div class="line">index url:                      http:<span class="comment">//45.78.46.239/</span></div><div class="line"></div><div class="line">Please restart the server and see <span class="keyword">if</span> the services start up fine.</div><div class="line">Do you want to restart OS ? [y/n]: y</div></pre></td></tr></table></figure>
+<p>重启完成，环境就安装完毕了。</p>
+<h2 id="更改防火墙"><a href="#更改防火墙" class="headerlink" title="更改防火墙"></a>更改防火墙</h2><h3 id="查看防火墙状态"><a href="#查看防火墙状态" class="headerlink" title="查看防火墙状态"></a>查看防火墙状态</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>service iptables status</div></pre></td></tr></table></figure>
+<p>可以看到过滤器里只允许了21、22、80、443这几个端口，并做了一些并发限制。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Table:</span> filter</div><div class="line">Chain INPUT (policy DROP)</div><div class="line">num  target     prot opt source               destination         </div><div class="line"><span class="number">1</span>    ACCEPT     all  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           </div><div class="line"><span class="number">2</span>    ACCEPT     all  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           state RELATED,ESTABLISHED </div><div class="line"><span class="number">3</span>    ACCEPT     tcp  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           state NEW tcp dpt:<span class="number">22</span> </div><div class="line"><span class="number">4</span>    ACCEPT     tcp  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           state NEW tcp dpt:<span class="number">80</span> </div><div class="line"><span class="number">5</span>    ACCEPT     tcp  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           state NEW tcp dpt:<span class="number">21</span> </div><div class="line"><span class="number">6</span>    ACCEPT     tcp  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           state NEW tcp dpts:<span class="number">20000</span>:<span class="number">30000</span> </div><div class="line"><span class="number">7</span>    ACCEPT     tcp  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           state NEW tcp dpt:<span class="number">443</span> </div><div class="line"><span class="number">8</span>    ACCEPT     icmp --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           limit: avg <span class="number">1</span>/sec burst <span class="number">10</span> </div><div class="line"><span class="number">9</span>    ACCEPT     all  -f  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           limit: avg <span class="number">100</span>/sec burst <span class="number">100</span> </div><div class="line"><span class="number">10</span>   syn-flood  tcp  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           tcp flags:<span class="number">0x17</span>/<span class="number">0x02</span> </div><div class="line"><span class="number">11</span>   REJECT     all  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           reject-with icmp-host-prohibited</div></pre></td></tr></table></figure>
+<h3 id="添加需要开放的端口"><a href="#添加需要开放的端口" class="headerlink" title="添加需要开放的端口"></a>添加需要开放的端口</h3><p>例如 MySQL 的3306，Tomcat 的8080（如果已经用 nginx 把 80 端口反向代理到了 8080，就不需要开放 8080 端口了），加上一些自己希望开放的端口，例如我经常会开放几个端口例如 6666、7777、8888 等来做 webhook 自动部署。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi <span class="regexp">/etc/</span>sysconfig<span class="regexp">/iptables</span></div></pre></td></tr></table></figure>
+<p>添加并保存</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-A INPUT -p tcp -m <span class="keyword">state</span> --state NEW -m tcp --dport <span class="number">3306</span> -j ACCEPT</div><div class="line">-A INPUT -p tcp -m <span class="keyword">state</span> --state NEW -m tcp --dport <span class="number">8080</span> -j ACCEPT</div><div class="line">-A INPUT -p tcp -m <span class="keyword">state</span> --state NEW -m tcp --dport <span class="number">6666</span> -j ACCEPT</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>service iptables restart</div></pre></td></tr></table></figure>
+<h3 id="查看防火墙状态-1"><a href="#查看防火墙状态-1" class="headerlink" title="查看防火墙状态"></a>查看防火墙状态</h3><p>再次查看防火墙状态，就可以看到过滤器新增了刚刚添加的过滤规则，接受了 3306、8080 等端口。</p>
+<h2 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h2><h3 id="缘由-3"><a href="#缘由-3" class="headerlink" title="缘由"></a>缘由</h3><p>一般不直接使用root用户，需要新建一个数据库用户并授权所有权限，使用这个用户来远程登录。</p>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><ul>
+<li>登录数据库</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root -<span class="selector-tag">p</span></div><div class="line">Enter password:</div></pre></td></tr></table></figure>
+<ul>
+<li>新建用户</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">'bingo'</span>@<span class="string">'localhost'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'xxxxxx'</span>;</div><div class="line">$ <span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">'bingo'</span>@<span class="string">'%'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'xxxxxx'</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>授权</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">GRANT</span> ALL <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'bingo'</span>@<span class="string">'%'</span>;</div><div class="line">$ <span class="keyword">GRANT</span> ALL <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'bingo'</span>@<span class="string">'localhost'</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>刷新系统权限表，退出</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ flush privileges;</div><div class="line">$ <span class="keyword">exit</span></div></pre></td></tr></table></figure>
+<h2 id="Let’s-Encrypt-HTTPS"><a href="#Let’s-Encrypt-HTTPS" class="headerlink" title="Let’s Encrypt - HTTPS"></a>Let’s Encrypt - HTTPS</h2><h3 id="缘由-4"><a href="#缘由-4" class="headerlink" title="缘由"></a>缘由</h3><p>使用 Let’s Encrypt 免费让网站支持 HTTPS，如果自己给移动端写接口，苹果已经强制要求 HTTPS 了，作为一个 iOS developer，部署 HTTPS 环境也是挺重要的。当然，如果你不想用免费的，可以直接去申请收费的 ssl 证书，这里就不多阐述了。</p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>OneinStack 已经内置 Let’s Encrypt，vhost.sh 绑定域名时自动申请、绑定、自动续期（默认90天）一步到位。</p>
+<p><strong>安装 oneinstack，前面已经完成。</strong></p>
+<p><strong>安装 Let’s Encrypt</strong></p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>cd oneinstack</div><div class="line"><span class="variable">$ </span>./addons.sh</div></pre></td></tr></table></figure>
+<p>弹出选项菜单选择 <strong>7</strong>（Install/Uninstall Let’s Encrypt client），然后选择 <strong>1</strong>（install）。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">#####</span></div><div class="line">#       OneinStack for CentOS/RadHat 5+ Debian 6+ and Ubuntu 12+      #</div><div class="line">#                    Install/Uninstall Extensions                     #</div><div class="line">#       For more information please visit https://oneinstack.com      #</div><div class="line">###<span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">##</span></div><div class="line"></div><div class="line">What Are You Doing?</div><div class="line">    <span class="number">1.</span> Install/Uninstall PHP opcode cache</div><div class="line">	<span class="number">2.</span> Install/Uninstall ZendGuardLoader/ionCube PHP Extension</div><div class="line">	<span class="number">3.</span> Install/Uninstall ImageMagick/GraphicsMagick PHP Extension</div><div class="line">	<span class="number">4.</span> Install/Uninstall fileinfo PHP Extension</div><div class="line">	<span class="number">5.</span> Install/Uninstall memcached/memcache</div><div class="line">    <span class="number">6.</span> Install/Uninstall Redis</div><div class="line">    <span class="number">7.</span> Install/Uninstall Let<span class="string">'s Encrypt client</span></div><div class="line">    8. Install/Uninstall fail2ban </div><div class="line">    q. Exit</div><div class="line">Please input the correct option: 7</div><div class="line"></div><div class="line">Please select an action:</div><div class="line">	1. install</div><div class="line">	2. uninstall</div><div class="line">Please input a number:(Default 1 press Enter) 1</div></pre></td></tr></table></figure>
+<p>安装完成后会输出一行:</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Let</span><span class="comment">'s Encrypt client installed successfully!</span></div></pre></td></tr></table></figure>
+<p><strong>添加虚拟主机，绑定域名</strong></p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>./vhost.sh</div></pre></td></tr></table></figure>
+<p>SSL 选择 <strong>y</strong>，Let’s Encrypt 选择 <strong>y</strong></p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#######################################################################</span></div><div class="line"><span class="comment">#       OneinStack for CentOS/RadHat 5+ Debian 6+ and Ubuntu 12+      #</span></div><div class="line"><span class="comment">#       For more information please visit https://oneinstack.com      #</span></div><div class="line"><span class="comment">#######################################################################</span></div><div class="line"></div><div class="line">Do you want to setup SSL under Nginx? [<span class="regexp">y/n]: y</span></div><div class="line"></div><div class="line">Please input domain(example: www.example.com): blog.bingo.ren</div><div class="line"></div><div class="line">Please input the directory for the domain:blog.bingo.ren :</div><div class="line">(Default directory: /data/wwwroot<span class="regexp">/blog.bingo.ren): </span></div><div class="line">Virtual Host Directory=/data<span class="regexp">/wwwroot/blog</span>.bingo.ren</div><div class="line"></div><div class="line">Create Virtul Host directory......</div><div class="line">set permissions of Virtual Host directory......</div><div class="line">domain=blog.bingo.ren</div><div class="line"></div><div class="line">Do you want to add more domain name? [<span class="regexp">y/n]: n</span></div><div class="line"></div><div class="line">Do you want to redirect all HTTP requests to HTTPS? [y/n]: y</div><div class="line"></div><div class="line">Do you want to use a Let's Encrypt certificate? [y/n]: <span class="keyword">y</span></div><div class="line"></div><div class="line">Please enter Administrator Email(example: admin@example.com): bingo@dankal.cn</div><div class="line"></div><div class="line">Do you want to add hotlink protection? [<span class="regexp">y/n]: n</span></div><div class="line"></div><div class="line">Allow Nginx/Tengine/OpenResty access_log? [<span class="regexp">y/n]: y</span></div><div class="line">You access log file=/data/wwwlogs<span class="regexp">/blog.bingo.ren_nginx.log</span></div></pre></td></tr></table></figure>
+<p>然后就会自动重启 Nginx 和 Tomcat 服务，最后会输出部署信息。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">#####</span></div><div class="line">#       OneinStack for CentOS/RadHat 5+ Debian 6+ and Ubuntu 12+      #</div><div class="line">#       For more information please visit https://oneinstack.com      #</div><div class="line">###<span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">##</span></div><div class="line">Your domain:                  blog.bingo.ren</div><div class="line">Nginx Virtualhost conf:       /usr/local/nginx/conf/vhost/blog.bingo.ren.conf</div><div class="line">Tomcat Virtualhost conf:      /usr/local/tomcat/conf/vhost/blog.bingo.ren.xml</div><div class="line">Directory of:                 /data/wwwroot/blog.bingo.ren</div><div class="line">Let<span class="string">'s Encrypt SSL Certificate:/etc/letsencrypt/live/blog.bingo.ren/fullchain.pem</span></div><div class="line">SSL Private Key:               /etc/letsencrypt/live/blog.bingo.ren/privkey.pem</div></pre></td></tr></table></figure>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><ul>
+<li>绑定域名后会自动在 crontab 添加相应自动续期脚本。</li>
+<li>同一个 ip 在3小时内最多申请10个域名的证书。</li>
+<li>同一个根域名在七天内，只能注册5个证书。</li>
+<li>同一个子域名注册或更新都是要计算次数的。</li>
+</ul>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>这只是简单的部署环境，还没有部署项目和自动化脚本，我会慢慢补充，持续更新。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/29.html" rel="next" title="Git操作规范">
+                <i class="fa fa-chevron-left"></i> Git操作规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/27.html" rel="prev" title="iOS开发编码规范">
+                iOS开发编码规范 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="28.html"
+           data-title="Centos 6 x86 minimal 部署" data-url="https://bingozb.github.io/28.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Bingo" />
+          <p class="site-author-name" itemprop="name">Bingo</p>
+          <p class="site-description motion-element" itemprop="description">He who hesitates is lost.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改-SSH-密码"><span class="nav-number">2.</span> <span class="nav-text">更改 SSH 密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缘由"><span class="nav-number">2.1.</span> <span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改"><span class="nav-number">2.2.</span> <span class="nav-text">更改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改-SSH-端口"><span class="nav-number">3.</span> <span class="nav-text">更改 SSH 端口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缘由-1"><span class="nav-number">3.1.</span> <span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改-1"><span class="nav-number">3.2.</span> <span class="nav-text">更改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-免密登录"><span class="nav-number">4.</span> <span class="nav-text">SSH 免密登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缘由-2"><span class="nav-number">4.1.</span> <span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">4.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#免密登录"><span class="nav-number">4.3.</span> <span class="nav-text">免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#alias-快捷登录"><span class="nav-number">4.4.</span> <span class="nav-text">alias 快捷登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装环境"><span class="nav-number">5.</span> <span class="nav-text">安装环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择"><span class="nav-number">5.1.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">5.2.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改防火墙"><span class="nav-number">6.</span> <span class="nav-text">更改防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看防火墙状态"><span class="nav-number">6.1.</span> <span class="nav-text">查看防火墙状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加需要开放的端口"><span class="nav-number">6.2.</span> <span class="nav-text">添加需要开放的端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启服务"><span class="nav-number">6.3.</span> <span class="nav-text">重启服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看防火墙状态-1"><span class="nav-number">6.4.</span> <span class="nav-text">查看防火墙状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改数据库"><span class="nav-number">7.</span> <span class="nav-text">修改数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缘由-3"><span class="nav-number">7.1.</span> <span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改"><span class="nav-number">7.2.</span> <span class="nav-text">修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Let’s-Encrypt-HTTPS"><span class="nav-number">8.</span> <span class="nav-text">Let’s Encrypt - HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缘由-4"><span class="nav-number">8.1.</span> <span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-1"><span class="nav-number">8.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">8.3.</span> <span class="nav-text">补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">9.</span> <span class="nav-text">后话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  Copyright © 
+  <span itemprop="copyrightYear">2017
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bingo
+  </span>
+  All rights reserved.
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bingozb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,740 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,安全攻防," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言从 App Store 上下载的 ipa 里面的二进制文件是经过加密的，class-dump 和 Hopper Disassembler 都需要用到未加密的二进制文件，需要通过砸壳得到。网上敲壳教程还是挺多的，几乎都差不多，但都太旧了都没有更新，例如在 iOS10.2 下，传统的 dumpdecrypted 砸壳就会有问题，需要加点其它操作才能敲成功。">
+<meta name="keywords" content="iOS,安全攻防">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS10.2下的ipa砸壳">
+<meta property="og:url" content="https://bingozb.github.io/23.html">
+<meta property="og:site_name" content="Bingo's Blog">
+<meta property="og:description" content="前言从 App Store 上下载的 ipa 里面的二进制文件是经过加密的，class-dump 和 Hopper Disassembler 都需要用到未加密的二进制文件，需要通过砸壳得到。网上敲壳教程还是挺多的，几乎都差不多，但都太旧了都没有更新，例如在 iOS10.2 下，传统的 dumpdecrypted 砸壳就会有问题，需要加点其它操作才能敲成功。">
+<meta property="og:updated_time" content="2017-04-20T12:24:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS10.2下的ipa砸壳">
+<meta name="twitter:description" content="前言从 App Store 上下载的 ipa 里面的二进制文件是经过加密的，class-dump 和 Hopper Disassembler 都需要用到未加密的二进制文件，需要通过砸壳得到。网上敲壳教程还是挺多的，几乎都差不多，但都太旧了都没有更新，例如在 iOS10.2 下，传统的 dumpdecrypted 砸壳就会有问题，需要加点其它操作才能敲成功。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'bingozb'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bingozb.github.io/23.html"/>
+
+
+
+
+
+  <title> iOS10.2下的ipa砸壳 | Bingo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Bingo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://bingozb.github.io/23.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Bingo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Bingo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Bingo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS10.2下的ipa砸壳
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-23T16:43:24+08:00">
+                2017-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/战斗笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">战斗笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/23.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="23.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从 App Store 上下载的 ipa 里面的二进制文件是经过加密的，class-dump 和 Hopper Disassembler 都需要用到未加密的二进制文件，需要通过砸壳得到。网上敲壳教程还是挺多的，几乎都差不多，但都太旧了都没有更新，例如在 iOS10.2 下，传统的 dumpdecrypted 砸壳就会有问题，需要加点其它操作才能敲成功。</p>
+<a id="more"></a>
+<h2 id="查看二进制文件是否加密"><a href="#查看二进制文件是否加密" class="headerlink" title="查看二进制文件是否加密"></a>查看二进制文件是否加密</h2><p>可以使用 <code>otool</code> 来查看，<code>otool -l 二进制文件路径 | grep -B 2 crypt</code></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ otool -l WeChat.app/WeChat | grep -B 2 crypt</div><div class="line"><span class="code">          cmd LC_ENCRYPTION_INFO</span></div><div class="line"><span class="code">      cmdsize 20</span></div><div class="line"><span class="code">     cryptoff 16384</span></div><div class="line"><span class="code">    cryptsize 49463296</span></div><div class="line"><span class="section">      cryptid 1</span></div><div class="line">--</div><div class="line"><span class="code">          cmd LC_ENCRYPTION_INFO_64</span></div><div class="line"><span class="code">      cmdsize 24</span></div><div class="line"><span class="code">     cryptoff 16384</span></div><div class="line"><span class="code">    cryptsize 53149696</span></div><div class="line"><span class="code">      cryptid 1</span></div></pre></td></tr></table></figure>
+<p>cryptid 为1时说明被加密，为0时则是未加密。可以看到微信已经被加密了，第一个对应的是较老的 armv7 架构，后者则是 arm64 架构。被加密的二进制文件直接拿起来就撸是没用的，需要先敲壳。</p>
+<h2 id="准备敲壳"><a href="#准备敲壳" class="headerlink" title="准备敲壳"></a>准备敲壳</h2><h3 id="ssh-连上的-iPhone"><a href="#ssh-连上的-iPhone" class="headerlink" title="ssh 连上的 iPhone"></a>ssh 连上的 iPhone</h3><p>确保 iPhone 和 Mac 在同一个网段，我的 iPhone 的 IP 地址为 192.168.1.22。OpenSSH 的 root 密码默认为 <code>alpine</code>。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ssh root@192.168.1.22</div><div class="line">root@192.168.1.22's password: </div><div class="line">Dankal-Device-5s:~ root#</div></pre></td></tr></table></figure>
+<p>这个时候已经顺利获取了 iPhone 的 root 权限，root 相当于 Windows 中的 administrator，权限最高，可读写。</p>
+<p>ssh 相关的问题请看之前写过的<a href="https://blog.bingo.ren/21.html" target="_blank" rel="external">《iOS10.2 SSH连接越狱设备》</a>，这里就不多阐述。</p>
+<h3 id="获取设备当前的进程"><a href="#获取设备当前的进程" class="headerlink" title="获取设备当前的进程"></a>获取设备当前的进程</h3><p>iPhone 打开微信，后台结束其他 APP 进程，控制台输入 <code>ps ax</code>  或者 <code>ps -e</code></p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Dankal-Device-5s:~ root# ps -e</div><div class="line">PID TTY           TIME CMD</div><div class="line">  <span class="number">1</span> ??         <span class="number">0</span>:<span class="number">26.19</span> /sbin/launchd</div><div class="line"> <span class="number">21</span> ??         <span class="number">0</span>:<span class="number">01.77</span> /usr/sbin/syslogd</div><div class="line"> <span class="number">42</span> ??         <span class="number">0</span>:<span class="number">17.65</span> /usr/libexec/logd</div><div class="line"> <span class="number">44</span> ??         <span class="number">0</span>:<span class="number">00.08</span> /System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Support/softwareupdated</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="number">1190</span> ??         <span class="number">0</span>:<span class="number">08.03</span> /<span class="built_in">var</span>/containers/Bundle/Application/<span class="number">46316B03</span>-5DC3-<span class="number">4534</span>-8D40-A29FE9315E22/WeChat.app/WeChat</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="number">1391</span> ??         <span class="number">0</span>:<span class="number">00.17</span> /usr/<span class="built_in">local</span>/bin/dropbear -F -R -p <span class="number">22</span></div><div class="line"><span class="number">1392</span> ttys000    <span class="number">0</span>:<span class="number">00.04</span> -sh</div><div class="line"><span class="number">1401</span> ttys000    <span class="number">0</span>:<span class="number">00.01</span> ps -e</div><div class="line"><span class="number">1020</span> ttys001    <span class="number">0</span>:<span class="number">00.02</span> login -fp mobile</div><div class="line"><span class="number">1021</span> ttys001    <span class="number">0</span>:<span class="number">00.06</span> -sh</div></pre></td></tr></table></figure>
+<p>找到微信的的进程，记住 <strong>PID</strong> 为 1190，<strong>Bundle 路径</strong>为 <code>/var/containers/Bundle/Application/46316B03-5DC3-4534-8D40-A29FE9315E22/WeChat.app/WeChat</code></p>
+<h3 id="勾住进程"><a href="#勾住进程" class="headerlink" title="勾住进程"></a>勾住进程</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Dankal-Device-<span class="number">5</span><span class="variable">s:</span>~ root# cycript -<span class="keyword">p</span> <span class="number">1190</span></div><div class="line">cy#</div></pre></td></tr></table></figure>
+<p>看到 <code>cy#</code> 的出现就说明，成功勾住了微信的进程。</p>
+<h3 id="获取沙盒路径"><a href="#获取沙盒路径" class="headerlink" title="获取沙盒路径"></a>获取沙盒路径</h3><p>通过 Cycript 与进程交互动态获取应用的沙盒路径，输入以下任一行代码。</p>
+<ul>
+<li><p><code>[NSHomeDirectory() stringByAppendingString:@&quot;/Documents&quot;]</code></p>
+</li>
+<li><p><code>NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES)[0]</code></p>
+</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cy# [NSHomeDirectory() stringByAppendingStrin<span class="variable">g:</span>@<span class="string">"/Documents"</span>]</div><div class="line">@<span class="string">"/var/mobile/Containers/Data/Application/E2ABB23B-EC66-4DA4-AD3E-E14E20D680B5/Documents"</span></div></pre></td></tr></table></figure>
+<p>显示出来的字符串即为<strong>沙盒路径</strong>。</p>
+<h3 id="dumpdecrypted-dylib"><a href="#dumpdecrypted-dylib" class="headerlink" title="dumpdecrypted.dylib"></a>dumpdecrypted.dylib</h3><p>敲壳的最重要的东西就是 dumpdecrypted.dylib，确保从 Github 上下载了最新的 <a href="https://github.com/stefanesser/dumpdecrypted" target="_blank" rel="external">dumpdecrypted 源码</a> ，解压后进入 dumpdecrypted 文件夹的跟目录，make 编译 dumpdecrypted.dylib。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">cd</span> /Users/bingo/Downloads/dumpdecrypted-master</div><div class="line">$ <span class="keyword">make</span></div><div class="line">`xcrun --sdk iphoneos --<span class="keyword">find</span> gcc` -Os  -Wimplicit -isysroot `xcrun --sdk iphoneos --show-sdk-path` -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/Frameworks -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/PrivateFrameworks -arch armv7 -arch armv7s -arch arm64 -<span class="keyword">c</span> -<span class="keyword">o</span> dumpdecrypted.<span class="keyword">o</span> dumpdecrypted.<span class="keyword">c</span> </div><div class="line">`xcrun --sdk iphoneos --<span class="keyword">find</span> gcc` -Os  -Wimplicit -isysroot `xcrun --sdk iphoneos --show-sdk-path` -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/Frameworks -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/PrivateFrameworks -arch armv7 -arch armv7s -arch arm64 -dynamiclib -<span class="keyword">o</span> dumpdecrypted.dylib dumpdecrypted.<span class="keyword">o</span></div></pre></td></tr></table></figure>
+<p>结束后会在当前目录中生成 dumpdecrypted.dylib，这里有坑，下面会说。</p>
+<h3 id="拷贝-dumpdecrypted-dylib-到沙盒路径下"><a href="#拷贝-dumpdecrypted-dylib-到沙盒路径下" class="headerlink" title="拷贝 dumpdecrypted.dylib 到沙盒路径下"></a>拷贝 dumpdecrypted.dylib 到沙盒路径下</h3><p>scp 拷贝文件到越狱设备的沙盒路径下，沙盒目录刚刚用 Cycript 动态获取到了，如果设备不支持 scp 或者出现问题，可以参考<a href="https://blog.bingo.ren/22.html" target="_blank" rel="external">《让越狱设备支持scp文件传输》</a>，或者使用 iTools 等工具实现文件传输，在此不再阐述。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ scp dumpdecrypted.dylib root@192.168.1.22:/var/mobile/Containers/Data/Application/E2ABB23B-EC66-4DA4-AD3E-E14E20D680B5/Documents</div><div class="line">root@192.168.1.22's password: </div><div class="line">dumpdecrypted.dylib                           100%  193KB 242.3KB/s   00:00</div></pre></td></tr></table></figure>
+<h2 id="开始敲壳"><a href="#开始敲壳" class="headerlink" title="开始敲壳"></a>开始敲壳</h2><p>以上都是准备工作，接下来可以正式砸壳了。</p>
+<p>dumpdecrypted.dylib 的具体用法是：<code>DYLD_INSERT_LIBRARIES=to/Path/dumpdecrypted.dylib to/bundlePath</code></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Dankal-Device-<span class="number">5</span><span class="variable">s:</span>~ root# <span class="keyword">cd</span> /var/mobile/Containers/Data/Application/E2ABB23B-EC66-<span class="number">4</span>DA4-AD3E-E14E20D680B5/Documents</div><div class="line">Dankal-Device-<span class="number">5</span><span class="variable">s:</span>/var/mobile/Containers/Data/Application/E2ABB23B-EC66-<span class="number">4</span>DA4-AD3E-E14E20D680B5/Documents root# DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib <span class="string">"/var/containers/Bundle/Application/46316B03-5DC3-4534-8D40-A29FE9315E22/WeChat.app/WeChat"</span></div><div class="line">dyld: could not load inserted library <span class="string">'dumpdecrypted.dylib'</span> because <span class="keyword">no</span> suitable image found.  Did <span class="keyword">find</span>:</div><div class="line">	dumpdecrypted.dyli<span class="variable">b:</span> required code signature missing <span class="keyword">for</span> <span class="string">'dumpdecrypted.dylib'</span></div><div class="line"></div><div class="line"></div><div class="line">Abort trap: <span class="number">6</span></div></pre></td></tr></table></figure>
+<p>很明显砸壳失败了，这跟说好的不一样！为什么别人砸壳成功了，而我却砸失败了？重复试了几次都不成功。</p>
+<p>于是开始找问题，首先怀疑我的设备的 CPU 架构不对，打开 iTools 可以明显看到是 iPhone 5s、arm64、已越狱，没毛病，如果是 32位处理器的话应该是越狱不成功的。</p>
+<p>再找问题，怀疑是 yalu02 越狱的时候出了问题，重启再越狱了一遍，还是一样的问题。</p>
+<p>继续寻找，设备不支持吗？网上搜索 “iPhone5s 砸壳失败”，很失望，没有相关的资料，搜到的全是真的手机壳的相关问题。</p>
+<p>最后，怀疑是越狱本身就有问题，毕竟 iOS 10.2 是非完美越狱。于是搜 “iOS 10.2 dumpdecrypted 失败”，终于摸索到相关文章，真的不容易啊，卡了一天，终于找到了解决方案。学会定位问题与使用搜索引擎对于程序员来说还是很重要的！</p>
+<h2 id="正确砸壳"><a href="#正确砸壳" class="headerlink" title="正确砸壳"></a>正确砸壳</h2><p>dumpdecrypted 对系统 ios 9.3.2 以上的版本砸壳失败，会报错 <code>Killed: 9</code>，<a href="http://iosre.com/t/make-dumpdecrypted-work-on-ios-9-3-3/4876" target="_blank" rel="external">解决方案</a></p>
+<p>当然，我们现在是 iOS 10.2，上面的解决方案可能还有问题，最后找到正确的解决方法，就是另外下载 <a href="https://masbog.com/dumpdecrypt/dumpdecrypted.dylib" target="_blank" rel="external">dumpdecrypted.dylib</a>，链接来自上面解决方案的页面下的评论。</p>
+<blockquote>
+<p>masbog</p>
+<p>maybe some user need latest .dylib with iOS 10.2 sdk… <a href="https://masbog.com/dumpdecrypt/11" target="_blank" rel="external">https://masbog.com/dumpdecrypt/11</a> and some tutorial for iOS 10.2 :hugging:</p>
+</blockquote>
+<p>最终能找到问题所在我也感到非常神奇与幸运，为了预防站长的服务器挂掉或者链接失效，我已经将 .dylib 上传到了七牛云上，<a href="https://cdn.bingo.ren/protect/dumpdecrypted.dylib" target="_blank" rel="external">cdn加速下载链</a>，以防不备之需。</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>拷贝最新的 dumpdecrypted.dylib 到设备上的 <code>/usr/lib</code> 下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ scp dumpdecrypted.dylib root@192.168.1.22:/usr/lib</div><div class="line">root@192.168.1.22's password: </div><div class="line">dumpdecrypted.dylib           100%  193KB 410.8KB/s   00:00</div></pre></td></tr></table></figure>
+<p>iOS 10+:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Dankal-Device-<span class="number">5</span><span class="variable">s:</span> ldid -S /usr/lib/dumpdecrypted.dylib</div></pre></td></tr></table></figure>
+<p>最终一砸</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Dankal-Device-<span class="number">5</span><span class="variable">s:</span>/var/mobile/Containers/Data/Application/E2ABB23B-EC66-<span class="number">4</span>DA4-AD3E-E14E20D680B5/Documents root# DYLD_INSERT_LIBRARIES=/usr/lib/dumpdecrypted.dylib <span class="string">"/var/containers/Bundle/Application/46316B03-5DC3-4534-8D40-A29FE9315E22/WeChat.app/WeChat"</span></div><div class="line">mach-<span class="keyword">o</span> decryption dumper</div><div class="line"></div><div class="line">DISCLAIMER: This tool <span class="keyword">is</span> <span class="keyword">only</span> meant <span class="keyword">for</span> security research purposes, not <span class="keyword">for</span> application crackers.</div><div class="line"></div><div class="line">[+] detected <span class="number">64</span>bit ARM binary in memory.</div><div class="line">[+] offset <span class="keyword">to</span> cryptid found: @<span class="number">0</span>x1000a0ca8(from <span class="number">0</span>x1000a0000) = ca8</div><div class="line">[+] Found encrypted data at address <span class="number">00004000</span> of length <span class="number">53149696</span> bytes - <span class="built_in">type</span> <span class="number">1</span>.</div><div class="line">[+] Opening /private/var/containers/Bundle/Application/<span class="number">46316</span>B03-<span class="number">5</span>DC3-<span class="number">4534</span>-<span class="number">8</span>D40-A29FE9315E22/WeChat.app/WeChat <span class="keyword">for</span> reading.</div><div class="line">[+] Reading header</div><div class="line">[+] Detecting header <span class="built_in">type</span></div><div class="line">[+] Executable <span class="keyword">is</span> <span class="keyword">a</span> FAT image - searching <span class="keyword">for</span> <span class="keyword">right</span> architecture</div><div class="line">[+] Correct arch <span class="keyword">is</span> at offset <span class="number">58195968</span> in the <span class="keyword">file</span></div><div class="line">[+] Opening WeChat.decrypted <span class="keyword">for</span> writing.</div><div class="line">[+] Copying the not encrypted start of the <span class="keyword">file</span></div><div class="line">[+] Dumping the decrypted data into the <span class="keyword">file</span></div><div class="line">[+] Copying the not encrypted remainder of the <span class="keyword">file</span></div><div class="line">[+] Setting the LC_ENCRYPTION_INFO-&gt;cryptid <span class="keyword">to</span> <span class="number">0</span> at offset <span class="number">3780</span>ca8</div><div class="line">[+] Closing original <span class="keyword">file</span></div><div class="line">[+] Closing dump <span class="keyword">file</span></div><div class="line">Dankal-Device-<span class="number">5</span><span class="variable">s:</span>/var/mobile/Containers/Data/Application/E2ABB23B-EC66-<span class="number">4</span>DA4-AD3E-E14E20D680B5/Documents root#</div></pre></td></tr></table></figure>
+<h2 id="查看成果"><a href="#查看成果" class="headerlink" title="查看成果"></a>查看成果</h2><p>砸壳完毕，会自动在当前目录生成砸壳后的二进制文件 WeChat.decrypted</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">ls</span></div><div class="line"><span class="number">00000000000000000000000000000000</span>  Ksid		 MMResourceMgr	SafeMode.dat	  db.globalconfig</div><div class="line"><span class="number">8</span>f9f003b02f320ae7f28b1250270eb48  LocalInfo.lst  MMappedKV	WeChat.decrypted  mmupdateinfo.archive</div></pre></td></tr></table></figure>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>终于砸壳完毕，说难也不难，从 App Store 上下载的 ipa 就这样被砸掉了壳，可见所谓的 Apple Store 给 ipa 穿上的战衣也不过如此，并没有多么安全。敲壳后的二进制文件就可以做一些好玩的东西了，比如 dump 出头文件等，接下来的文章会慢慢记录。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/安全攻防/" rel="tag"># 安全攻防</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/24.html" rel="next" title="移动端规范计划">
+                <i class="fa fa-chevron-left"></i> 移动端规范计划
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/22.html" rel="prev" title="让越狱设备支持scp文件传输">
+                让越狱设备支持scp文件传输 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="23.html"
+           data-title="iOS10.2下的ipa砸壳" data-url="https://bingozb.github.io/23.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Bingo" />
+          <p class="site-author-name" itemprop="name">Bingo</p>
+          <p class="site-description motion-element" itemprop="description">He who hesitates is lost.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看二进制文件是否加密"><span class="nav-number">2.</span> <span class="nav-text">查看二进制文件是否加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备敲壳"><span class="nav-number">3.</span> <span class="nav-text">准备敲壳</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-连上的-iPhone"><span class="nav-number">3.1.</span> <span class="nav-text">ssh 连上的 iPhone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取设备当前的进程"><span class="nav-number">3.2.</span> <span class="nav-text">获取设备当前的进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#勾住进程"><span class="nav-number">3.3.</span> <span class="nav-text">勾住进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取沙盒路径"><span class="nav-number">3.4.</span> <span class="nav-text">获取沙盒路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dumpdecrypted-dylib"><span class="nav-number">3.5.</span> <span class="nav-text">dumpdecrypted.dylib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝-dumpdecrypted-dylib-到沙盒路径下"><span class="nav-number">3.6.</span> <span class="nav-text">拷贝 dumpdecrypted.dylib 到沙盒路径下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始敲壳"><span class="nav-number">4.</span> <span class="nav-text">开始敲壳</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确砸壳"><span class="nav-number">5.</span> <span class="nav-text">正确砸壳</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法"><span class="nav-number">5.1.</span> <span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看成果"><span class="nav-number">6.</span> <span class="nav-text">查看成果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">7.</span> <span class="nav-text">后话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  Copyright © 
+  <span itemprop="copyrightYear">2017
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bingo
+  </span>
+  All rights reserved.
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bingozb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
