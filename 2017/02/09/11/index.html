@@ -89,7 +89,7 @@
 <meta property="og:url" content="https://bingozb.github.io/2017/02/09/11/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言用 Xcode 做 iOS 开发的同学都知道，在项目根目录里有一个  project.xcodeproj 文件。如果多人协作，项目合并的时候这个文件非常容易有冲突。一旦这个文件冲突了项目就打不开了，然后就非常不情愿地用文本编辑器打开这个文件，人肉搜索 &amp;gt;&amp;gt;&amp;gt; &amp;lt;&amp;lt;&amp;lt; 或者 === 来进行人肉替换解决冲突问题。 这简直就是浪费青春，如果合并的是一个距离上次 c">
-<meta property="og:updated_time" content="2017-04-18T13:29:14.000Z">
+<meta property="og:updated_time" content="2017-04-20T11:41:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决iOS项目文件合并.xcodeproj冲突">
 <meta name="twitter:description" content="前言用 Xcode 做 iOS 开发的同学都知道，在项目根目录里有一个  project.xcodeproj 文件。如果多人协作，项目合并的时候这个文件非常容易有冲突。一旦这个文件冲突了项目就打不开了，然后就非常不情愿地用文本编辑器打开这个文件，人肉搜索 &amp;gt;&amp;gt;&amp;gt; &amp;lt;&amp;lt;&amp;lt; 或者 === 来进行人肉替换解决冲突问题。 这简直就是浪费青春，如果合并的是一个距离上次 c">
@@ -355,36 +355,31 @@
       
 
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>用 Xcode 做 iOS 开发的同学都知道，在项目根目录里有一个  project.xcodeproj 文件。如果多人协作，项目合并的时候这个文件非常容易有冲突。一旦这个文件冲突了项目就打不开了，然后就非常不情愿地用文本编辑器打开这个文件，人肉搜索 &gt;&gt;&gt; &lt;&lt;&lt; 或者 === 来进行人肉替换解决冲突问题。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用 Xcode 做 iOS 开发的同学都知道，在项目根目录里有一个  project.xcodeproj 文件。如果多人协作，项目合并的时候这个文件非常容易有冲突。一旦这个文件冲突了项目就打不开了，然后就非常不情愿地用文本编辑器打开这个文件，人肉搜索 &gt;&gt;&gt; &lt;&lt;&lt; 或者 === 来进行人肉替换解决冲突问题。</p>
 <p>这简直就是浪费青春，如果合并的是一个距离上次 commit 已经很了久的崭新的 commit，你估计会找同事“聊聊人生”… 怎么解决这个问题呢？</p>
 <a id="more"></a>
-<h4 id="xcodeproj-是什么玩意"><a href="#xcodeproj-是什么玩意" class="headerlink" title=".xcodeproj 是什么玩意"></a>.xcodeproj 是什么玩意</h4><p>项目 .xcodeproj 文件夹底下一般有4个文件 :</p>
+<h2 id="xcodeproj"><a href="#xcodeproj" class="headerlink" title=".xcodeproj"></a>.xcodeproj</h2><p>项目 .xcodeproj 文件夹底下一般有4个文件:</p>
 <ul>
 <li>project.pbxproj 文件</li>
 <li>xcuserdata 文件夹</li>
 <li>xcshareddata 文件夹</li>
 <li>project.xcworkspace 文件夹</li>
 </ul>
-<p><strong>xcuserdata / xcshareddata 文件夹</strong></p>
-<p>存放用户相关的文件，包含 user state，folders 的状态，最后打开的文件等。一般来说是不需要提交的也不会冲突的。</p>
-<p><strong>project.xcworkspace</strong></p>
-<p>workspace 是一种 Xcode documentation，可以将多个 project 和其它文件放到一起，这样可以 work on them together。一个 project 也可以属于多个 workspace。所以简单来讲，workspace 里面就是一个或多个 projects 的 reference，放在一起，有时候比较好工作。也包含一些用户的断点设置信息。</p>
+<h3 id="xcuserdata-xcshareddata"><a href="#xcuserdata-xcshareddata" class="headerlink" title="xcuserdata / xcshareddata"></a>xcuserdata / xcshareddata</h3><p>存放用户相关的文件，包含 user state，folders 的状态，最后打开的文件等。一般来说是不需要提交的也不会冲突的。</p>
+<h3 id="project-xcworkspace"><a href="#project-xcworkspace" class="headerlink" title="project.xcworkspace"></a>project.xcworkspace</h3><p>workspace 是一种 Xcode documentation，可以将多个 project 和其它文件放到一起，这样可以 work on them together。一个 project 也可以属于多个 workspace。所以简单来讲，workspace 里面就是一个或多个 projects 的 reference，放在一起，有时候比较好工作。也包含一些用户的断点设置信息。</p>
 <p>如果项目里面根本就没有 workspace 的概念，或者只有一个 workspace + 一个 project 时，这个 workspace 并不会有什么变动，那么这个文件夹可以忽略，更不会出现冲突问题。如果 project 很依赖 workspace，没有 workspace 就运行不了，虽然不能忽略这个文件夹，但也不容易出现冲突。出现冲突最多的是下面的 project.pbxproj 文件。</p>
-<p><strong>project.pbxproj</strong></p>
-<p>而 project.pbxproj 这个文件被称之为“梦魇”，是一个老式的 plist，记录整个项目的层次结构，包含了所有此项目 build 需要的元数据，setting、file reference、configuration、targets 等等。也就是说，这个文件代表的就是这个 project。</p>
+<h3 id="project-pbxproj"><a href="#project-pbxproj" class="headerlink" title="project.pbxproj"></a>project.pbxproj</h3><p>而 project.pbxproj 这个文件被称之为“梦魇”，是一个老式的 plist，记录整个项目的层次结构，包含了所有此项目 build 需要的元数据，setting、file reference、configuration、targets 等等。也就是说，这个文件代表的就是这个 project。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/* Begin PBXBuildFile section */</div><div class="line">	351B785F1E2B34E100ED9945 /* DKOrderDetailViewController.m in Sources */ = &#123;isa = PBXBuildFile; fileRef = 351B785D1E2B34E100ED9945 /* DKOrderDetailViewController.m */; &#125;;</div><div class="line">	351B78601E2B34E100ED9945 /* DKOrderDetailViewController.xib in Resources */ = &#123;isa = PBXBuildFile; fileRef = 351B785E1E2B34E100ED9945 /* DKOrderDetailViewController.xib */; &#125;;</div><div class="line">	3543B7751E2C765600F8F65C /* DKOrderSuccessViewController.m in Sources */ = &#123;isa = PBXBuildFile; fileRef = 3543B7731E2C765600F8F65C /* DKOrderSuccessViewController.m */; &#125;;</div></pre></td></tr></table></figure>
 <p>项目越大，文件越多，这里记录的信息就越多。我们现在的这个文件已经有三千多行了，我只选取了前面三行。 可以看到每一行的开头大概都是一个24位的16进制数字，然后就是一个文件名 ，在最后有一个 isa 和一个 fileRef（文件引用）。当然这里面的数据还包括很多东西，比如 Target、Group、FileRef 等就不再一一列举出来了。</p>
-<h4 id="为什么会冲突"><a href="#为什么会冲突" class="headerlink" title="为什么会冲突"></a>为什么会冲突</h4><p>上面简单说了冲突的罪魁祸首是 project.pbxproj，并简单说了每行的内容。很明显每一个文件都会有一个文件引用 （fileRef）。当多人协作的时候，在同一份项目中，不同开发者同时创建不同的文件，会出现创建出来的引用 fileRef 是相同的，但却指向了不同的文件。比如开发者A 创建了一个 ViewController，可能会产生这样一条记录 A：</p>
+<h2 id="为什么会冲突"><a href="#为什么会冲突" class="headerlink" title="为什么会冲突"></a>为什么会冲突</h2><p>上面简单说了冲突的罪魁祸首是 project.pbxproj，并简单说了每行的内容。很明显每一个文件都会有一个文件引用 （fileRef）。当多人协作的时候，在同一份项目中，不同开发者同时创建不同的文件，会出现创建出来的引用 fileRef 是相同的，但却指向了不同的文件。比如开发者A 创建了一个 ViewController，可能会产生这样一条记录 A：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">D7921FD21E4B9ED1001C43E9 /* DKViewController.m in Sources */ = &#123;isa = PBXBuildFile; fileRef = D7921FD11E4B9ED1001C43E9 /* DKViewController.m */; &#125;;</div></pre></td></tr></table></figure>
 <p>而 开发者B 创建了一个 xib文件，可能会产生这样一条记录 B：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">D7921FD41E4B9F3F001C43E9 /* View.xib in Resources */ = &#123;isa = PBXBuildFile; fileRef = D7921FD31E4B9F3F001C43E9 /* View.xib */; &#125;;</div></pre></td></tr></table></figure>
 <p>观察两条记录，就可以发现，相同的文件引用，指向了不同的文件。两个用户修改了同一个文件的同一块区域，git 会报内容冲突。坑爹的问题出现了，这是两个不同的文件，但是引用是同一个，无法像前言说的直接手动&gt;&gt;&gt;找到冲突的位置，然后把两个都保留下来。因为一个引用不可能引用两个不同文件。这个冲突怎么办？只能先删掉一条引用记录，解决冲突后，再手动把被删掉引用的文件重新拉进项目。</p>
-<h4 id="优雅地解决"><a href="#优雅地解决" class="headerlink" title="优雅地解决"></a>优雅地解决</h4><p>有没有办法解决这个冲突问题？答案是肯定的。在知乎上面搜了一圈，普遍有两种做法。一个是约定型的，另一个是解决型的。</p>
-<p><strong>约定型</strong></p>
-<p><em>需要增加文件时先增加完空文件后立刻 checkin 一次，让别人每次改动 pbxproj 的时候改动之前 checkout 一次，保证有交叉时间是可能性最小</em></p>
+<h2 id="优雅地解决"><a href="#优雅地解决" class="headerlink" title="优雅地解决"></a>优雅地解决</h2><p>有没有办法解决这个冲突问题？答案是肯定的。在知乎上面搜了一圈，普遍有两种做法。一个是约定型的，另一个是解决型的。</p>
+<h3 id="约定型"><a href="#约定型" class="headerlink" title="约定型"></a>约定型</h3><p><em>需要增加文件时先增加完空文件后立刻 checkin 一次，让别人每次改动 pbxproj 的时候改动之前 checkout 一次，保证有交叉时间是可能性最小</em></p>
 <p>就是你先创建一个空文件，生成了一个引用后，就push一遍代码。然后让别人pull，让他在创建新文件之前就已经有了你创建的空文件和生成的引用，这样相当于在你之后创建新文件，而不是同时创建了。</p>
-<p><strong> 解决型 </strong></p>
-<p><em>xUnique</em></p>
+<h3 id="解决型"><a href="#解决型" class="headerlink" title="解决型"></a>解决型</h3><p><em>xUnique</em></p>
 <p>开源 <a href="https://github.com/truebit/xUnique" target="_blank" rel="external">GitHub 地址</a></p>
 <p><a href="https://pypi.python.org/packages/64/e0/bd7e2ce2c78145578eea4c3e8d8cf2cd735545fb03207544e0a44e3410d4/xUnique-4.1.4.tar.gz" target="_blank" rel="external">xUnique 下载地址</a></p>
 <p>What it does &amp; How it works:</p>
@@ -409,12 +404,11 @@
 <li>删除所有多余的节点（一般是合并的时候疏忽导致的）</li>
 <li>用 Python 重写了修改过的的 sort-Xcode-project-file 的排序功能，修改版相较原版增加了以下功能：<ul>
 <li>对 PBXFileReference 和 PBXBuildFile 区块的排序</li>
-<li>使用脚本后如果内容没有变化不会生成新文件，避免一次不必要的commit</li>
+<li>使用脚本后如果内容没有变化不会生成新文件，避免一次不必要的 commit</li>
 </ul>
 </li>
 </ul>
-<p><strong> 安装方法 </strong></p>
-<ul>
+<h4 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h4><ul>
 <li>下载 xUnique，解压后， python 安装命令行脚本 setup.py</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python setup.py install</div></pre></td></tr></table></figure>
@@ -422,8 +416,7 @@
 <li>验证是否安装成功</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ xunique -h</div></pre></td></tr></table></figure>
-<p><strong> 使用方法 </strong></p>
-<p>使用方法有两种，一种是 Git hook，另一种是 Xcode “build post-action”。这里只用推荐的 Git hook 的方式。</p>
+<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><p>使用方法有两种，一种是 Git hook，另一种是 Xcode “build post-action”。这里只用推荐的 Git hook 的方式。</p>
 <ul>
 <li>创建 pre-commit 的钩子</li>
 </ul>
@@ -453,7 +446,7 @@
 <h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>如果用 Git 客户端如 GitHub Desktop 进行 commit 操作的时候，可能会报错找不到 xunique 命令，这时可以到 pre-commit 这个钩子中将 xunique 补全为绝对路径。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/usr/local/bin/xunique /path/to/project.xcodeproj</div><div class="line">/usr/local/bin/xunique /path/to/Pods.xcodeproj</div></pre></td></tr></table></figure>
 <p>然后就可以直接在客户端跟往常一样进行 commit 操作了。在终端命令行操作则不会出现这个问题。</p>
-<h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>以后 project.pbxproj 的冲突问题就解决了。但要注意，多人协作的时候，如果团队中的其中一个人使用了 xUnique，所有人就都要用 xUnique，否则 project.pbxproj 就会全乱掉。</p>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>以后 project.pbxproj 的冲突问题就解决了。但要注意，多人协作的时候，如果团队中的其中一个人使用了 xUnique，所有人就都要用 xUnique，否则 project.pbxproj 就会全乱掉。</p>
 
       
     </div>
@@ -626,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xcodeproj-是什么玩意"><span class="nav-number">2.</span> <span class="nav-text">.xcodeproj 是什么玩意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么会冲突"><span class="nav-number">3.</span> <span class="nav-text">为什么会冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优雅地解决"><span class="nav-number">4.</span> <span class="nav-text">优雅地解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充"><span class="nav-number">5.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后话"><span class="nav-number">6.</span> <span class="nav-text">后话</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xcodeproj"><span class="nav-number">2.</span> <span class="nav-text">.xcodeproj</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xcuserdata-xcshareddata"><span class="nav-number">2.1.</span> <span class="nav-text">xcuserdata / xcshareddata</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#project-xcworkspace"><span class="nav-number">2.2.</span> <span class="nav-text">project.xcworkspace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#project-pbxproj"><span class="nav-number">2.3.</span> <span class="nav-text">project.pbxproj</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会冲突"><span class="nav-number">3.</span> <span class="nav-text">为什么会冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优雅地解决"><span class="nav-number">4.</span> <span class="nav-text">优雅地解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#约定型"><span class="nav-number">4.1.</span> <span class="nav-text">约定型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决型"><span class="nav-number">4.2.</span> <span class="nav-text">解决型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装方法"><span class="nav-number">4.2.1.</span> <span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用方法"><span class="nav-number">4.2.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充"><span class="nav-number">4.2.3.</span> <span class="nav-text">补充</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">5.</span> <span class="nav-text">后话</span></a></li></ol></div>
             
 
           </div>

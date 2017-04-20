@@ -89,13 +89,13 @@
 <meta property="og:url" content="https://bingozb.github.io/2017/03/07/30/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言UniversalLink（通用链接），是 Apple 在 WWDC 2015 上为 iOS9 引入的一个新功能，是通过传统 HTTP 链接来启动 App 的技术。可以使用相同的网址打开网站和 App。 通过唯一的网址，如果用户有安装域名绑定的 App，点击就可以打开 App，跳转到具体的界面，不需要特殊的 Schema；如果用户没有安装 App 则点击链接跳到对应的普通网页。">
-<meta property="og:image" content="https://cdn.bingo.ren/blog/AssociatedDomains.png">
-<meta property="og:image" content="https://cdn.bingo.ren/blog/webPageURL.png">
-<meta property="og:updated_time" content="2017-03-07T04:30:23.000Z">
+<meta property="og:image" content="https://bingozb.github.io/2017/03/07/30/images/blog/30/AssociatedDomains.png">
+<meta property="og:image" content="https://bingozb.github.io/2017/03/07/30/images/blog/30/webPageURL.png">
+<meta property="og:updated_time" content="2017-04-20T12:43:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS9 UniversalLink 实现用链接打开APP">
 <meta name="twitter:description" content="前言UniversalLink（通用链接），是 Apple 在 WWDC 2015 上为 iOS9 引入的一个新功能，是通过传统 HTTP 链接来启动 App 的技术。可以使用相同的网址打开网站和 App。 通过唯一的网址，如果用户有安装域名绑定的 App，点击就可以打开 App，跳转到具体的界面，不需要特殊的 Schema；如果用户没有安装 App 则点击链接跳到对应的普通网页。">
-<meta name="twitter:image" content="https://cdn.bingo.ren/blog/AssociatedDomains.png">
+<meta name="twitter:image" content="https://bingozb.github.io/2017/03/07/30/images/blog/30/AssociatedDomains.png">
 
 
 
@@ -367,10 +367,10 @@
 <li>支持 HTTPS 的域名</li>
 </ul>
 <h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="添加域名到-Capabilities-gt-Associated-Domains"><a href="#添加域名到-Capabilities-gt-Associated-Domains" class="headerlink" title="添加域名到 Capabilities -&gt; Associated Domains"></a>添加域名到 Capabilities -&gt; Associated Domains</h3><p>在 Xcode 的 Capabilities 里，打开 Associated Domains 开关，并添加需要绑定的域名, 必须用 applinks: 为前缀。可以添加一些子域和扩展（www.domain.com, news.domain.com 等等）。</p>
-<p><img src="https://cdn.bingo.ren/blog/AssociatedDomains.png" alt="Associated Domains"></p>
+<p><img src="images/blog/30/AssociatedDomains.png" alt="Associated Domains"></p>
 <p>如果正常，可以看到项目中会自动添加一个 entitlements 文件。</p>
 <h3 id="配置-apple-app-site-association-文件"><a href="#配置-apple-app-site-association-文件" class="headerlink" title="配置 apple-app-site-association 文件"></a>配置 apple-app-site-association 文件</h3><p>新建一个文件名，命名为<code>apple-app-site-association</code>，然后编辑内容为一段 Json。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;applinks&quot;: &#123;</div><div class="line">    &quot;apps&quot;: [],</div><div class="line">    &quot;details&quot;: [</div><div class="line">      &#123;</div><div class="line">        &quot;appID&quot;: &quot;4MX4MNJ2AK.cn.dankal.SF&quot;,</div><div class="line">        &quot;paths&quot;:[ &quot;*&quot; ]</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"applinks"</span>: &#123;</div><div class="line">    <span class="attr">"apps"</span>: [],</div><div class="line">    <span class="attr">"details"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"appID"</span>: <span class="string">"4MX4MNJ2AK.cn.dankal.SF"</span>,</div><div class="line">        <span class="attr">"paths"</span>:[ <span class="string">"*"</span> ]</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -399,8 +399,8 @@
 </table>
 <p>最后, 把这个文件上传到域名根目录。确保打开 <a href="https://domain.com/apple-app-site-association" target="_blank" rel="external">https://domain.com/apple-app-site-association</a> 如果可以看到或下载到该文件。</p>
 <h3 id="在-APP-里处理通用链接"><a href="#在-APP-里处理通用链接" class="headerlink" title="在 APP 里处理通用链接"></a>在 APP 里处理通用链接</h3><p>为了在 APP 里支持通用链接，需要在 AppDelegate 里实现一个方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler</div><div class="line">&#123;</div><div class="line">    if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) &#123;</div><div class="line">        // 打开App后，做某些具体的视图跳转操作</div><div class="line">        // 如果需要获取链接的参数，可以通过userActivity.webpageURL.absoluteString拿到url字符串</div><div class="line">        // 然后再根据规则切割或者截取，获取到想要的参数值</div><div class="line">        // ...</div><div class="line">        return YES;</div><div class="line">    &#125;</div><div class="line">    return NO; // 只打开App</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="通用链接工作流程图"><a href="#通用链接工作流程图" class="headerlink" title="通用链接工作流程图"></a>通用链接工作流程图</h2><p><img src="https://cdn.bingo.ren/blog/webPageURL.png" alt="工作流程图"></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application continueUserActivity:(<span class="built_in">NSUserActivity</span> *)userActivity restorationHandler:(<span class="keyword">void</span> (^)(<span class="built_in">NSArray</span> * _Nullable))restorationHandler</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> ([userActivity.activityType isEqualToString:<span class="built_in">NSUserActivityTypeBrowsingWeb</span>]) &#123;</div><div class="line">        <span class="comment">// 打开App后，做某些具体的视图跳转操作</span></div><div class="line">        <span class="comment">// 如果需要获取链接的参数，可以通过userActivity.webpageURL.absoluteString拿到url字符串</span></div><div class="line">        <span class="comment">// 然后再根据规则切割或者截取，获取到想要的参数值</span></div><div class="line">        <span class="comment">// ...</span></div><div class="line">        <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">NO</span>; <span class="comment">// 只打开App</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="通用链接工作流程图"><a href="#通用链接工作流程图" class="headerlink" title="通用链接工作流程图"></a>通用链接工作流程图</h2><p><img src="images/blog/30/webPageURL.png" alt="工作流程图"></p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><ol>
 <li><p>apple-app-site-association 不需要 .json 后缀。</p>
 </li>

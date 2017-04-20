@@ -89,7 +89,7 @@
 <meta property="og:url" content="https://bingozb.github.io/2017/04/18/37/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言iOS 项目多人协作开发的时候，一言不合就有冲突。冷静分析，这里面有坑，有老梗，也有一些是可以规避的，.gitignore就是一个避免冲突的利器。">
-<meta property="og:updated_time" content="2017-04-17T19:09:56.000Z">
+<meta property="og:updated_time" content="2017-04-20T12:49:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS项目的.gitignore配置">
 <meta name="twitter:description" content="前言iOS 项目多人协作开发的时候，一言不合就有冲突。冷静分析，这里面有坑，有老梗，也有一些是可以规避的，.gitignore就是一个避免冲突的利器。">
@@ -358,7 +358,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>iOS 项目多人协作开发的时候，一言不合就有冲突。冷静分析，这里面有坑，有老梗，也有一些是可以规避的，.gitignore就是一个避免冲突的利器。</p>
 <a id="more"></a>
 <h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>在我们使用 git 的过程当中，不是任何文件都需要 commit 到本地或者远程仓库的，比如 Mac 的老梗 .DS_Store，看得是真的烦。一些第三方框架类库文件，很大，动不动就是几百M，还有用户个人元数据，包括断点信息等等，都没有必要提交。</p>
-<h3 id="DS-Store"><a href="#DS-Store" class="headerlink" title=".DS_Store"></a>.DS_Store</h3><p>Mac 下的老梗 .DS_Store 文件我之前已经解决了，可以参考 <a href="https://blog.bingo.ren/2017/01/31/9/" target="_blank" rel="external">《解决讨厌的.DS_Store文件（上）》</a> 和 <a href="https://blog.bingo.ren/2017/01/31/10/" target="_blank" rel="external">《解决讨厌的.DS_Store文件（下）》</a>。</p>
+<h3 id="DS-Store"><a href="#DS-Store" class="headerlink" title=".DS_Store"></a>.DS_Store</h3><p>Mac 下的老梗 .DS_Store 文件我之前已经解决了，可以参考 <a href="https://blog.bingo.ren/9.html" target="_blank" rel="external">《解决讨厌的.DS_Store文件（上）》</a> 和 <a href="https://blog.bingo.ren/10.html" target="_blank" rel="external">《解决讨厌的.DS_Store文件（下）》</a>。</p>
 <p>虽然这个文件可以清除，但还是添加上去，反正也不亏。</p>
 <h3 id="Pods"><a href="#Pods" class="headerlink" title="Pods"></a>Pods</h3><p>以往我们都是 <code>Pod install</code> 后就无脑把 Pods 全部提交到本地，然后推远程仓库，导致远程仓库项目非常大，clone 花了很长的时间，每次 <code>pod update</code> 后 Push 代码也非常久。后来考虑了一下，觉得 Pods 这个目录可以不提交，甚至 <code>Podfile.lock</code> 这个文件也可以不要，继而 <code>.xcworkspace</code> 也可以不要，只要留一个 <code>Podfile</code> 文件，并在里面指定每个依赖库的版本号就够了，只要团队的每个人都有 CocoaPods 环境，每个人 <code>pod install</code> 后，在本地就能跑起来了。</p>
 <h3 id="xcuserdata"><a href="#xcuserdata" class="headerlink" title="xcuserdata"></a>xcuserdata</h3><p>在项目根目录下，一般有 <code>.xcodeproj</code> 和 <code>.xcworkspace</code>文件，显示包内容可以看到都有 <code>xcuserdata</code> 文件夹，然后里面放着 <code>username.xcuserdata</code>文件夹，再点进去就是 <code>UserInterfaceState.xcuserstate</code> 和 <code>Breakpoints_v2.xcbkptlist</code>，这些都属于用户个人设置，像断点记录这样的文件肯定不能提交上去合并的，没有意义，也容易导致冲突。</p>

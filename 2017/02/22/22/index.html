@@ -89,12 +89,12 @@
 <meta property="og:url" content="https://bingozb.github.io/2017/02/22/22/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言经过前面几番捣鼓，终于可以使用 ssh 连接到越狱设备，但还是有问题，不能用 scp 传输文件到设备上。每次都要打开 iTools 等工具来传输文件是很 low 的，所以要让越狱设备支持 scp，程序员就应该基于终端命令行操作，这样才酷！">
-<meta property="og:image" content="https://cdn.bingo.ren/protect/scp.png">
-<meta property="og:updated_time" content="2017-02-22T09:08:45.000Z">
+<meta property="og:image" content="https://bingozb.github.io/2017/02/22/22/images/blog/22/scp.png">
+<meta property="og:updated_time" content="2017-04-20T12:09:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="让越狱设备支持scp文件传输">
 <meta name="twitter:description" content="前言经过前面几番捣鼓，终于可以使用 ssh 连接到越狱设备，但还是有问题，不能用 scp 传输文件到设备上。每次都要打开 iTools 等工具来传输文件是很 low 的，所以要让越狱设备支持 scp，程序员就应该基于终端命令行操作，这样才酷！">
-<meta name="twitter:image" content="https://cdn.bingo.ren/protect/scp.png">
+<meta name="twitter:image" content="https://bingozb.github.io/2017/02/22/22/images/blog/22/scp.png">
 
 
 
@@ -378,7 +378,7 @@
 <li><p>最后输入 <code>killall SpringBoard</code> 回车</p>
 </li>
 </ol>
-<p>&nbsp;&nbsp;<img src="https://cdn.bingo.ren/protect/scp.png" width="300"></p>
+<p>&nbsp;&nbsp;<img src="images/blog/22/scp.png" width="300"></p>
 <h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>当然还是得重启设备才有效，尝试传输，成功。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Bingos-MacBook-Pro:dumpdecrypted bingo$ scp ./dumpdecrypted.dylib root@192.168.1.22:/var/mobile/Containers/Data/Application/E2ABB23B-EC66-4DA4-AD3E-E14E20D680B5/Documents/</div><div class="line">root@192.168.1.22&apos;s password: </div><div class="line">dumpdecrypted.dylib                           100%  193KB 664.9KB/s   00:00    </div><div class="line">Bingos-MacBook-Pro:dumpdecrypted-master bingo$</div></pre></td></tr></table></figure>
       

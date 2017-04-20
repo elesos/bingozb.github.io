@@ -359,15 +359,8 @@
 
       
         
-          <p><br>A QRCode Scanner for iOS.</br><br>一个“扫一扫”扫描器，支持二维码和条码。<br></p>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li>通过cocoapods安装</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKScanner'</div></pre></td></tr></table></figure>
-<ul>
-<li>或者直接clone，将<code>DKScanner</code>文件夹整个拖到你的项目中</li>
-</ul>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>A QRCode Scanner for iOS.</p>
+<p>一个“扫一扫”扫描器，支持二维码和条形码。</p>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/01/24/7/#more" rel="contents">
@@ -513,8 +506,8 @@
 
       
         
-          <p>Dankal extension category for iOS.</p>
-<h4 id="Cocoapods-安装"><a href="#Cocoapods-安装" class="headerlink" title="Cocoapods 安装"></a>Cocoapods 安装</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKExtension.h'</div></pre></td></tr></table></figure>
+          <p><strong>Dankal extension category for iOS.</strong> </p>
+<h2 id="Cocoapods-安装"><a href="#Cocoapods-安装" class="headerlink" title="Cocoapods 安装"></a>Cocoapods 安装</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKExtension.h'</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/01/24/6/#more" rel="contents">
@@ -660,8 +653,7 @@
 
       
         
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们iOS组的每个项目都是多条分支，每个开发者一条分支，三个人就是三条分支，我作为组长我是Master分支。其他部门的同事问到我，项目的分支应该是一条还是多条？有同事认为，一条master分支就够了，不需要那么多条分支。该篇文章就分支管理问题做一番自己的想法记录。</p>
-<h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>如果分支只需要一条，那【分支】的设计意义是什么？思考并查看下面的两个情景。</p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们 iOS 组的每个项目都是多条分支，每个开发者一条分支，三个人就是三条分支，我作为组长我是 Master 分支。其他部门的同事问到我，项目的分支应该是一条还是多条？有同事认为，一条 master 分支就够了，不需要那么多条分支。该篇文章就分支管理问题做一番自己的想法记录。</p>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/01/23/5/#more" rel="contents">
@@ -731,7 +723,7 @@
               
                 
                 <a class="post-title-link" href="/2017/01/22/4/" itemprop="url">
-                  年度工作总结
+                  2016年度工作总结
                 </a>
               
             
@@ -807,7 +799,7 @@
 
       
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>时间过得很快，从去年的二月份开的网络会议，到现在已经有一年了。一年的时间，随着蛋壳整体的成长，我个人也是收获良多。虽然一路走得都很匆忙，也有很多坑，但我相信下一年我们都会走得更好。一年的时间，可以沉淀很多东西，这里我只做项目的年度总结和技术总结概要，具体的技术总结需要花更多的时间去做，年尾的这几天实在太忙了没时间去写，我会在年假的时候抽空来完成。</p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>时间过得很快，从去年的二月份开的网络会议，到现在已经有一年了。一年的时间，随着蛋壳整体的成长，我个人也是收获良多。虽然一路走得都很匆忙，也有很多坑，但我相信下一年我们都会走得更好。一年的时间，可以沉淀很多东西，这里我只做项目的年度总结和技术总结概要，具体的技术总结需要花更多的时间去做，年尾的这几天实在太忙了没时间去写，我会在年假的时候抽空来完成。</p>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/01/22/4/#more" rel="contents">
@@ -953,8 +945,9 @@
 
       
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>NSString 这个类，在 OC 中很常见，[NSString stringWithFormat:] 这个方法我们都很熟悉了。但是也有很常见的一个问题，那就是参数为空的时候会返回@”(null)”。</p>
-<p><b>举个例子</b><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">label.text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"所在医院 : %@"</span>, <span class="keyword">self</span>.doctor.hospital];</div></pre></td></tr></table></figure></p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>NSString 这个类，在 OC 中很常见，<code>[NSString stringWithFormat:]</code> 这个方法我们都很熟悉了。但是也有很常见的一个问题，那就是参数为空的时候会返回<code>@&quot;(null)&quot;</code>。</p>
+<p><strong>举个例子</strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">label.text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"所在医院 : %@"</span>, <span class="keyword">self</span>.doctor.hospital];</div></pre></td></tr></table></figure>
 <p>当 doctor.hospital 为 nil 时，显示“所在医院 : (null)”，理所当然 (null) 这样的字眼不应该出现在界面上被用户看见。</p>
           <!--noindex-->
           <div class="post-more-link text-center">
@@ -1101,7 +1094,7 @@
 
       
         
-          <h4 id="插入emoji表情报错"><a href="#插入emoji表情报错" class="headerlink" title="插入emoji表情报错"></a>插入emoji表情报错</h4><p>一般情况下，往数据库插入emoji字符，会报类似如下的错误:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Error 1366: Incorrect string value: &apos;\xF0\x9F\x91\xBD\xF0\x9F...&apos; for column &apos;xxx&apos;</div></pre></td></tr></table></figure></p>
+          <h2 id="插入emoji表情报错"><a href="#插入emoji表情报错" class="headerlink" title="插入emoji表情报错"></a>插入emoji表情报错</h2><p>一般情况下，往数据库插入emoji字符，会报类似如下的错误:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Error 1366: Incorrect string value: &apos;\xF0\x9F\x91\xBD\xF0\x9F...&apos; for column &apos;xxx&apos;</div></pre></td></tr></table></figure></p>
 <p>Google说MySQL的utf8不是真正的UTF8，只能包含3个字节的unicode，4个字节就会报错。解决这个问题要使用<code>utf8mb4</code>这个编码。</p>
 <ul>
 <li>mysql 5.5.3 版本之前，utf8编码最多支持3个字节，也就是BMP这部分的编码区，范围0000～FFFF这一部分。</li>
@@ -1251,11 +1244,11 @@
 
       
         
-          <h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h5 id="1-分类中定义的属性名最好添加一个前缀"><a href="#1-分类中定义的属性名最好添加一个前缀" class="headerlink" title="1. 分类中定义的属性名最好添加一个前缀"></a>1. 分类中定义的属性名最好添加一个前缀</h5><p>　　Masonry : mas_xxx</p>
+          <h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="分类中定义的属性名最好添加一个前缀"><a href="#分类中定义的属性名最好添加一个前缀" class="headerlink" title="分类中定义的属性名最好添加一个前缀"></a>分类中定义的属性名最好添加一个前缀</h3><p>Masonry : mas_xxx</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[label mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.edges.equalTo(<span class="keyword">self</span>.view).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>));</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
-<p>　　SDWebImage : sd_xxx</p>
+<p>SDWebImage : sd_xxx</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.headImgView sd_setImageWithURL:[<span class="built_in">NSURL</span> URLWithString:DKImgUrl(joinRecord.uphoto)]];</div></pre></td></tr></table></figure>
-<p>　　比如我们通常写的view的扩展分类，会定义一些<code>x</code>、<code>y</code>、<code>width</code>、<code>height</code>等属性，如果不写上前缀，有可能跟苹果原有的一些属性同名导致冲突，还可能跟其他框架定义的属性同名冲突，比如<code>Masonry</code>里就有<code>width</code>、<code>height</code>等属性名;</p>
+<p>比如我们通常写的view的扩展分类，会定义一些<code>x</code>、<code>y</code>、<code>width</code>、<code>height</code>等属性，如果不写上前缀，有可能跟苹果原有的一些属性同名导致冲突，还可能跟其他框架定义的属性同名冲突，比如<code>Masonry</code>里就有<code>width</code>、<code>height</code>等属性名;</p>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/10/3/#more" rel="contents">

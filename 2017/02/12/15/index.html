@@ -89,7 +89,7 @@
 <meta property="og:url" content="https://bingozb.github.io/2017/02/12/15/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
 <meta property="og:description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。">
-<meta property="og:updated_time" content="2017-02-13T05:32:17.000Z">
+<meta property="og:updated_time" content="2017-04-20T11:45:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DKIpaBuilder shell实现自动打包ipa并上传到fir.im">
 <meta name="twitter:description" content="前言伴随着一年的 iOS 开发，最多的就是项目打包 ipa，然后上传到内测分发的平台如 fir.im 上去。时间长了，觉得这种毫无技术含量的人工操作太烦了，程序员就是要懂得偷懒，所以，我个人想出了一个好主意，通过摸索一步步证明我的想法是可行的，最后产出 Shell 脚本 DKIpaBuilder。">
@@ -375,7 +375,7 @@
 <p>另外，明明我的 Xcode 已经什么都配好了，我想省掉的只是每次 Archive 都要经过的那几个步骤，为什么我要重新配 mini 上的环境，还要配 Jenkins 里的 provisioning Profile，还要配什么钥匙串，讲道理，不绕吗？</p>
 <p>出于以上的以及其它的种种问题，最终我不采用 Jenkins 来持续集成，至少针对 iOS 我是拒绝的，这个时候需要想些别的办法。</p>
 <h4 id="pre-push-hook"><a href="#pre-push-hook" class="headerlink" title="pre-push hook"></a>pre-push hook</h4><p>于是我想到了个办法，换个思想，先打包ipa，上传到分发平台，然后才push。这样的话，操作完全是在本机，不需要服务器。而相关的配置，只要在 Xcode 中配置好，确定本地可以手动打包，就可以通过命令行来实现。</p>
-<p>把 push 放在最后是很巧妙的！在<a href="https://bingo.ren/2017/02/09/11/" target="_blank" rel="external">《解决iOS项目文件合并.xcodeproj冲突》</a>中，用 xUnique 去解决问题，切入点就是 hooks，选择的是 pre-commit。这种情况不适合 pre-commit，而应该选择 pre-push。这样就可以用 pre-push 这个钩子来先调用 Shell 脚本。对我们而言，不需要敲什么别的命令，只要一句非常普通的 push 命令。</p>
+<p>把 push 放在最后是很巧妙的！在<a href="https://blog.bingo.ren/11.html" target="_blank" rel="external">《解决iOS项目文件合并.xcodeproj冲突》</a>中，用 xUnique 去解决问题，切入点就是 hooks，选择的是 pre-commit。这种情况不适合 pre-commit，而应该选择 pre-push。这样就可以用 pre-push 这个钩子来先调用 Shell 脚本。对我们而言，不需要敲什么别的命令，只要一句非常普通的 push 命令。</p>
 <p>开始写 pre-push，先在项目根目录创建一个 Shell 文件，并在 pre-push 中写入执行它。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd to/path/project </div><div class="line">$ touch DKIpaBuilder.sh</div><div class="line">$ chmod 777 DKIpaBuilder.sh</div><div class="line">$ &#123; echo &apos;#!/bin/sh&apos;; echo &apos;./DKIpaBuilder.sh&apos;; &#125; &gt; .git/hooks/pre-push</div></pre></td></tr></table></figure>
 <h4 id="DKIpaBuilder-sh"><a href="#DKIpaBuilder-sh" class="headerlink" title="DKIpaBuilder.sh"></a>DKIpaBuilder.sh</h4><p>前面的触发器已经搭建好了，现在的重点已经转移到后续工作了，如何用命令行去打包 ipa，并上传到 fir.im。</p>

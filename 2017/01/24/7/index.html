@@ -82,17 +82,17 @@
 
 
 
-<meta name="description" content="A QRCode Scanner for iOS.一个“扫一扫”扫描器，支持二维码和条码。  安装 通过cocoapods安装  1pod &apos;DKScanner&apos;  或者直接clone，将DKScanner文件夹整个拖到你的项目中">
+<meta name="description" content="前言A QRCode Scanner for iOS. 一个“扫一扫”扫描器，支持二维码和条形码。">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="扫一扫框架 DKScanner">
 <meta property="og:url" content="https://bingozb.github.io/2017/01/24/7/index.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="A QRCode Scanner for iOS.一个“扫一扫”扫描器，支持二维码和条码。  安装 通过cocoapods安装  1pod &apos;DKScanner&apos;  或者直接clone，将DKScanner文件夹整个拖到你的项目中">
-<meta property="og:updated_time" content="2017-02-13T05:32:15.000Z">
+<meta property="og:description" content="前言A QRCode Scanner for iOS. 一个“扫一扫”扫描器，支持二维码和条形码。">
+<meta property="og:updated_time" content="2017-04-18T14:29:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="扫一扫框架 DKScanner">
-<meta name="twitter:description" content="A QRCode Scanner for iOS.一个“扫一扫”扫描器，支持二维码和条码。  安装 通过cocoapods安装  1pod &apos;DKScanner&apos;  或者直接clone，将DKScanner文件夹整个拖到你的项目中">
+<meta name="twitter:description" content="前言A QRCode Scanner for iOS. 一个“扫一扫”扫描器，支持二维码和条形码。">
 
 
 
@@ -355,22 +355,20 @@
       
 
       
-        <p><br>A QRCode Scanner for iOS.<br><br>一个“扫一扫”扫描器，支持二维码和条码。<br></p>
-
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>A QRCode Scanner for iOS.</p>
+<p>一个“扫一扫”扫描器，支持二维码和条形码。</p>
+<a id="more"></a>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li>通过cocoapods安装</li>
+<li>通过 Cocoapods 安装</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKScanner'</div></pre></td></tr></table></figure>
 <ul>
 <li>或者直接clone，将<code>DKScanner</code>文件夹整个拖到你的项目中</li>
 </ul>
-<a id="more"></a>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><strong>引用头文件</strong></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DKScannerController.h"</span></span></div></pre></td></tr></table></figure>
-<p><strong>调用</strong></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DKScannerController *scannerVc = [DKScannerController scannerWithCompletion:^(<span class="built_in">NSString</span> *stringValue) &#123;</div><div class="line">        <span class="comment">// 扫描结果回调</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"扫描结果: %@"</span>, stringValue);</div><div class="line">&#125;];</div><div class="line"><span class="comment">// 设置导航栏标题、标题颜色和主题色</span></div><div class="line">[scannerVc setTitle:<span class="string">@"扫描二维码"</span> titleColor:[<span class="built_in">UIColor</span> whiteColor] tintColor:[<span class="built_in">UIColor</span> redColor]];</div><div class="line"><span class="comment">// modal</span></div><div class="line">[<span class="keyword">self</span> presentViewController:scannerVc animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>在iOS10上，使用摄像头和访问相册都需要添加请求访问权限描述，否则会Crash。</p>
-<p>请在info.plist文件中添加以下键值对。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="引用头文件"><a href="#引用头文件" class="headerlink" title="引用头文件"></a>引用头文件</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DKScannerController.h"</span></span></div></pre></td></tr></table></figure>
+<h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DKScannerController *scannerVc = [DKScannerController scannerWithCompletion:^(<span class="built_in">NSString</span> *stringValue) &#123;</div><div class="line">        <span class="comment">// 扫描结果回调</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"扫描结果: %@"</span>, stringValue);</div><div class="line">&#125;];</div><div class="line"><span class="comment">// 设置导航栏标题、标题颜色和主题色</span></div><div class="line">[scannerVc setTitle:<span class="string">@"扫描二维码"</span> titleColor:[<span class="built_in">UIColor</span> whiteColor] tintColor:[<span class="built_in">UIColor</span> redColor]];</div><div class="line"><span class="comment">// modal</span></div><div class="line">[<span class="keyword">self</span> presentViewController:scannerVc animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>在iOS10上，使用摄像头和访问相册都需要添加请求访问权限描述，否则会 Crash。</p>
+<p>请在 info.plist 文件中添加以下键值对。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;</div><div class="line">&lt;string&gt;是否允许访问摄像头&lt;/string&gt;</div><div class="line">&lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;</div><div class="line">&lt;string&gt;是否允许访问相册&lt;/string&gt;</div></pre></td></tr></table></figure>
       
     </div>
@@ -539,7 +537,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用头文件"><span class="nav-number">3.1.</span> <span class="nav-text">引用头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用"><span class="nav-number">3.2.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li></ol></div>
             
 
           </div>
