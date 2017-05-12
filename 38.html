@@ -90,17 +90,21 @@
 
 
 
-<meta name="description" content="前言A QRCode Scanner for iOS. 一个“扫一扫”扫描器，支持二维码和条形码。">
+<meta name="description" content="前言我相信大家都 revoke 过证书，虽然这只是一个梗，但是 iOS 开发最麻烦的就是证书。开发人员随意在苹果开发者平台删除配置文件，或者新建配置文件，而其他的同事却无法被通知到，证书失效，打出来的包莫名其妙就闪退了，会导致大量无谓的工作量。 match comes to rescue。 match 提出了一套全新的管理证书和配置文件的方案，用来进行签名，思想是使用私有仓库来管理证书和配置文件">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="扫一扫框架 DKScanner">
-<meta property="og:url" content="https://bingozb.github.io/7.html">
+<meta property="og:title" content="使用 Fastlane match 管理 iOS 证书和 profile">
+<meta property="og:url" content="https://bingozb.github.io/38.html">
 <meta property="og:site_name" content="Bingo's Blog">
-<meta property="og:description" content="前言A QRCode Scanner for iOS. 一个“扫一扫”扫描器，支持二维码和条形码。">
-<meta property="og:updated_time" content="2017-04-18T14:29:04.000Z">
+<meta property="og:description" content="前言我相信大家都 revoke 过证书，虽然这只是一个梗，但是 iOS 开发最麻烦的就是证书。开发人员随意在苹果开发者平台删除配置文件，或者新建配置文件，而其他的同事却无法被通知到，证书失效，打出来的包莫名其妙就闪退了，会导致大量无谓的工作量。 match comes to rescue。 match 提出了一套全新的管理证书和配置文件的方案，用来进行签名，思想是使用私有仓库来管理证书和配置文件">
+<meta property="og:image" content="https://bingozb.github.io/images/blog/38/match.png">
+<meta property="og:image" content="https://bingozb.github.io/images/blog/38/configurations.png">
+<meta property="og:image" content="https://bingozb.github.io/images/blog/38/profile.png">
+<meta property="og:updated_time" content="2017-05-12T07:34:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="扫一扫框架 DKScanner">
-<meta name="twitter:description" content="前言A QRCode Scanner for iOS. 一个“扫一扫”扫描器，支持二维码和条形码。">
+<meta name="twitter:title" content="使用 Fastlane match 管理 iOS 证书和 profile">
+<meta name="twitter:description" content="前言我相信大家都 revoke 过证书，虽然这只是一个梗，但是 iOS 开发最麻烦的就是证书。开发人员随意在苹果开发者平台删除配置文件，或者新建配置文件，而其他的同事却无法被通知到，证书失效，打出来的包莫名其妙就闪退了，会导致大量无谓的工作量。 match comes to rescue。 match 提出了一套全新的管理证书和配置文件的方案，用来进行签名，思想是使用私有仓库来管理证书和配置文件">
+<meta name="twitter:image" content="https://bingozb.github.io/images/blog/38/match.png">
 
 
 
@@ -128,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://bingozb.github.io/7.html"/>
+  <link rel="canonical" href="https://bingozb.github.io/38.html"/>
 
 
 
 
 
-  <title>扫一扫框架 DKScanner | Bingo's Blog</title>
+  <title>使用 Fastlane match 管理 iOS 证书和 profile | Bingo's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +287,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://bingozb.github.io/7.html">
+    <link itemprop="mainEntityOfPage" href="https://bingozb.github.io/38.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bingo">
@@ -304,7 +308,7 @@
             
             
               
-                扫一扫框架 DKScanner
+                使用 Fastlane match 管理 iOS 证书和 profile
               
             
           </h1>
@@ -319,8 +323,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-24T15:12:51+08:00">
-                2017-01-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T12:35:54+08:00">
+                2017-05-12
               </time>
             
 
@@ -342,8 +346,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DKKIT/" itemprop="url" rel="index">
-                    <span itemprop="name">DKKIT</span>
+                  <a href="/categories/战斗笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">战斗笔记</span>
                   </a>
                 </span>
 
@@ -360,8 +364,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/7.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="7.html" itemprop="commentCount"></span>
+                <a href="/38.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="38.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -369,7 +373,7 @@
 
           
           
-             <span id="/7.html" class="leancloud_visitors" data-flag-title="扫一扫框架 DKScanner">
+             <span id="/38.html" class="leancloud_visitors" data-flag-title="使用 Fastlane match 管理 iOS 证书和 profile">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -397,21 +401,55 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>A QRCode Scanner for iOS.</p>
-<p>一个“扫一扫”扫描器，支持二维码和条形码。</p>
+        <p><img src="images/blog/38/match.png" alt="match"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我相信大家都 revoke 过证书，虽然这只是一个梗，但是 iOS 开发最麻烦的就是证书。开发人员随意在苹果开发者平台删除配置文件，或者新建配置文件，而其他的同事却无法被通知到，证书失效，打出来的包莫名其妙就闪退了，会导致大量无谓的工作量。 <a href="https://github.com/fastlane/fastlane/tree/master/match" target="_blank" rel="external">match</a> comes to rescue。</p>
+<p>match 提出了一套全新的管理证书和配置文件的方案，用来进行签名，思想是使用私有仓库来管理证书和配置文件，每一台机器通过拉取该仓库来安装证书和配置文件，再也不用去开发者平台手动创建了。</p>
 <a id="more"></a>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li>通过 Cocoapods 安装</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod 'DKScanner'</div></pre></td></tr></table></figure>
-<ul>
-<li>或者直接clone，将<code>DKScanner</code>文件夹整个拖到你的项目中</li>
-</ul>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="引用头文件"><a href="#引用头文件" class="headerlink" title="引用头文件"></a>引用头文件</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DKScannerController.h"</span></span></div></pre></td></tr></table></figure>
-<h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DKScannerController *scannerVc = [DKScannerController scannerWithCompletion:^(<span class="built_in">NSString</span> *stringValue) &#123;</div><div class="line">        <span class="comment">// 扫描结果回调</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"扫描结果: %@"</span>, stringValue);</div><div class="line">&#125;];</div><div class="line"><span class="comment">// 设置导航栏标题、标题颜色和主题色</span></div><div class="line">[scannerVc setTitle:<span class="string">@"扫描二维码"</span> titleColor:[<span class="built_in">UIColor</span> whiteColor] tintColor:[<span class="built_in">UIColor</span> redColor]];</div><div class="line"><span class="comment">// modal</span></div><div class="line">[<span class="keyword">self</span> presentViewController:scannerVc animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>在iOS10上，使用摄像头和访问相册都需要添加请求访问权限描述，否则会 Crash。</p>
-<p>请在 info.plist 文件中添加以下键值对。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;</div><div class="line">&lt;string&gt;是否允许访问摄像头&lt;/string&gt;</div><div class="line">&lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;</div><div class="line">&lt;string&gt;是否允许访问相册&lt;/string&gt;</div></pre></td></tr></table></figure>
+<h2 id="match"><a href="#match" class="headerlink" title="match"></a>match</h2><p><a href="https://github.com/fastlane/fastlane/tree/master/match" target="_blank" rel="external">match</a> 是 fastlane 的一个功能组件, 采取了集中化方式来管理证书和 profile, 新建一个私有远程 git 库用来保存证书和 profile, 一个 team 的开发者共用同一套证书, 方便了管理和配置, 同时 match 在证书过期时还会自动从苹果官网下载新的证书并 push 到私有的 git 库中, 保证证书同步。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ [sudo] gem install <span class="keyword">match</span></div></pre></td></tr></table></figure>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ fastlane <span class="keyword">match</span> init</div></pre></td></tr></table></figure>
+<p>命令执行后，需要输入新建的用来保存证书的 git 仓库地址, 运行成功后会在 fastlane 文件夹下面生成一个 Matchfile。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">└── fastlane</div><div class="line">    ├── Appfile</div><div class="line">    ├── Fastfile</div><div class="line">    ├── Matchfile</div><div class="line">    └── README.md</div></pre></td></tr></table></figure>
+<p>Tips: 这里推荐使用 SSH 的协议地址，在 Coding 等平台的私有项目中配置好 SSH 公钥，以后就可以免密码登录托管平台。另外，如果持续构建使用了 Jenkins，如果不改成 SSH 协议的话可能会导致构建一直卡在 clone 仓库这一步。（总之，用 SSH 协议地址就对了。）</p>
+<h3 id="删除旧证书和-profile"><a href="#删除旧证书和-profile" class="headerlink" title="删除旧证书和 profile"></a>删除旧证书和 profile</h3><p>如果当前项目的证书和 profile 比较混乱, 可以用以下两个命令来清空 Apple 官网上当前全部证书和 profile 文件。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ fastlane <span class="keyword">match</span> nuke development</div><div class="line">$ fastlane <span class="keyword">match</span> nuke distribution</div></pre></td></tr></table></figure>
+<h3 id="生成证书和-profile"><a href="#生成证书和-profile" class="headerlink" title="生成证书和 profile"></a>生成证书和 profile</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ fastlane <span class="keyword">match</span> development</div><div class="line">$ fastlane <span class="keyword">match</span> adhoc</div><div class="line">$ fastlane <span class="keyword">match</span> appstore</div></pre></td></tr></table></figure>
+<p>三条命令对应（真机调试、内测、上架）三个渠道包所需的证书和 profile。</p>
+<p>命令运行时需要输入 Apple ID 和 密码, 该密码保存在系统的 keychain 中。</p>
+<h2 id="团队管理"><a href="#团队管理" class="headerlink" title="团队管理"></a>团队管理</h2><h3 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h3><p>在项目 PROJECT -&gt; Info -&gt; Configurations 中，点击 +  按钮，Duplicate “Release” Configurations，添加一个 AdHoc。</p>
+<p><img src="images/blog/38/configurations.png" alt="configurations"></p>
+<h3 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h3><p>如果 Team 加入了新成员, 在 clone 项目工程后，运行下面的命令, match 就会从私有证书库中下载 develop 证书和 profile, 并安装到新成员的 Mac 上。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ fastlane <span class="keyword">match</span> development --readonly</div><div class="line">$ fastlane <span class="keyword">match</span> adhoc --readonly</div><div class="line">$ fastlane <span class="keyword">match</span> appstore --readonly</div></pre></td></tr></table></figure>
+<h3 id="选择证书"><a href="#选择证书" class="headerlink" title="选择证书"></a>选择证书</h3><p>在项目 TARGETS -&gt; General 中，Signing 取消勾选 Automatically manage signing，然后选择对应的 profile。</p>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>Provisioning Profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signing(Debug)</td>
+<td>match Development cn.dankal.xxx</td>
+</tr>
+<tr>
+<td>Signing(Release)</td>
+<td>match AppStore cn.dankal.xxx</td>
+</tr>
+<tr>
+<td>Signing(AdHoc)</td>
+<td>match AdHoc cn.dankal.xxx</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/blog/38/profile.png" alt="configurations"></p>
+<h2 id="补坑"><a href="#补坑" class="headerlink" title="补坑"></a>补坑</h2><p>运行 match appstore 时遇到 openssl 库版本问题。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">[19:53:20]: Connection reset by peer - SSL_connect</div><div class="line">[19:53:20]:</div><div class="line">[19:53:20]: SSL errors can be caused by various components on your local machine.</div><div class="line">[19:53:20]: Apple has recently changed their servers to require TLS 1.2, which may</div><div class="line">[19:53:20]: not be available to your system installed Ruby (2.0.0)</div><div class="line">[19:53:20]:</div><div class="line">[19:53:20]: The best solution is to install a new version of Ruby</div><div class="line">[19:53:20]:</div><div class="line">[19:53:20]: - Make sure OpenSSL is installed with Homebrew: `brew update &amp;&amp; brew upgrade openssl`</div><div class="line">[19:53:20]: - If you use system Ruby:</div><div class="line">[19:53:20]:   - Run `brew update &amp;&amp; brew install ruby`</div><div class="line">[19:53:20]: - If you use rbenv with ruby-build:</div><div class="line">[19:53:20]:   - Run `brew update &amp;&amp; brew upgrade ruby-build &amp;&amp; rbenv install ruby-2.3.1`</div><div class="line">[19:53:20]:   - Run `rbenv global ruby-2.3.1` to make it the new global default Ruby version</div><div class="line">[19:53:20]: - If you use rvm:</div><div class="line">[19:53:20]:   - First run `rvm osx-ssl-certs update all`</div><div class="line">[19:53:20]:   - Then run `rvm reinstall ruby-2.3.1 --with-openssl-dir=/usr/local</div><div class="line">[19:53:20]:</div><div class="line">[19:53:20]: If that doesn't fix your issue, please google for the following error message:</div><div class="line">[19:53:20]:   'Connection reset by peer - SSL_connect'</div><div class="line">[19:53:20]: -----------------------------------------------------------------------</div><div class="line"></div><div class="line">[!] Connection reset by peer - SSL_connect</div></pre></td></tr></table></figure>
+<p>解决办法：更新 mac 自带的 openssl 版本。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://codesigning.guide/" target="_blank" rel="external">《A new approach to code signing》</a></p>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>以后每个项目的证书和 Profile 都使用 match 来统一管理，但每个项目不可能都建一个私有仓库来管理证书和 Profile。后面会使用一个仓库，多条分支的方式来管理多个项目。</p>
+
       
     </div>
 
@@ -453,18 +491,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/8.html" rel="next" title="Git 合并Commit">
-                <i class="fa fa-chevron-left"></i> Git 合并Commit
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/6.html" rel="prev" title="常用的分类和宏封装库 DKExtension">
-                常用的分类和宏封装库 DKExtension <i class="fa fa-chevron-right"></i>
+              <a href="/37.html" rel="prev" title="iOS项目的.gitignore配置">
+                iOS项目的.gitignore配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -491,8 +525,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="7.html"
-           data-title="扫一扫框架 DKScanner" data-url="https://bingozb.github.io/7.html">
+      <div class="ds-thread" data-thread-key="38.html"
+           data-title="使用 Fastlane match 管理 iOS 证书和 profile" data-url="https://bingozb.github.io/38.html">
       </div>
     
   </div>
@@ -598,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用头文件"><span class="nav-number">3.1.</span> <span class="nav-text">引用头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用"><span class="nav-number">3.2.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#match"><span class="nav-number">2.</span> <span class="nav-text">match</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">2.2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除旧证书和-profile"><span class="nav-number">2.3.</span> <span class="nav-text">删除旧证书和 profile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成证书和-profile"><span class="nav-number">2.4.</span> <span class="nav-text">生成证书和 profile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#团队管理"><span class="nav-number">3.</span> <span class="nav-text">团队管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目配置"><span class="nav-number">3.1.</span> <span class="nav-text">项目配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装证书"><span class="nav-number">3.2.</span> <span class="nav-text">安装证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择证书"><span class="nav-number">3.3.</span> <span class="nav-text">选择证书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补坑"><span class="nav-number">4.</span> <span class="nav-text">补坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后话"><span class="nav-number">6.</span> <span class="nav-text">后话</span></a></li></ol></div>
             
 
           </div>
